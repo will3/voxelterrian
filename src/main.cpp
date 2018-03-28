@@ -6,12 +6,16 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
 #include "Chunks.h"
 #include "DirectionalLight.h"
 #include "Mesher.h"
 #include "Runner.h"
 #include "Terrian.h"
 #include "EditorCameraControl.h"
+#include "common\shader.hpp"
+#include "Mesh.h"
 
 GLFWwindow* window;
 
@@ -89,37 +93,34 @@ int main() {
 	glGenVertexArrays(1, &VertexArrayID);
 	glBindVertexArray(VertexArrayID);
 
-	static const GLfloat g_vertex_buffer_data[] = {
-		-1.0f, -1.0f, 0.0f,
-		1.0f, -1.0f, 0.0f,
-		0.0f,  1.0f, 0.0f,
-	};
+	Material *material = new Material();
 
-	GLuint vertexbuffer;
-	glGenBuffers(1, &vertexbuffer);
-	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
-
+	Mesh *mesh = new Mesh();
+	mesh->material = material;
+	mesh->vertices.insert(mesh->vertices.end(), {
+		-1, -1, 0,
+		1, -1, 0,
+		0,  1, 0
+	});
+	mesh->colors.insert(mesh->colors.end(), {
+		255,0,0,
+		0,255,0,
+		0,0,255
+	});
+	mesh->lighting.insert(mesh->lighting.end(), {
+		15, 15, 15
+	});
+	mesh->load_buffer();
 
 	__int64 last_tick = 0;
 
 	do {
 		runner->update();
 
+		// Clear the screen
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		glEnableVertexAttribArray(0);
-		glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-		glVertexAttribPointer(
-			0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
-			3,                  // size
-			GL_FLOAT,           // type
-			GL_FALSE,           // normalized?
-			0,                  // stride
-			(void*)0            // array buffer offset
-		);
-		glDrawArrays(GL_TRIANGLES, 0, 3); // Starting from vertex 0; 3 vertices total -> 1 triangle
-		glDisableVertexAttribArray(0);
+		mesh->render();
 
 		// Swap buffers
 		glfwSwapBuffers(window);
@@ -133,6 +134,11 @@ int main() {
 	} // Check if the ESC key was pressed or the window was closed
 	while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
 		glfwWindowShouldClose(window) == 0);
+
+	// Cleanup VBO and shader
+	delete mesh;
+	delete material;
+	glDeleteVertexArrays(1, &VertexArrayID);
 
 	// Close OpenGL window and terminate GLFW
 	glfwTerminate();

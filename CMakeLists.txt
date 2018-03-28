@@ -44,9 +44,11 @@ add_definitions(
 )
 
 file(GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/src/*.cpp ${PROJECT_SOURCE_DIR}/src/*.h)
+file(GLOB SHADER_FILES ${PROJECT_SOURCE_DIR}/shaders/*.*)
 
 add_executable(kestrel 
 	${SRC_FILES}
+	${SHADER_FILES}
 	common/shader.cpp
 	common/shader.hpp
 	shaders/voxel.vertexshader

@@ -54,41 +54,41 @@ public:
 		return next.v != c.v || next.has_ao() || next.lighting != c.lighting;
 	}
 
-	/*void copy(SMeshBuffer *buffer, int x, int y, int w, int h, int ao0, int ao1, int ao2, int ao3, int lighting) {
-		float ao_strength = 0.1f;
-		auto &vertices = buffer->Vertices;
-		int index = vertices.size();
-		auto &indices = buffer->Indices;
+	//void copy(Mesh *buffer, int x, int y, int w, int h, int ao0, int ao1, int ao2, int ao3, int lighting) {
+	//	float ao_strength = 0.1f;
+	//	auto &vertices = buffer->vertices;
+	//	int index = vertices.size();
+	//	//auto &indices = buffer->Indices;
 
-		Coord3 v0 = Coord3(i, x, y).rotate(d);
-		Coord3 v1 = Coord3(i, x + w, y).rotate(d);
-		Coord3 v2 = Coord3(i, x + w, y + h).rotate(d);
-		Coord3 v3 = Coord3(i, x, y + h).rotate(d);
+	//	Coord3 v0 = Coord3(i, x, y).rotate(d);
+	//	Coord3 v1 = Coord3(i, x + w, y).rotate(d);
+	//	Coord3 v2 = Coord3(i, x + w, y + h).rotate(d);
+	//	Coord3 v3 = Coord3(i, x, y + h).rotate(d);
 
-		vertices.push_back(S3DVertex(vector3df(v0.i, v0.j, v0.k), vector3df(), SColor(255, 255, 255, 255), vector2df(1.0 - (ao0 / 3.0 * ao_strength), lighting / 16.0)));
-		vertices.push_back(S3DVertex(vector3df(v1.i, v1.j, v1.k), vector3df(), SColor(255, 255, 255, 255), vector2df(1.0 - (ao1 / 3.0 * ao_strength), lighting / 16.0)));
-		vertices.push_back(S3DVertex(vector3df(v2.i, v2.j, v2.k), vector3df(), SColor(255, 255, 255, 255), vector2df(1.0 - (ao2 / 3.0 * ao_strength), lighting / 16.0)));
-		vertices.push_back(S3DVertex(vector3df(v3.i, v3.j, v3.k), vector3df(), SColor(255, 255, 255, 255), vector2df(1.0 - (ao3 / 3.0 * ao_strength), lighting / 16.0)));
+	//	//vertices.push_back(S3DVertex(vector3df(v0.i, v0.j, v0.k), vector3df(), SColor(255, 255, 255, 255), vector2df(1.0 - (ao0 / 3.0 * ao_strength), lighting / 16.0)));
+	//	//vertices.push_back(S3DVertex(vector3df(v1.i, v1.j, v1.k), vector3df(), SColor(255, 255, 255, 255), vector2df(1.0 - (ao1 / 3.0 * ao_strength), lighting / 16.0)));
+	//	//vertices.push_back(S3DVertex(vector3df(v2.i, v2.j, v2.k), vector3df(), SColor(255, 255, 255, 255), vector2df(1.0 - (ao2 / 3.0 * ao_strength), lighting / 16.0)));
+	//	//vertices.push_back(S3DVertex(vector3df(v3.i, v3.j, v3.k), vector3df(), SColor(255, 255, 255, 255), vector2df(1.0 - (ao3 / 3.0 * ao_strength), lighting / 16.0)));
 
-		if (front) {
-			indices.push_back(index);
-			indices.push_back(index + 1);
-			indices.push_back(index + 2);
-			indices.push_back(index + 2);
-			indices.push_back(index + 3);
-			indices.push_back(index);
-		}
-		else {
-			indices.push_back(index + 2);
-			indices.push_back(index + 1);
-			indices.push_back(index);
-			indices.push_back(index);
-			indices.push_back(index + 3);
-			indices.push_back(index + 2);
-		}
-	}*/
+	//	//if (front) {
+	//	//	indices.push_back(index);
+	//	//	indices.push_back(index + 1);
+	//	//	indices.push_back(index + 2);
+	//	//	indices.push_back(index + 2);
+	//	//	indices.push_back(index + 3);
+	//	//	indices.push_back(index);
+	//	//}
+	//	//else {
+	//	//	indices.push_back(index + 2);
+	//	//	indices.push_back(index + 1);
+	//	//	indices.push_back(index);
+	//	//	indices.push_back(index);
+	//	//	indices.push_back(index + 3);
+	//	//	indices.push_back(index + 2);
+	//	//}
+	//}
 
-	//void get_quads(SMeshBuffer *buffer) {
+	//void get_quads(Mesh *mesh) {
 	//	int n = 0;
 	//	MaskValue c;
 	//	int w, h;
@@ -105,7 +105,7 @@ public:
 
 	//			// Check AO
 	//			if (c.has_ao()) {
-	//				copy(buffer, j, i, 1, 1, c.ao0, c.ao1, c.ao2, c.ao3, c.lighting);
+	//				copy(mesh, j, i, 1, 1, c.ao0, c.ao1, c.ao2, c.ao3, c.lighting);
 	//				i++;
 	//				n++;
 	//				continue;
@@ -137,7 +137,7 @@ public:
 	//			}
 
 	//			// Add Quad
-	//			copy(buffer, j, i, h, w, 0, 0, 0, 0, lighting);
+	//			copy(mesh, j, i, h, w, 0, 0, 0, 0, lighting);
 
 	//			//Zero-out mask
 	//			for (int l = 0; l < h; l++) {

@@ -334,17 +334,20 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\FastNoise.h" />
     <ClInclude Include="C:\kestrel\src\Logger.h" />
     <ClInclude Include="C:\kestrel\src\Mask.h" />
+    <ClInclude Include="C:\kestrel\src\Material.h" />
+    <ClInclude Include="C:\kestrel\src\Mesh.h" />
     <ClInclude Include="C:\kestrel\src\Mesher.h" />
     <ClInclude Include="C:\kestrel\src\NoiseMap2.h" />
     <ClInclude Include="C:\kestrel\src\Raycast.h" />
     <ClInclude Include="C:\kestrel\src\Runner.h" />
     <ClInclude Include="C:\kestrel\src\Terrian.h" />
+    <ClInclude Include="C:\kestrel\src\Vertice.h" />
     <ClInclude Include="C:\kestrel\src\linalg.h" />
     <ClInclude Include="C:\kestrel\src\types.h" />
+    <None Include="C:\kestrel\shaders\voxel.fragmentshader" />
+    <None Include="C:\kestrel\shaders\voxel.vertexshader" />
     <ClCompile Include="C:\kestrel\common\shader.cpp" />
     <ClInclude Include="C:\kestrel\common\shader.hpp" />
-    <None Include="C:\kestrel\shaders\voxel.vertexshader" />
-    <None Include="C:\kestrel\shaders\voxel.fragmentshader" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:\kestrel\ZERO_CHECK.vcxproj">

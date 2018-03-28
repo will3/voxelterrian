@@ -23,7 +23,7 @@ public:
 	bool dirty;
 
 	bool shadow_softened = false;
-	//vector3df position;
+	float3 position;
 
 	Voxel get(Coord3 coord);
 	void set(Coord3 coord, Voxel v);

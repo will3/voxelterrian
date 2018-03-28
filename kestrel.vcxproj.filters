@@ -69,6 +69,12 @@
     <ClInclude Include="C:\kestrel\src\Mask.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="C:\kestrel\src\Material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="C:\kestrel\src\Mesher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -82,6 +88,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Terrian.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\Vertice.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\linalg.h">
@@ -98,10 +107,10 @@
     <CustomBuild Include="C:\kestrel\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="C:\kestrel\shaders\voxel.vertexshader">
+    <None Include="C:\kestrel\shaders\voxel.fragmentshader">
       <Filter>shaders</Filter>
     </None>
-    <None Include="C:\kestrel\shaders\voxel.fragmentshader">
+    <None Include="C:\kestrel\shaders\voxel.vertexshader">
       <Filter>shaders</Filter>
     </None>
   </ItemGroup>

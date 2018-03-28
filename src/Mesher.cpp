@@ -97,13 +97,13 @@ void Mesher::generate_masks(Chunk* chunk, Chunks* chunks, DirectionalLight *ligh
 		}
 	}
 
-	//chunk->position = vector3df(chunk->get_offset().i, chunk->get_offset().j, chunk->get_offset().k);
+	chunk->position = float3(chunk->get_offset().i, chunk->get_offset().j, chunk->get_offset().k);
 
 	chunk->shadow_softened = false;
 }
 
-//void Mesher::copy_mask(Mask *mask, SMeshBuffer *buffer) {
-//	mask->get_quads(buffer);
+//void Mesher::copy_mask(Mask *mask, Mesh *mesh) {
+//	mask->get_quads(mesh);
 //}
 
 Coord3 Mesher::get_vertice(int i, int j, int k, int d) {
