@@ -1,0 +1,66 @@
+#include "Runner.h"
+#include "Logger.h"
+#include <vector>
+
+static int next_id = 0;
+int get_next_id() { return ++next_id; }
+
+Runner::Runner()
+{
+}
+
+
+Runner::~Runner()
+{
+}
+
+int Runner::add(Entity *entity) {
+	if (entity->id == 0) {
+		entity->id = get_next_id();
+	}
+
+	Logger::get_instance()->log("entity added");
+	entity->runner = this;
+
+	map[entity->id] = entity;
+	return entity->id;
+}
+
+void Runner::remove(int id) {
+	map[id]->removed = true;
+}
+
+void Runner::update() {
+	for (auto kv : map) {
+		Entity *entity = kv.second;
+		if (entity->started) {
+			continue;
+		}
+
+		entity->start();
+		entity->started = true;
+	}
+
+	std::vector<int> to_remove;
+
+	for (auto kv : map) {
+		kv.second->update();
+
+		if (kv.second->removed) {
+			to_remove.push_back(kv.first);
+		}
+	}
+
+	for (auto key : to_remove) {
+		map[key]->remove();
+		map.erase(key);
+	}
+}
+
+bool Runner::has(int id) {
+	return map.count(id) > 0;
+}
+
+bool Runner::get(int id) {
+	return map[id];
+}
