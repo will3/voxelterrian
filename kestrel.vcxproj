@@ -320,12 +320,15 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\kestrel\src\Entity.cpp" />
     <ClCompile Include="C:\kestrel\src\FastNoise.cpp" />
     <ClCompile Include="C:\kestrel\src\Logger.cpp" />
+    <ClCompile Include="C:\kestrel\src\Mask.cpp" />
     <ClCompile Include="C:\kestrel\src\Mesher.cpp" />
     <ClCompile Include="C:\kestrel\src\NoiseMap2.cpp" />
     <ClCompile Include="C:\kestrel\src\Raycast.cpp" />
     <ClCompile Include="C:\kestrel\src\Runner.cpp" />
     <ClCompile Include="C:\kestrel\src\Terrian.cpp" />
     <ClCompile Include="C:\kestrel\src\main.cpp" />
+    <ClCompile Include="src\Material.cpp" />
+    <ClCompile Include="src\VoxelMesh.cpp" />
     <ClInclude Include="C:\kestrel\src\Chunk.h" />
     <ClInclude Include="C:\kestrel\src\Chunks.h" />
     <ClInclude Include="C:\kestrel\src\DirectionalLight.h" />
@@ -335,7 +338,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\Logger.h" />
     <ClInclude Include="C:\kestrel\src\Mask.h" />
     <ClInclude Include="C:\kestrel\src\Material.h" />
-    <ClInclude Include="C:\kestrel\src\Mesh.h" />
+    <ClInclude Include="src\VoxelMesh.h" />
     <ClInclude Include="C:\kestrel\src\Mesher.h" />
     <ClInclude Include="C:\kestrel\src\NoiseMap2.h" />
     <ClInclude Include="C:\kestrel\src\Raycast.h" />

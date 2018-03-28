@@ -15,7 +15,8 @@
 #include "Terrian.h"
 #include "EditorCameraControl.h"
 #include "common\shader.hpp"
-#include "Mesh.h"
+#include "VoxelMesh.h"
+#include "Material.h"
 
 GLFWwindow* window;
 
@@ -95,7 +96,7 @@ int main() {
 
 	Material *material = new Material();
 
-	Mesh *mesh = new Mesh();
+	VoxelMesh *mesh = new VoxelMesh();
 	mesh->material = material;
 	mesh->vertices.insert(mesh->vertices.end(), {
 		-1, -1, 0,

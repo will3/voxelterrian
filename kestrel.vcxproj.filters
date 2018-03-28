@@ -22,6 +22,9 @@
     <ClCompile Include="C:\kestrel\src\Logger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\kestrel\src\Mask.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\kestrel\src\Mesher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -42,6 +45,12 @@
     </ClCompile>
     <ClCompile Include="C:\kestrel\common\shader.cpp">
       <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Material.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\VoxelMesh.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -72,9 +81,6 @@
     <ClInclude Include="C:\kestrel\src\Material.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\kestrel\src\Mesh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="C:\kestrel\src\Mesher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -101,6 +107,9 @@
     </ClInclude>
     <ClInclude Include="C:\kestrel\common\shader.hpp">
       <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\VoxelMesh.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

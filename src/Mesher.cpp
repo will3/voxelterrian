@@ -4,6 +4,8 @@
 #include "Mesher.h"
 #include "Chunk.h"
 #include "Raycast.h"
+#include "Material.h"
+#include "VoxelMesh.h"
 
 Voxel Mesher::get_voxel(Coord3 &coord, Chunk &chunk, Chunks &chunks) {
 	int size = chunk.size;
