@@ -7,14 +7,16 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 void Renderer::render(Scene * scene, Camera * camera) {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 	camera->update_view_matrix();
 	for (Node *node : scene->nodes) {
+		node->update_matrix();
 		node->render(camera);
 	}
 }
 
-Renderer::Renderer()
-{
+void Renderer::start_window(int width, int height) {
 	// Initialise GLFW
 	if (!glfwInit())
 	{
@@ -23,8 +25,6 @@ Renderer::Renderer()
 		throw std::exception("Failed to initialize GLFW\n");
 	}
 
-	int width = 1280;
-	int height = 720;
 	glfwWindowHint(GLFW_SAMPLES, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -44,4 +44,31 @@ Renderer::Renderer()
 
 	// Dark blue background
 	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+
+	// Initialize GLEW
+	if (glewInit() != GLEW_OK) {
+		fprintf(stderr, "Failed to initialize GLEW\n");
+		getchar();
+		glfwTerminate();
+		throw std::exception("Failed to initialize GLEW\n");
+	}
+
+	glGenVertexArrays(1, &VertexArrayID);
+	glBindVertexArray(VertexArrayID);
+
+	// Enable depth test
+	glEnable(GL_DEPTH_TEST);
+	// Accept fragment if it closer to the camera than the former one
+	glDepthFunc(GL_LESS);
+	// Cull triangles which normal is not towards the camera
+	glEnable(GL_CULL_FACE);
+}
+
+Renderer::Renderer()
+{
+}
+
+Renderer::~Renderer()
+{
+	glDeleteVertexArrays(1, &VertexArrayID);
 }

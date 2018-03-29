@@ -18,7 +18,7 @@ void terrian_work(Terrian *terrian) {
 	Coord2 player_origin = terrian->player_origin;
 	int chunk_size = terrian->chunk_size;
 
-	for (auto origin : terrian->coords_within_dis(terrian->rasterize_dis)) {
+	for (auto origin : terrian->coords_within_dis(terrian->tessellate_dis)) {
 		chunks->get_or_create_chunk(origin);
 	}
 
@@ -42,7 +42,7 @@ void terrian_work(Terrian *terrian) {
 	// Generate mask
 	for (auto coord : chunks->get_coords()) {
 		Chunk *chunk = chunks->get_chunk(coord);
-		if (chunk->distance_from_player > terrian->generate_masks_dis) {
+		if (chunk->distance_from_player > terrian->gen_masks_dis) {
 			continue;
 		}
 		if (!chunk->dirty) {
@@ -56,16 +56,38 @@ void terrian_work(Terrian *terrian) {
 	for (auto coord : chunks->get_coords()) {
 		Chunk *chunk = chunks->get_chunk(coord);
 
+		if (chunk->distance_from_player > terrian->gen_geometry_dis) {
+			continue;
+		}
+
 		int chunk_size = chunk->size;
 		if (chunk->masks.size() > 0 && chunk->geometry == 0) {
-			chunk->geometry = new Geometry();
 			Mesher::gen_geometry(chunk);
-
-			for (Mask *mask : chunk->masks) {
-				delete mask;
-			}
-			chunk->masks.clear();
 			chunk->geometry_ready = true;
+		}
+	}
+
+	for (auto coord : chunks->get_coords()) {
+		Chunk *chunk = chunks->get_chunk(coord);
+		if (chunk->distance_from_player > terrian->remove_chunk_dis) {
+			chunks->remove_chunk(chunk->get_origin());
+		}
+	}
+
+	for (auto coord : chunks->get_coords()) {
+		Chunk *chunk = chunks->get_chunk(coord);
+
+		if (chunk->geometry_ready) {
+			if (chunk->mesh != 0) {
+				chunk->mesh->parent->remove(chunk->mesh);
+			}
+			Mesh *mesh = new Mesh(chunk->geometry, terrian->material);
+			chunk->mesh = mesh;
+			mesh->position = chunk->position;
+			terrian->scene->add(mesh);
+			chunk->geometry = 0;
+
+			chunk->geometry_ready = false;
 		}
 	}
 }
@@ -77,8 +99,8 @@ void terrian_worker(Terrian *terrian) {
 }
 
 std::vector<Coord3> Terrian::coords_within_dis(int dis) {
-	Coord2 start = player_origin - Coord2(rasterize_dis, rasterize_dis);
-	Coord2 end = player_origin + Coord2(rasterize_dis, rasterize_dis);
+	Coord2 start = player_origin - Coord2(tessellate_dis, tessellate_dis);
+	Coord2 end = player_origin + Coord2(tessellate_dis, tessellate_dis);
 
 	std::vector<Coord3> coords;
 
@@ -102,35 +124,17 @@ void Terrian::start() {
 
 void Terrian::update() {
 	player_origin = { fast_floor(player_position.x, chunk_size), fast_floor(player_position.z, chunk_size) };
-
-	//for (auto coord : chunks->get_coords()) {
-	//	Chunk *chunk = chunks->get_chunk(coord);
-	//	if (chunk->distance_from_player > discard_dis) {
-	//		if (!chunks->remove_chunk(chunk->get_origin())) {
-	//			throw "chunk not released!";
-	//		}
-	//	}
-	//}
-
-	for (auto coord : chunks->get_coords()) {
-		Chunk *chunk = chunks->get_chunk(coord);
-
-		if (chunk->geometry_ready) {
-			if (chunk->mesh != 0) {
-				chunk->mesh->parent->remove(chunk->mesh);
-			}
-			Mesh *mesh = new Mesh(chunk->geometry, material);
-			chunk->mesh = mesh;
-			mesh->position = chunk->position;
-			scene->add(mesh);
-			chunk->geometry = 0;
-
-			chunk->geometry_ready = false;
-		}
-	}
 }
 
 void Terrian::remove() {
+}
+
+void Terrian::set_draw_dis(int dis)
+{
+	gen_geometry_dis = dis;
+	gen_masks_dis = dis + 1;
+	tessellate_dis = dis + 1;
+	remove_chunk_dis = dis + 1;
 }
 
 void Terrian::rasterize_height_chunk(Chunk *chunk) {

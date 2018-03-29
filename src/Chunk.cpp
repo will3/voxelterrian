@@ -1,6 +1,6 @@
 #include "Chunk.h"
 
-Voxel Chunk::get(Coord3 coord) {
+voxel_type Chunk::get(Coord3 coord) {
 	if (data.size() == 0) {
 		return 0;
 	}
@@ -9,7 +9,7 @@ Voxel Chunk::get(Coord3 coord) {
 	return data[index];
 }
  
-void Chunk::set(Coord3 coord, Voxel v) {
+void Chunk::set(Coord3 coord, voxel_type v) {
 	int index = coord.i * size * size + coord.j * size + coord.k;
 	data[index] = v;
 	dirty = true;
@@ -37,17 +37,12 @@ Chunk::~Chunk()
 }
 
 void Chunk::drop_node_if_needed() {
-	/*if (node == 0) {
+	if (mesh == 0) {
 		return;
 	}
 
-	IMesh *mesh = node->getMesh();
+	mesh->get_geometry()->drop();
+	mesh->parent->remove(mesh);
 
-	node->remove();
-
-	if (!mesh->drop()) {
-		throw "not released";
-	}
-
-	node = 0;*/
+	mesh = 0;
 }

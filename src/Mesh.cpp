@@ -7,12 +7,27 @@ Mesh::Mesh(Geometry * geometry, Material * material) : geometry(geometry), mater
 {
 }
 
+Geometry * Mesh::get_geometry()
+{
+	return geometry;
+}
+
+Material * Mesh::get_material()
+{
+	return material;
+}
+
 void Mesh::render(Camera * camera) {
+	if (!geometry->vbo_loaded) {
+		geometry->load_vbo();
+		geometry->vbo_loaded = true;
+	}
+
 	// Use our shader
 	glUseProgram(material->programID);
 
 	// Model matrix : an identity matrix (model will be at the origin)
-	glm::mat4 Model = glm::mat4(1.0f);
+	glm::mat4 Model = matrix;
 
 	// Our ModelViewProjection : multiplication of our 3 matrices
 	glm::mat4 MVP = camera->Projection * camera->View * Model; // Remember, matrix multiplication is the other way around

@@ -35,7 +35,7 @@ std::unordered_set<Coord3> Chunks::get_coords()
 	return coords;
 }
 
-Voxel Chunks::get(Coord3 coord) {
+voxel_type Chunks::get(Coord3 coord) {
 	Coord3 origin = get_origin(coord);
 
 	if (!has_chunk(origin)) {
@@ -45,7 +45,7 @@ Voxel Chunks::get(Coord3 coord) {
 	return map[origin]->get(coord - origin * size);
 }
 
-void Chunks::set(Coord3 coord, Voxel v) {
+void Chunks::set(Coord3 coord, voxel_type v) {
 	Coord3 origin = get_origin(coord);
 
 	get_or_create_chunk(origin)->set(coord - origin * size, v);
@@ -63,7 +63,7 @@ Chunk* Chunks::get_or_create_chunk(Coord3 origin) {
 void Chunks::remove_chunk(Coord3 origin) {
 	Chunk *chunk = map[origin];
 	chunk->drop_node_if_needed();
-	delete chunk;
 	map.erase(origin);
 	coords.erase(origin);
+	delete chunk;
 }

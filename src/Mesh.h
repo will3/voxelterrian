@@ -12,6 +12,9 @@ private:
 public:
 	Mesh(Geometry *geometry, Material *material);
 
+	Geometry *get_geometry();
+	Material *get_material();
+
 	void render(Camera *camera);
 
 	~Mesh();

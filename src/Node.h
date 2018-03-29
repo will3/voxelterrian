@@ -4,10 +4,14 @@
 #include "ReferenceCounted.h"
 #include "Camera.h"
 #include <unordered_set>
+#include <glm/gtc/quaternion.hpp>
 
 class Node : public ReferenceCounted {
 public:
-	float3 position;
+	glm::vec3 position;
+	glm::quat rotation;
+	glm::mat4 matrix;
+
 	Node *parent = 0;
 	std::unordered_set<Node *> nodes;
 
@@ -15,4 +19,6 @@ public:
 
 	void add(Node *node);
 	void remove(Node *node);
+
+	void update_matrix();
 };

@@ -18,8 +18,8 @@ public:
 
 	Chunks(int size = 32);
 	~Chunks();
-	Voxel get(Coord3 coord);
-	void set(Coord3 coord, Voxel v);
+	voxel_type get(Coord3 coord);
+	void set(Coord3 coord, voxel_type v);
 	Chunk* get_or_create_chunk(Coord3 origin);
 	void remove_chunk(Coord3 origin);
 	bool has_chunk(Coord3 origin);

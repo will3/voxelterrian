@@ -31,6 +31,7 @@ public:
 	int d = 0;
 
 	Mask(int size, int i, int d, int front);
+	~Mask();
 
 	bool is_empty(int j, int k);
 

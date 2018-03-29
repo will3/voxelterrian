@@ -6,16 +6,16 @@
 class Geometry : public ReferenceCounted
 {
 private:
-	GLuint VertexArrayID;
 	GLuint vertexbuffer;
 	GLuint colorbuffer;
 	GLuint lightingbuffer;
 	GLuint elementbuffer;
 
 public:
+	bool vbo_loaded = false;
 
 	std::vector<GLint> vertices;
-	std::vector<GLubyte> colors;
+	std::vector<GLint> colors;
 	std::vector<GLint> lighting;
 	std::vector<unsigned int> indices;
 

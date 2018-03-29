@@ -142,7 +142,7 @@
       <Filter>common</Filter>
     </ClInclude>
     <ClInclude Include="src\Test.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

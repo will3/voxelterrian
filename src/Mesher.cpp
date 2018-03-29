@@ -7,7 +7,7 @@
 #include "Material.h"
 #include "Mesh.h"
 
-Voxel Mesher::get_voxel(Coord3 &coord, Chunk &chunk, Chunks &chunks) {
+voxel_type Mesher::get_voxel(Coord3 &coord, Chunk &chunk, Chunks &chunks) {
 	int size = chunk.size;
 
 	if (coord.i < 0 || coord.i >= size ||
@@ -31,8 +31,8 @@ void Mesher::gen_masks(Chunk* chunk, Chunks* chunks, DirectionalLight *light) {
 
 	for (int d = 0; d < 3; d++) {
 		for (int i = 0; i <= size; i++) {
-			Mask *front_mask = new Mask(size, i, d, true);
-			Mask *back_mask = new Mask(size, i, d, false);
+			Mask front_mask = Mask(size, i, d, true);
+			Mask back_mask = Mask(size, i, d, false);
 			int u = (d + 1) % 3;
 			int v = (d + 2) % 3;
 			for (int j = 0; j < size; j++) {
@@ -86,10 +86,10 @@ void Mesher::gen_masks(Chunk* chunk, Chunks* chunks, DirectionalLight *light) {
 						light_amount);
 
 					if (front) {
-						front_mask->set(j, k, v);
+						front_mask.set(j, k, v);
 					}
 					else {
-						back_mask->set(j, k, v);
+						back_mask.set(j, k, v);
 					}
 				}
 			}
@@ -99,7 +99,7 @@ void Mesher::gen_masks(Chunk* chunk, Chunks* chunks, DirectionalLight *light) {
 		}
 	}
 
-	chunk->position = float3(chunk->get_offset().i, chunk->get_offset().j, chunk->get_offset().k);
+	chunk->position = { chunk->get_offset().i, chunk->get_offset().j, chunk->get_offset().k };
 
 	chunk->shadow_softened = false;
 }
@@ -128,15 +128,15 @@ bool Mesher::stop_merge(MaskValue & c, MaskValue & next) {
 	return next.v != c.v || next.has_ao() || next.lighting != c.lighting;
 }
 
-void Mesher::gen_geometry(Mask *mask, Geometry *geometry, int x, int y, int w, int h, int ao0, int ao1, int ao2, int ao3, int l) {
-	bool front = mask->front;
-	float ao_strength = 0.1f;
+void Mesher::gen_geometry(Mask& mask, Geometry *geometry, int x, int y, int w, int h, int ao0, int ao1, int ao2, int ao3, int l) {
+	bool front = mask.front;
+	float ao_strength = 1.0f;
 	auto &vertices = geometry->vertices;
 	auto &colors = geometry->colors;
 	auto &lighting = geometry->lighting;
 	auto &indices = geometry->indices;
-	int i = mask->i;
-	int d = mask->d;
+	int i = mask.i;
+	int d = mask.d;
 	int index = geometry->num_vertices();
 
 	Coord3 v0 = Coord3(i, x, y).rotate(d);
@@ -157,7 +157,7 @@ void Mesher::gen_geometry(Mask *mask, Geometry *geometry, int x, int y, int w, i
 	float light_f = (1.0f - (ao0 / 3.0f * ao_strength)) * (l / 15.0f);
 	int light = floor(light_f * 16);
 
-	lighting.insert(lighting.end(), { l, l, l, l });
+	lighting.insert(lighting.end(), { light, light, light, light });
 
 	if (front) {
 		indices.push_back(index);
@@ -177,12 +177,12 @@ void Mesher::gen_geometry(Mask *mask, Geometry *geometry, int x, int y, int w, i
 	}
 }
 
-void Mesher::gen_geometry(Mask* mask, Geometry *geometry) {
+void Mesher::gen_geometry(Mask& mask, Geometry *geometry) {
 	int n = 0;
 	MaskValue c;
 	int w, h;
-	int size = mask->size;
-	auto data = mask->data;
+	int size = mask.size;
+	auto data = mask.data;
 
 	for (int j = 0; j < size; j++) {
 		for (int i = 0; i < size; ) {
@@ -243,10 +243,9 @@ void Mesher::gen_geometry(Mask* mask, Geometry *geometry) {
 }
 
 void Mesher::gen_geometry(Chunk* chunk) {
-	if (chunk->geometry == 0) {
-		throw std::exception("geometry cannot be empty");
-	}
-	for (Mask *mask : chunk->masks) {
+	chunk->geometry = new Geometry();
+	for (Mask& mask : chunk->masks) {
 		gen_geometry(mask, chunk->geometry);
 	}
+	chunk->masks.clear();
 }

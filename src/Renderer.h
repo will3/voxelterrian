@@ -7,7 +7,10 @@
 
 class Renderer {
 public:
+	GLuint VertexArrayID;
 	void render(Scene *scene, Camera *camera);
+	void start_window(int width, int height);
 	GLFWwindow * window;
 	Renderer();
+	~Renderer();
 };

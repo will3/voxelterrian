@@ -16,10 +16,10 @@ public:
 	int max_height = 128;
 	int max_chunks_y = 8;
 
-	int rasterize_dis = 7;
-	int generate_masks_dis = 6;
-	int chunking_dis = 6;
-	int discard_dis = 8;
+	int tessellate_dis = 7;
+	int gen_masks_dis = 6;
+	int gen_geometry_dis = 6;
+	int remove_chunk_dis = 7;
 
 	std::vector<Coord3> coords_within_dis(int dis);
 	void rasterize_height_chunk(Chunk *chunk);
@@ -32,12 +32,13 @@ public:
 	void start();
 	void update();
 	void remove();
+	void set_draw_dis(int dis);
 
 	DirectionalLight *light;
 	Chunks *chunks;
 	Scene *scene;
 	Material *material;
-	glm::vec3 player_position = glm::vec3(0, 0, 200);
+	glm::vec3 player_position = glm::vec3(0, 0, 0);
 	int chunk_size = 32;
 	Coord2 player_origin;
 };

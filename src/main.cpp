@@ -35,15 +35,10 @@ __int64 get_time_stamp() {
 
 int main() {
 	Renderer *renderer = new Renderer();
+	int width = 1280;
+	int height = 720;
+	renderer->start_window(width, height);
 	GLFWwindow *window = renderer->window;
-
-	// Initialize GLEW
-	if (glewInit() != GLEW_OK) {
-		fprintf(stderr, "Failed to initialize GLEW\n");
-		getchar();
-		glfwTerminate();
-		return -1;
-	}
 
 	// Ensure we can capture the escape key being pressed below
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
@@ -51,7 +46,8 @@ int main() {
 	Runner *runner = new Runner();
 	DirectionalLight *light = new DirectionalLight();
 
-	Camera *camera = new Camera();
+	float ratio = width / (float)height;
+	Camera *camera = new Camera(60, ratio, 0.1f, 1000.0f);
 
 	Scene *scene = new Scene();
 
@@ -61,24 +57,27 @@ int main() {
 	terrian->light = light;
 	terrian->scene = scene;
 	terrian->material = material;
+	terrian->set_draw_dis(6);
 	runner->add(terrian);
 
-	//EditorCameraControl *cameraControl = new EditorCameraControl();
-	//cameraControl->camera = camera;
-	//cameraControl->terrian = terrian;
-	//runner->add(cameraControl);
+	EditorCameraControl *cameraControl = new EditorCameraControl();
+	cameraControl->camera = camera;
+	cameraControl->terrian = terrian;
+	runner->add(cameraControl);
 
-	Test *test = new Test();
-	test->scene = scene;
-	runner->add(test);
+	//Test *test = new Test();
+	//test->scene = scene;
+	//test->get_mesh()->position = { 5.0, 0.0, 0.0 };
+	//runner->add(test);
+
+	//Test *test2 = new Test();
+	//test2->scene = scene;
+	//runner->add(test2);
 
 	__int64 last_tick = 0;
 
 	do {
 		runner->update();
-
-		// Clear the screen
-		glClear(GL_COLOR_BUFFER_BIT);
 
 		renderer->render(scene, camera);
 

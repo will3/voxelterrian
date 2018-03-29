@@ -13,25 +13,20 @@ Geometry::~Geometry()
 	glDeleteBuffers(1, &colorbuffer);
 	glDeleteBuffers(1, &lightingbuffer);
 	glDeleteBuffers(1, &elementbuffer);
-
-	glDeleteVertexArrays(1, &VertexArrayID);
 }
 
 void Geometry::load_vbo() {
-	glGenVertexArrays(1, &VertexArrayID);
-	glBindVertexArray(VertexArrayID);
-
 	glGenBuffers(1, &vertexbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLint), vertices.data(), GL_STATIC_DRAW);
 
 	glGenBuffers(1, &colorbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, colorbuffer);
-	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLubyte), colors.data(), GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, colors.size() * sizeof(GLint), colors.data(), GL_STATIC_DRAW);
 
 	glGenBuffers(1, &lightingbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, lightingbuffer);
-	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLint), lighting.data(), GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, lighting.size() * sizeof(GLint), lighting.data(), GL_STATIC_DRAW);
 
 	glGenBuffers(1, &elementbuffer);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
@@ -51,7 +46,7 @@ void Geometry::bind_vbo()
 	
 	glEnableVertexAttribArray(1);
 	glBindBuffer(GL_ARRAY_BUFFER, colorbuffer);
-	glVertexAttribIPointer(1, 3, GL_UNSIGNED_BYTE, 0, (void*)0);
+	glVertexAttribIPointer(1, 3, GL_INT, 0, (void*)0);
 	
 	glEnableVertexAttribArray(2);
 	glBindBuffer(GL_ARRAY_BUFFER, lightingbuffer);
