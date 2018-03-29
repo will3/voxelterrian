@@ -37,7 +37,7 @@ public:
 	Chunks *chunks;
 	Scene *scene;
 	Material *material;
-	float3 player_position = float3(0, 0, 200);
+	glm::vec3 player_position = glm::vec3(0, 0, 200);
 	int chunk_size = 32;
 	Coord2 player_origin;
 };

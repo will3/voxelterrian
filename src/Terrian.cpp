@@ -14,14 +14,17 @@ inline int fast_floor(int x, int y) {
 void terrian_work(Terrian *terrian) {
 	Chunks *chunks = terrian->chunks;
 	DirectionalLight *light = terrian->light;
-	float3 player_position = terrian->player_position;
+	glm::vec3 player_position = terrian->player_position;
 	Coord2 player_origin = terrian->player_origin;
 	int chunk_size = terrian->chunk_size;
 
+	for (auto origin : terrian->coords_within_dis(terrian->rasterize_dis)) {
+		chunks->get_or_create_chunk(origin);
+	}
+
 	// rasterize
-	auto coords_within_dis = terrian->coords_within_dis(terrian->rasterize_dis);
-	for (auto origin : coords_within_dis) {
-		Chunk *chunk = chunks->get_or_create_chunk(origin);
+	for (auto coord : chunks->get_coords()) {
+		Chunk *chunk = chunks->get_chunk(coord);
 		if (chunk->rasterized) {
 			continue;
 		}
@@ -36,32 +39,33 @@ void terrian_work(Terrian *terrian) {
 		chunk->distance_from_player = std::max(abs(player_origin.i - origin.i), abs(player_origin.j - origin.k));
 	}
 
-	// Generate masks
+	// Generate mask
 	for (auto coord : chunks->get_coords()) {
 		Chunk *chunk = chunks->get_chunk(coord);
 		if (chunk->distance_from_player > terrian->generate_masks_dis) {
-			return;
+			continue;
 		}
 		if (!chunk->dirty) {
-			return;
+			continue;
 		}
 		Mesher::gen_masks(chunk, chunks, light);
 		chunk->dirty = false;
 	}
 
-	// Generate meshes
+	// Generate geometry
 	for (auto coord : chunks->get_coords()) {
 		Chunk *chunk = chunks->get_chunk(coord);
 
 		int chunk_size = chunk->size;
-		if (chunk->masks.size() > 0 && chunk->mesh == 0) {
-			chunk->mesh = new Mesh();
-			Mesher::gen_mesh(chunk);
+		if (chunk->masks.size() > 0 && chunk->geometry == 0) {
+			chunk->geometry = new Geometry();
+			Mesher::gen_geometry(chunk);
 
 			for (Mask *mask : chunk->masks) {
 				delete mask;
 			}
 			chunk->masks.clear();
+			chunk->geometry_ready = true;
 		}
 	}
 }
@@ -99,22 +103,29 @@ void Terrian::start() {
 void Terrian::update() {
 	player_origin = { fast_floor(player_position.x, chunk_size), fast_floor(player_position.z, chunk_size) };
 
+	//for (auto coord : chunks->get_coords()) {
+	//	Chunk *chunk = chunks->get_chunk(coord);
+	//	if (chunk->distance_from_player > discard_dis) {
+	//		if (!chunks->remove_chunk(chunk->get_origin())) {
+	//			throw "chunk not released!";
+	//		}
+	//	}
+	//}
+
 	for (auto coord : chunks->get_coords()) {
 		Chunk *chunk = chunks->get_chunk(coord);
-		if (chunk->distance_from_player > discard_dis) {
-			if (!chunks->remove_chunk(chunk->get_origin())) {
-				throw "chunk not released!";
+
+		if (chunk->geometry_ready) {
+			if (chunk->mesh != 0) {
+				chunk->mesh->parent->remove(chunk->mesh);
 			}
-		}
-	}
+			Mesh *mesh = new Mesh(chunk->geometry, material);
+			chunk->mesh = mesh;
+			mesh->position = chunk->position;
+			scene->add(mesh);
+			chunk->geometry = 0;
 
-	for (auto coord : chunks->get_coords()) {
-		Chunk *chunk = chunks->get_chunk(coord);
-
-		if (chunk->mesh != 0 && chunk->mesh->parent == 0) {
-			scene->add(chunk->mesh);
-			chunk->mesh->position = chunk->position;
-			chunk->mesh->material = material;
+			chunk->geometry_ready = false;
 		}
 	}
 }

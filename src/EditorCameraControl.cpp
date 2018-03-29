@@ -1,5 +1,6 @@
 #include "EditorCameraControl.h"
 #include "Runner.h"
+#include "Node.h"
 
 EditorCameraControl::EditorCameraControl() {
 }
@@ -8,13 +9,9 @@ EditorCameraControl::~EditorCameraControl() {
 }
 
 void EditorCameraControl::update() {
-	/*irr::core::vector3df position = camera->getPosition();
-	position.Z += speed * runner->time_step;
-	camera->setPosition(position);
-	irr::core::vector3df target = { position.X, position.Y - 200, position.Z + 200 };
-	camera->setTarget(target);
+	camera->position.z += speed * runner->time_step;
+	camera->target = 
+		{ camera->position.x, 0, camera->position.z + 200 };
 
-	terrian->player_position.x = target.X;
-	terrian->player_position.y = target.Y;
-	terrian->player_position.z = target.Z;*/
+	terrian->player_position = camera->target;
 }

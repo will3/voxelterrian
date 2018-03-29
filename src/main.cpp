@@ -18,6 +18,7 @@
 #include "Material.h"
 #include "Scene.h"
 #include "Renderer.h"
+#include "Test.h"
 
 using namespace glm;
 using namespace std::chrono;
@@ -30,21 +31,6 @@ using namespace std::chrono;
 __int64 get_time_stamp() {
 	return duration_cast<milliseconds>(
 		system_clock::now().time_since_epoch()).count();
-}
-
-void set_up_game(Runner *runner) {
-	DirectionalLight *light = new DirectionalLight();
-
-	Terrian *terrian = new Terrian();
-	terrian->light = light;
-	//terrian->scene = scene;
-	//terrian->voxelMaterial = voxelMaterial;
-	runner->add(terrian);
-
-	EditorCameraControl *cameraControl = new EditorCameraControl();
-	//cameraControl->camera = camera;
-	cameraControl->terrian = terrian;
-	runner->add(cameraControl);
 }
 
 int main() {
@@ -63,33 +49,28 @@ int main() {
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
 	Runner *runner = new Runner();
-	set_up_game(runner);
+	DirectionalLight *light = new DirectionalLight();
 
-	Material *material = new Material();
-
-	Mesh *mesh = new Mesh();
-	mesh->material = material;
-	mesh->vertices.insert(mesh->vertices.end(), {
-		-1, -1, 0,
-		1, -1, 0,
-		0,  1, 0
-	});
-	mesh->colors.insert(mesh->colors.end(), {
-		255,0,0,
-		0,255,0,
-		0,0,255
-	});
-	mesh->lighting.insert(mesh->lighting.end(), {
-		15, 15, 15
-	});
-	mesh->indices.insert(mesh->indices.end(), {
-		0,1,2
-		});
-	mesh->load_buffer();
 	Camera *camera = new Camera();
 
 	Scene *scene = new Scene();
-	scene->add(mesh);
+
+	Material *material = new Material();
+
+	Terrian *terrian = new Terrian();
+	terrian->light = light;
+	terrian->scene = scene;
+	terrian->material = material;
+	runner->add(terrian);
+
+	//EditorCameraControl *cameraControl = new EditorCameraControl();
+	//cameraControl->camera = camera;
+	//cameraControl->terrian = terrian;
+	//runner->add(cameraControl);
+
+	Test *test = new Test();
+	test->scene = scene;
+	runner->add(test);
 
 	__int64 last_tick = 0;
 
@@ -113,10 +94,6 @@ int main() {
 	} // Check if the ESC key was pressed or the window was closed
 	while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
 		glfwWindowShouldClose(window) == 0);
-
-	// Cleanup VBO and shader
-	delete mesh;
-	delete material;
 
 	// Close OpenGL window and terminate GLFW
 	glfwTerminate();

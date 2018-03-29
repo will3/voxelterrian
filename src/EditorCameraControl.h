@@ -9,10 +9,10 @@ public:
 	EditorCameraControl();
 	~EditorCameraControl();
 
-	//irr::scene::ICameraSceneNode *camera;
+	Camera *camera;
 	Terrian *terrian;
 
-	float speed = 10.0;
+	float speed = 0.0;
 
 	void update();
 };

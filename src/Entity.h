@@ -6,9 +6,9 @@ class Entity
 public:
 	Entity();
 	~Entity();
-	int id;
-	bool started;
-	bool removed;
+	int id = 0;
+	bool started = false;
+	bool removed = false;
 	virtual void update();
 	virtual void start();
 	virtual void remove();

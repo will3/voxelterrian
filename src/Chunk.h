@@ -31,11 +31,12 @@ public:
 
 	// meshing
 	std::vector<Mask *> masks;
+	Geometry *geometry = 0;
+	bool geometry_ready = false;
 	Mesh *mesh = 0;
-	//IMeshSceneNode *node = 0;
 
 	// terrian
-	NoiseMap2 *height_map;
+	NoiseMap2 *height_map = 0;
 	bool rasterized = false;
 	int distance_from_player = 0;
 

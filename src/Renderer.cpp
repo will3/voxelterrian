@@ -7,6 +7,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 void Renderer::render(Scene * scene, Camera * camera) {
+	camera->update_view_matrix();
 	for (Node *node : scene->nodes) {
 		node->render(camera);
 	}

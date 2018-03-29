@@ -128,16 +128,16 @@ bool Mesher::stop_merge(MaskValue & c, MaskValue & next) {
 	return next.v != c.v || next.has_ao() || next.lighting != c.lighting;
 }
 
-void Mesher::copy_quad(Mask *mask, Mesh *mesh, int x, int y, int w, int h, int ao0, int ao1, int ao2, int ao3, int l) {
+void Mesher::gen_geometry(Mask *mask, Geometry *geometry, int x, int y, int w, int h, int ao0, int ao1, int ao2, int ao3, int l) {
 	bool front = mask->front;
 	float ao_strength = 0.1f;
-	auto &vertices = mesh->vertices;
-	auto &colors = mesh->colors;
-	auto &lighting = mesh->lighting;
-	auto &indices = mesh->indices;
+	auto &vertices = geometry->vertices;
+	auto &colors = geometry->colors;
+	auto &lighting = geometry->lighting;
+	auto &indices = geometry->indices;
 	int i = mask->i;
 	int d = mask->d;
-	int index = mesh->num_vertices();
+	int index = geometry->num_vertices();
 
 	Coord3 v0 = Coord3(i, x, y).rotate(d);
 	Coord3 v1 = Coord3(i, x + w, y).rotate(d);
@@ -177,7 +177,7 @@ void Mesher::copy_quad(Mask *mask, Mesh *mesh, int x, int y, int w, int h, int a
 	}
 }
 
-void Mesher::gen_mesh(Mask* mask, Mesh *mesh) {
+void Mesher::gen_geometry(Mask* mask, Geometry *geometry) {
 	int n = 0;
 	MaskValue c;
 	int w, h;
@@ -196,7 +196,7 @@ void Mesher::gen_mesh(Mask* mask, Mesh *mesh) {
 
 			// Check AO
 			if (c.has_ao()) {
-				copy_quad(mask, mesh, j, i, 1, 1, c.ao0, c.ao1, c.ao2, c.ao3, c.lighting);
+				gen_geometry(mask, geometry, j, i, 1, 1, c.ao0, c.ao1, c.ao2, c.ao3, c.lighting);
 				i++;
 				n++;
 				continue;
@@ -228,7 +228,7 @@ void Mesher::gen_mesh(Mask* mask, Mesh *mesh) {
 			}
 
 			// Add Quad
-			copy_quad(mask, mesh, j, i, h, w, 0, 0, 0, 0, lighting);
+			gen_geometry(mask, geometry, j, i, h, w, 0, 0, 0, 0, lighting);
 
 			//Zero-out mask
 			for (int l = 0; l < h; l++) {
@@ -242,8 +242,11 @@ void Mesher::gen_mesh(Mask* mask, Mesh *mesh) {
 	}
 }
 
-void Mesher::gen_mesh(Chunk* chunk) {
+void Mesher::gen_geometry(Chunk* chunk) {
+	if (chunk->geometry == 0) {
+		throw std::exception("geometry cannot be empty");
+	}
 	for (Mask *mask : chunk->masks) {
-		gen_mesh(mask, chunk->mesh);
+		gen_geometry(mask, chunk->geometry);
 	}
 }

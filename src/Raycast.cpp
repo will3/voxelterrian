@@ -46,7 +46,8 @@ RayCastResult Raycast::raycast(Chunks *chunks, float3 position, float3 direction
 	// main loop along raycast vector
 	while (t <= max_d) {
 		// exit check
-		int b = chunks->get({ ix, iy, iz });
+		Coord3 coord = { ix, iy, iz };
+		int b = chunks->get(coord);
 
 		if (b) {
 			if (ignore_first && first) {
