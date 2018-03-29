@@ -7,6 +7,7 @@
 #include "types.h"
 #include "NoiseMap2.h"
 #include "DirectionalLight.h"
+#include "Scene.h"
 
 class MeshResult;
 
@@ -34,8 +35,8 @@ public:
 
 	DirectionalLight *light;
 	Chunks *chunks;
-	//ISceneManager* scene;
-	//irr::s32 voxelMaterial;
+	Scene *scene;
+	Material *material;
 	float3 player_position = float3(0, 0, 200);
 	int chunk_size = 32;
 	Coord2 player_origin;

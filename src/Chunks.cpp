@@ -26,6 +26,16 @@ bool Chunks::has_chunk(Coord3& origin) {
 	return data[origin.i][origin.j][origin.k] != 0;
 }
 
+Chunk * Chunks::get_chunk(Coord3 origin)
+{
+	return data[origin.i][origin.j][origin.k];
+}
+
+std::unordered_set<Coord3> Chunks::get_coords()
+{
+	return coords;
+}
+
 Voxel Chunks::get(Coord3 coord) {
 	Coord3 origin = get_origin(coord);
 

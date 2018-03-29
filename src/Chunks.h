@@ -6,11 +6,6 @@
 #include <string>
 #include <unordered_set>
 
-class ChunksVisitor {
-public:
-	virtual void visit(Chunk *chunk) = 0;
-};
-
 class Chunks
 {
 private:
@@ -28,16 +23,8 @@ public:
 	Chunk* get_or_create_chunk(Coord3 origin);
 	bool remove_chunk(Coord3 origin);
 	bool has_chunk(Coord3& origin);
+	Chunk *get_chunk(Coord3 origin);
 
-	void visit_chunks(ChunksVisitor &visitor) {
-		for (auto coord : coords) {
-			Chunk *chunk = data[coord.i][coord.j][coord.k];
-			visitor.visit(chunk);
-		}
-	}
-
-	int count_chunks() {
-		return coords.size();
-	}
+	std::unordered_set<Coord3> get_coords();
 };
 

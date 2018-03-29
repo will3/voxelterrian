@@ -1,16 +1,13 @@
+#pragma once
+
 #include "Scene.h"
 #include "Camera.h"
+#include <GL/glew.h>
+#include <GLFW\glfw3.h>
 
-namespace kst {
-	class Renderer {
-		void render(Scene *scene, Camera *camera) {
-			for (Node *node : scene->nodes) {
-				render_node(node);
-			}
-		}
-
-		void render_node(Node *node) {
-
-		}
-	};
-}
+class Renderer {
+public:
+	void render(Scene *scene, Camera *camera);
+	GLFWwindow * window;
+	Renderer();
+};

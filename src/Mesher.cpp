@@ -20,7 +20,7 @@ Voxel Mesher::get_voxel(Coord3 &coord, Chunk &chunk, Chunks &chunks) {
 	return chunk.get(coord);
 }
 
-void Mesher::generate_masks(Chunk* chunk, Chunks* chunks, DirectionalLight *light) {
+void Mesher::gen_masks(Chunk* chunk, Chunks* chunks, DirectionalLight *light) {
 	if (chunk->masks.size() > 0) {
 		throw std::invalid_argument("");
 	}
@@ -177,7 +177,7 @@ void Mesher::copy_quad(Mask *mask, Mesh *mesh, int x, int y, int w, int h, int a
 	}
 }
 
-void Mesher::insert_quads_mask(Mask* mask, Mesh *mesh) {
+void Mesher::gen_mesh(Mask* mask, Mesh *mesh) {
 	int n = 0;
 	MaskValue c;
 	int w, h;
@@ -242,8 +242,8 @@ void Mesher::insert_quads_mask(Mask* mask, Mesh *mesh) {
 	}
 }
 
-void Mesher::insert_quads(Chunk* chunk) {
+void Mesher::gen_mesh(Chunk* chunk) {
 	for (Mask *mask : chunk->masks) {
-		insert_quads_mask(mask, chunk->mesh);
+		gen_mesh(mask, chunk->mesh);
 	}
 }

@@ -31,7 +31,7 @@ public:
 
 	// meshing
 	std::vector<Mask *> masks;
-	kst::Mesh *mesh = 0;
+	Mesh *mesh = 0;
 	//IMeshSceneNode *node = 0;
 
 	// terrian

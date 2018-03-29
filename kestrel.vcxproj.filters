@@ -55,14 +55,14 @@
     <ClCompile Include="C:\kestrel\src\Terrian.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\kestrel\src\VoxelMesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="C:\kestrel\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\kestrel\common\shader.cpp">
       <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mesh.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -121,9 +121,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Terrian.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\kestrel\src\Vertice.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\linalg.h">
