@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <thread>
 #include <mutex>
+#include "Mesh.h"
 
 inline int fast_floor(int x, int y) {
 	return x / y - (x % y < 0);
@@ -16,9 +17,7 @@ public:
 	Coord2 player_origin;
 	void visit(Chunk *chunk) {
 		Coord3 origin = chunk->get_origin();
-		//chunk->distance_from_player = max_<int>(
-		//	abs(player_origin.i - origin.i),
-		//	abs(player_origin.j - origin.k));
+		chunk->distance_from_player = std::max(abs(player_origin.i - origin.i), abs(player_origin.j - origin.k));
 	}
 };
 
@@ -46,24 +45,15 @@ class MeshChunk : public ChunksVisitor {
 public:
 	void visit(Chunk *chunk) {
 		int chunk_size = chunk->size;
-		/*if (chunk->masks.size() > 0 && chunk->mesh == 0) {
-			SMesh *mesh = new SMesh();
-			mesh->setHardwareMappingHint(EHM_STATIC, EBT_VERTEX_AND_INDEX);
-			SMeshBuffer *buffer = new SMeshBuffer();
-			mesh->addMeshBuffer(buffer);
-			buffer->drop();
-		
-			for (auto mask : chunk->masks) {
-				Mesher::copy_mask(mask, buffer);
-			}
-			mesh->setBoundingBox(aabbox3df(vector3df(0, 0, 0), vector3df(chunk_size, chunk_size, chunk_size)));
-			chunk->mesh = mesh;
-		
+		if (chunk->masks.size() > 0 && chunk->mesh == 0) {
+			chunk->mesh = new Mesh();
+			Mesher::insert_quads(chunk);
+
 			for (Mask *mask : chunk->masks) {
 				delete mask;
 			}
 			chunk->masks.clear();
-		}*/
+		}
 	}
 };
 

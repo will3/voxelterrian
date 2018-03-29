@@ -313,6 +313,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="C:\kestrel\src\Camera.cpp" />
     <ClCompile Include="C:\kestrel\src\Chunk.cpp" />
     <ClCompile Include="C:\kestrel\src\Chunks.cpp" />
     <ClCompile Include="C:\kestrel\src\DirectionalLight.cpp" />
@@ -321,14 +322,18 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\kestrel\src\FastNoise.cpp" />
     <ClCompile Include="C:\kestrel\src\Logger.cpp" />
     <ClCompile Include="C:\kestrel\src\Mask.cpp" />
+    <ClCompile Include="C:\kestrel\src\Material.cpp" />
     <ClCompile Include="C:\kestrel\src\Mesher.cpp" />
+    <ClCompile Include="C:\kestrel\src\Node.cpp" />
     <ClCompile Include="C:\kestrel\src\NoiseMap2.cpp" />
     <ClCompile Include="C:\kestrel\src\Raycast.cpp" />
+    <ClCompile Include="C:\kestrel\src\Renderer.cpp" />
     <ClCompile Include="C:\kestrel\src\Runner.cpp" />
+    <ClCompile Include="C:\kestrel\src\Scene.cpp" />
     <ClCompile Include="C:\kestrel\src\Terrian.cpp" />
+    <ClCompile Include="C:\kestrel\src\VoxelMesh.cpp" />
     <ClCompile Include="C:\kestrel\src\main.cpp" />
-    <ClCompile Include="src\Material.cpp" />
-    <ClCompile Include="src\VoxelMesh.cpp" />
+    <ClInclude Include="C:\kestrel\src\Camera.h" />
     <ClInclude Include="C:\kestrel\src\Chunk.h" />
     <ClInclude Include="C:\kestrel\src\Chunks.h" />
     <ClInclude Include="C:\kestrel\src\DirectionalLight.h" />
@@ -338,13 +343,17 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\Logger.h" />
     <ClInclude Include="C:\kestrel\src\Mask.h" />
     <ClInclude Include="C:\kestrel\src\Material.h" />
-    <ClInclude Include="src\VoxelMesh.h" />
     <ClInclude Include="C:\kestrel\src\Mesher.h" />
+    <ClInclude Include="C:\kestrel\src\Node.h" />
     <ClInclude Include="C:\kestrel\src\NoiseMap2.h" />
     <ClInclude Include="C:\kestrel\src\Raycast.h" />
+    <ClInclude Include="C:\kestrel\src\ReferenceCounted.h" />
+    <ClInclude Include="C:\kestrel\src\Renderer.h" />
     <ClInclude Include="C:\kestrel\src\Runner.h" />
+    <ClInclude Include="C:\kestrel\src\Scene.h" />
     <ClInclude Include="C:\kestrel\src\Terrian.h" />
     <ClInclude Include="C:\kestrel\src\Vertice.h" />
+    <ClInclude Include="src\Mesh.h" />
     <ClInclude Include="C:\kestrel\src\linalg.h" />
     <ClInclude Include="C:\kestrel\src\types.h" />
     <None Include="C:\kestrel\shaders\voxel.fragmentshader" />

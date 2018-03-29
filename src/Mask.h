@@ -3,8 +3,6 @@
 #include <array>
 #define max_light_value 15
 
-class VoxelMesh;
-
 typedef __int8 ao_type;
 
 class MaskValue {
@@ -39,10 +37,4 @@ public:
 	MaskValue get(int j, int k);
 
 	void set(int j, int k, MaskValue& v);
-
-	bool stop_merge(MaskValue& c, MaskValue& next);
-
-	void copy_quad(VoxelMesh * buffer, int x, int y, int w, int h, int ao0, int ao1, int ao2, int ao3, int lighting);
-
-	void get_quads(VoxelMesh *mesh);
 };

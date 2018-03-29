@@ -1,0 +1,4 @@
+namespace kst {
+	class Camera {
+	};
+}

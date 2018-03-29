@@ -3,6 +3,7 @@
 #include "types.h"
 #include "Mask.h"
 #include "NoiseMap2.h"
+#include "Mesh.h"
 
 typedef int Voxel;
 
@@ -30,7 +31,7 @@ public:
 
 	// meshing
 	std::vector<Mask *> masks;
-	//SMesh *mesh = 0;
+	kst::Mesh *mesh = 0;
 	//IMeshSceneNode *node = 0;
 
 	// terrian

@@ -5,7 +5,7 @@
 #include "Chunk.h"
 #include "Raycast.h"
 #include "Material.h"
-#include "VoxelMesh.h"
+#include "Mesh.h"
 
 Voxel Mesher::get_voxel(Coord3 &coord, Chunk &chunk, Chunks &chunks) {
 	int size = chunk.size;
@@ -104,10 +104,6 @@ void Mesher::generate_masks(Chunk* chunk, Chunks* chunks, DirectionalLight *ligh
 	chunk->shadow_softened = false;
 }
 
-//void Mesher::copy_mask(Mask *mask, Mesh *mesh) {
-//	mask->get_quads(mesh);
-//}
-
 Coord3 Mesher::get_vertice(int i, int j, int k, int d) {
 	if (d == 0) {
 		return { i, j, k };
@@ -126,4 +122,128 @@ ao_type Mesher::get_ao(int s1, int s2, int c) {
 	}
 
 	return s1 + s2 + c;
+}
+
+bool Mesher::stop_merge(MaskValue & c, MaskValue & next) {
+	return next.v != c.v || next.has_ao() || next.lighting != c.lighting;
+}
+
+void Mesher::copy_quad(Mask *mask, Mesh *mesh, int x, int y, int w, int h, int ao0, int ao1, int ao2, int ao3, int l) {
+	bool front = mask->front;
+	float ao_strength = 0.1f;
+	auto &vertices = mesh->vertices;
+	auto &colors = mesh->colors;
+	auto &lighting = mesh->lighting;
+	auto &indices = mesh->indices;
+	int i = mask->i;
+	int d = mask->d;
+	int index = mesh->num_vertices();
+
+	Coord3 v0 = Coord3(i, x, y).rotate(d);
+	Coord3 v1 = Coord3(i, x + w, y).rotate(d);
+	Coord3 v2 = Coord3(i, x + w, y + h).rotate(d);
+	Coord3 v3 = Coord3(i, x, y + h).rotate(d);
+
+	vertices.insert(vertices.end(), { v0.i, v0.j, v0.k });
+	vertices.insert(vertices.end(), { v1.i, v1.j, v1.k });
+	vertices.insert(vertices.end(), { v2.i, v2.j, v2.k });
+	vertices.insert(vertices.end(), { v3.i, v3.j, v3.k });
+
+	colors.insert(colors.end(), { 255, 255, 255 });
+	colors.insert(colors.end(), { 255, 255, 255 });
+	colors.insert(colors.end(), { 255, 255, 255 });
+	colors.insert(colors.end(), { 255, 255, 255 });
+
+	float light_f = (1.0f - (ao0 / 3.0f * ao_strength)) * (l / 15.0f);
+	int light = floor(light_f * 16);
+
+	lighting.insert(lighting.end(), { l, l, l, l });
+
+	if (front) {
+		indices.push_back(index);
+		indices.push_back(index + 1);
+		indices.push_back(index + 2);
+		indices.push_back(index + 2);
+		indices.push_back(index + 3);
+		indices.push_back(index);
+	}
+	else {
+		indices.push_back(index + 2);
+		indices.push_back(index + 1);
+		indices.push_back(index);
+		indices.push_back(index);
+		indices.push_back(index + 3);
+		indices.push_back(index + 2);
+	}
+}
+
+void Mesher::insert_quads_mask(Mask* mask, Mesh *mesh) {
+	int n = 0;
+	MaskValue c;
+	int w, h;
+	int size = mask->size;
+	auto data = mask->data;
+
+	for (int j = 0; j < size; j++) {
+		for (int i = 0; i < size; ) {
+			c = data[n];
+
+			if (c.v == 0) {
+				i++;
+				n++;
+				continue;
+			}
+
+			// Check AO
+			if (c.has_ao()) {
+				copy_quad(mask, mesh, j, i, 1, 1, c.ao0, c.ao1, c.ao2, c.ao3, c.lighting);
+				i++;
+				n++;
+				continue;
+			}
+
+			int lighting = c.lighting;
+
+			// Compute width
+			for (w = 1; i + w < size; ++w) {
+				MaskValue &next = data[n + w];
+				if (stop_merge(c, next)) {
+					break;
+				}
+			}
+
+			// Compute height
+			bool done = false;
+			for (h = 1; j + h < size; h++) {
+				for (int k = 0; k < w; k++) {
+					MaskValue &next = data[n + k + h * size];
+					if (stop_merge(c, next)) {
+						done = true;
+						break;
+					}
+				}
+				if (done) {
+					break;
+				}
+			}
+
+			// Add Quad
+			copy_quad(mask, mesh, j, i, h, w, 0, 0, 0, 0, lighting);
+
+			//Zero-out mask
+			for (int l = 0; l < h; l++) {
+				for (int k = 0; k < w; k++) {
+					data[n + k + l * size] = 0;
+				}
+			}
+
+			i += w; n += w;
+		}
+	}
+}
+
+void Mesher::insert_quads(Chunk* chunk) {
+	for (Mask *mask : chunk->masks) {
+		insert_quads_mask(mask, chunk->mesh);
+	}
 }
