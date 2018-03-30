@@ -14,17 +14,15 @@ DirectionalLight::~DirectionalLight()
 {
 }
 
-int DirectionalLight::calc_light(Chunk *chunk, Chunks *chunks, Coord3 coord) {
-	Coord3 chunks_coord = coord + chunk->get_offset();
-	float3 position = float3(chunks_coord.i + 0.5f, chunks_coord.j + 0.5f, chunks_coord.k + 0.5f);
-
+bool DirectionalLight::calc_light(Chunks *chunks, Coord3 coord) {
+	float3 position = float3(coord.i + 0.5f, coord.j + 0.5f, coord.k + 0.5f);
 	bool hit = Raycast::raycast(chunks, position, direction, 100, true).v > 0;
 
 	if (hit) {
-		return 0;
+		return false;
 	}
 
-	return max_light_value;
+	return true;
 }
 
 int DirectionalLight::calc_light(Chunk *chunk, Chunks *chunks, int d, int i, int j, int k, bool front) {

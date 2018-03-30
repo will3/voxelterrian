@@ -76,8 +76,8 @@
     <ClCompile Include="C:\kestrel\external\imgui\imgui_draw.cpp">
       <Filter>external\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="C:\kestrel\external\imgui_opengl\imgui_impl_glfw.cpp">
-      <Filter>external\imgui_opengl</Filter>
+    <ClCompile Include="C:\kestrel\external\imgui\imgui_impl_glfw_gl3.cpp">
+      <Filter>external\imgui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +162,9 @@
     <ClInclude Include="C:\kestrel\external\imgui\imgui.h">
       <Filter>external\imgui</Filter>
     </ClInclude>
+    <ClInclude Include="C:\kestrel\external\imgui\imgui_impl_glfw_gl3.h">
+      <Filter>external\imgui</Filter>
+    </ClInclude>
     <ClInclude Include="C:\kestrel\external\imgui\imgui_internal.h">
       <Filter>external\imgui</Filter>
     </ClInclude>
@@ -173,9 +176,6 @@
     </ClInclude>
     <ClInclude Include="C:\kestrel\external\imgui\stb_truetype.h">
       <Filter>external\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\kestrel\external\imgui_opengl\imgui_impl_glfw.h">
-      <Filter>external\imgui_opengl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -204,9 +204,6 @@
     </Filter>
     <Filter Include="external\imgui">
       <UniqueIdentifier>{AB78A127-BD88-351C-B887-BD1B214719AF}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="external\imgui_opengl">
-      <UniqueIdentifier>{6AB0F9A8-A82A-361F-BB6F-887A7E1A870E}</UniqueIdentifier>
     </Filter>
     <Filter Include="shaders">
       <UniqueIdentifier>{CEA7EFAA-A83A-3017-BA13-7318A7FEA30D}</UniqueIdentifier>

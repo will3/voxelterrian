@@ -54,6 +54,7 @@ void Chunks::set(Coord3 coord, voxel_type v) {
 Chunk* Chunks::get_or_create_chunk(Coord3 origin) {
 	if (!has_chunk(origin)) {
 		map[origin] = new Chunk(size, origin);
+		map[origin]->chunks = this;
 		coords.insert(origin);
 	}
 

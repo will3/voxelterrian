@@ -10,7 +10,7 @@ public:
 	DirectionalLight();
 	~DirectionalLight();
 
-	int calc_light(Chunk * chunk, Chunks * chunks, Coord3 coord);
+	bool calc_light(Chunks * chunks, Coord3 coord);
 
 	int calc_light(Chunk *chunk, Chunks *chunks, int d, int i, int j, int k, bool front);
 };

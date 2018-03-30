@@ -4,8 +4,11 @@
 #include "Mask.h"
 #include "NoiseMap2.h"
 #include "Mesh.h"
+#include <unordered_map>
 
 typedef GLbyte voxel_type;
+class DirectionalLight;
+class Chunks;
 
 class Chunk
 {
@@ -13,6 +16,9 @@ private:
 	std::vector<voxel_type> data;
 	Coord3 origin;
 	Coord3 offset;
+	std::unordered_map<int, bool> has_light_map;
+	std::unordered_map<int, int> smooth_light_map;
+	float get_light(int i, int j, int k);
 
 public:
 	Chunk(int size, Coord3 origin);
@@ -22,12 +28,18 @@ public:
 	Coord3& get_offset() { return offset; }
 	int size;
 	bool dirty;
+	Chunks *chunks;
 
 	bool shadow_softened = false;
 	glm::vec3 position;
 
 	voxel_type get(Coord3 coord);
+	voxel_type get_global(Coord3 coord);
+
 	void set(Coord3 coord, voxel_type v);
+
+	void calc_light(DirectionalLight *light);
+	void smooth_light(DirectionalLight *light);
 
 	// meshing
 	std::vector<Mask> masks;

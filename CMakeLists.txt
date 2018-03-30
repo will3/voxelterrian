@@ -25,7 +25,6 @@ include_directories(
 	external/assimp-3.0.1270/include/
 	external/bullet-2.81-rev2613/src/
 	external/imgui
-	external/imgui_opengl
 	.
 )
 
@@ -46,9 +45,7 @@ add_definitions(
 file(GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/src/*.cpp ${PROJECT_SOURCE_DIR}/src/*.h)
 file(GLOB SHADER_FILES ${PROJECT_SOURCE_DIR}/shaders/*.*)
 file(GLOB EXTERNAL_FILES 
-	${PROJECT_SOURCE_DIR}/external/imgui/*.* 
-	${PROJECT_SOURCE_DIR}/external/imgui_opengl/imgui_impl_glfw.h
-	${PROJECT_SOURCE_DIR}/external/imgui_opengl/imgui_impl_glfw.cpp)
+	${PROJECT_SOURCE_DIR}/external/imgui/*.*)
 
 add_executable(kestrel 
 	${SRC_FILES}
@@ -68,4 +65,3 @@ SOURCE_GROUP(common REGULAR_EXPRESSION ".*/common/.*" )
 SOURCE_GROUP(shaders REGULAR_EXPRESSION ".*/.*shader$" )
 
 SOURCE_GROUP(external\\imgui REGULAR_EXPRESSION ".*/external/imgui/.*" )
-SOURCE_GROUP(external\\imgui_opengl REGULAR_EXPRESSION ".*/external/imgui_opengl/.*" )

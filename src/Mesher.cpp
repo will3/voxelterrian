@@ -75,7 +75,8 @@ void Mesher::gen_masks(Chunk* chunk, Chunks* chunks, DirectionalLight *light) {
 						Coord3 coord = front ? Coord3(i - 1, j, k) : Coord3(i, j, k);
 						coord = coord.rotate(d);
 						if (light_amount_cache.find(coord) == light_amount_cache.end()) {
-							light_amount_cache[coord] = light->calc_light(chunk, chunks, coord);
+							Coord3 chunks_coord = coord + chunk->get_offset();
+							light_amount_cache[coord] = light->calc_light(chunks, chunks_coord) ? 15 : 0;
 						}
 
 						light_amount = light_amount_cache[coord];
