@@ -130,7 +130,7 @@ bool Mesher::stop_merge(MaskValue & c, MaskValue & next) {
 
 void Mesher::gen_geometry(Mask& mask, Geometry *geometry, int x, int y, int w, int h, int ao0, int ao1, int ao2, int ao3, int l) {
 	bool front = mask.front;
-	float ao_strength = 1.0f;
+	float ao_strength = 0.1f;
 	auto &vertices = geometry->vertices;
 	auto &colors = geometry->colors;
 	auto &lighting = geometry->lighting;

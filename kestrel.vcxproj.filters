@@ -67,6 +67,18 @@
     <ClCompile Include="C:\kestrel\common\shader.cpp">
       <Filter>common</Filter>
     </ClCompile>
+    <ClCompile Include="C:\kestrel\external\imgui\imgui.cpp">
+      <Filter>external\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\kestrel\external\imgui\imgui_demo.cpp">
+      <Filter>external\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\kestrel\external\imgui\imgui_draw.cpp">
+      <Filter>external\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\kestrel\external\imgui_opengl\imgui_impl_glfw.cpp">
+      <Filter>external\imgui_opengl</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\kestrel\src\Camera.h">
@@ -132,6 +144,9 @@
     <ClInclude Include="C:\kestrel\src\Terrian.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="C:\kestrel\src\Test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="C:\kestrel\src\linalg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -141,8 +156,26 @@
     <ClInclude Include="C:\kestrel\common\shader.hpp">
       <Filter>common</Filter>
     </ClInclude>
-    <ClInclude Include="src\Test.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="C:\kestrel\external\imgui\imconfig.h">
+      <Filter>external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\external\imgui\imgui.h">
+      <Filter>external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\external\imgui\imgui_internal.h">
+      <Filter>external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\external\imgui\stb_rect_pack.h">
+      <Filter>external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\external\imgui\stb_textedit.h">
+      <Filter>external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\external\imgui\stb_truetype.h">
+      <Filter>external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\external\imgui_opengl\imgui_impl_glfw.h">
+      <Filter>external\imgui_opengl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +198,15 @@
     </Filter>
     <Filter Include="common">
       <UniqueIdentifier>{2E02E82D-D10D-3383-9541-31A22A6EFEAA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external">
+      <UniqueIdentifier>{CCE28236-860F-38F4-B1FF-17C1EAFF6901}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external\imgui">
+      <UniqueIdentifier>{AB78A127-BD88-351C-B887-BD1B214719AF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external\imgui_opengl">
+      <UniqueIdentifier>{6AB0F9A8-A82A-361F-BB6F-887A7E1A870E}</UniqueIdentifier>
     </Filter>
     <Filter Include="shaders">
       <UniqueIdentifier>{CEA7EFAA-A83A-3017-BA13-7318A7FEA30D}</UniqueIdentifier>

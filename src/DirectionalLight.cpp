@@ -7,7 +7,7 @@ float3 unit_vector(float3 vector) {
 	return vector / dis;
 }
 DirectionalLight::DirectionalLight() {
-	direction = unit_vector({ 0.2f, 1.0f, 0.5f });
+	direction = unit_vector({ 1.0f, 1.0f, -1.0f });
 }
 
 DirectionalLight::~DirectionalLight()

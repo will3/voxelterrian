@@ -5,7 +5,7 @@
 #include "NoiseMap2.h"
 #include "Mesh.h"
 
-typedef int voxel_type;
+typedef GLbyte voxel_type;
 
 class Chunk
 {

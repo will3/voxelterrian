@@ -133,7 +133,7 @@ void Terrian::set_draw_dis(int dis)
 {
 	gen_geometry_dis = dis;
 	gen_masks_dis = dis + 1;
-	tessellate_dis = dis + 1;
+	tessellate_dis = dis + 2;
 	remove_chunk_dis = dis + 1;
 }
 
