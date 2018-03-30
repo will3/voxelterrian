@@ -2,6 +2,21 @@
 cmake_minimum_required (VERSION 2.6)
 project (kestrel)
 
+# force static runtime libraries for msvc builds
+if(MSVC)
+  set(variables 
+    CMAKE_CXX_FLAGS_DEBUG
+    CMAKE_CXX_FLAGS_RELEASE
+	CMAKE_CXX_FLAGS_RELWITHDEBINFO
+	CMAKE_CXX_FLAGS_MINSIZEREL
+  )
+  foreach(variable ${variables})
+	if(${variable} MATCHES "/MD")
+	  string(REGEX REPLACE "/MD" "/MT" ${variable} "${${variable}}")
+	endif()
+  endforeach()
+endif()
+
 find_package(OpenGL REQUIRED)
 
 # Compile external dependencies 
@@ -25,6 +40,7 @@ include_directories(
 	external/assimp-3.0.1270/include/
 	external/bullet-2.81-rev2613/src/
 	external/imgui
+	./src
 	.
 )
 
@@ -63,5 +79,19 @@ target_link_libraries(kestrel
 
 SOURCE_GROUP(common REGULAR_EXPRESSION ".*/common/.*" )
 SOURCE_GROUP(shaders REGULAR_EXPRESSION ".*/.*shader$" )
+SOURCE_GROUP(tests REGULAR_EXPRESSION ".*/tests/.*" )
 
 SOURCE_GROUP(external\\imgui REGULAR_EXPRESSION ".*/external/imgui/.*" )
+
+# test
+
+add_subdirectory(external/googletest)
+
+enable_testing()
+
+include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+
+file(GLOB TEST_FILES ${PROJECT_SOURCE_DIR}/tests/*.*)
+add_executable(kestrel-tests ${SRC_FILES} ${TEST_FILES})
+
+target_link_libraries(kestrel-tests gtest gtest_main)

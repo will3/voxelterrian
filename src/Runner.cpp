@@ -1,5 +1,4 @@
 #include "Runner.h"
-#include "Logger.h"
 #include <vector>
 
 static int next_id = 0;
@@ -19,7 +18,6 @@ int Runner::add(Entity *entity) {
 		entity->id = get_next_id();
 	}
 
-	Logger::get_instance()->log("entity added");
 	entity->runner = this;
 
 	map[entity->id] = entity;

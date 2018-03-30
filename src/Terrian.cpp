@@ -1,6 +1,5 @@
 #include "Terrian.h"
 #include "types.h"
-#include "Logger.h"
 #include "Mesher.h"
 #include <algorithm>
 #include <thread>

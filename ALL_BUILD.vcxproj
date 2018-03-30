@@ -63,7 +63,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\external\googletest\include;C:\kestrel\external\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -73,7 +73,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\external\googletest\include;C:\kestrel\external\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -83,7 +83,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\external\googletest\include;C:\kestrel\external\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -93,7 +93,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\external\googletest\include;C:\kestrel\external\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -228,6 +228,14 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{F67E73A7-EEE7-31C0-89DB-9937197A47FD}</Project>
       <Name>glfwinfo</Name>
     </ProjectReference>
+    <ProjectReference Include="C:\kestrel\external\googletest\gtest.vcxproj">
+      <Project>{0E6EB13C-8E3D-328A-9290-1C175CE22547}</Project>
+      <Name>gtest</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\kestrel\external\googletest\gtest_main.vcxproj">
+      <Project>{3E8CADE6-1ED4-37BE-8417-84BF11BD8728}</Project>
+      <Name>gtest_main</Name>
+    </ProjectReference>
     <ProjectReference Include="C:\kestrel\external\glfw-3.1.2\examples\heightmap.vcxproj">
       <Project>{5FF8280E-FC26-3E4F-ABD9-52FA2716F6B4}</Project>
       <Name>heightmap</Name>
@@ -243,6 +251,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ProjectReference Include="C:\kestrel\kestrel.vcxproj">
       <Project>{99420EAD-83AC-3581-BED0-0CE78E444DB1}</Project>
       <Name>kestrel</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\kestrel\kestrel-tests.vcxproj">
+      <Project>{C4E28DC4-C2AA-390B-812D-B71487430AC2}</Project>
+      <Name>kestrel-tests</Name>
     </ProjectReference>
     <ProjectReference Include="C:\kestrel\external\glfw-3.1.2\tests\monitors.vcxproj">
       <Project>{967041A0-0E48-3A87-90D4-89C86D013FED}</Project>
