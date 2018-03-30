@@ -66,6 +66,7 @@ void terrian_work(Terrian *terrian) {
 		}
 	}
 
+	// Discard
 	for (auto coord : chunks->get_coords()) {
 		Chunk *chunk = chunks->get_chunk(coord);
 		if (chunk->distance_from_player > terrian->remove_chunk_dis) {
@@ -73,6 +74,7 @@ void terrian_work(Terrian *terrian) {
 		}
 	}
 
+	// Add mesh
 	for (auto coord : chunks->get_coords()) {
 		Chunk *chunk = chunks->get_chunk(coord);
 
