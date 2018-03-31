@@ -17,8 +17,9 @@ public:
 	int max_chunks_y = 8;
 
 	int tessellate_dis = 7;
-	int gen_masks_dis = 6;
-	int gen_geometry_dis = 6;
+	int calc_light_dis = 6;
+	int smooth_light_dis = 5;
+	int gen_geometry_dis = 5;
 	int remove_chunk_dis = 7;
 
 	std::vector<Coord3> coords_within_dis(int dis);
@@ -42,3 +43,5 @@ public:
 	int chunk_size = 32;
 	Coord2 player_origin;
 };
+
+void terrian_work(Terrian * terrian);

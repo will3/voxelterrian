@@ -28,3 +28,8 @@ void Node::update_matrix()
 
 	matrix = trans * rot;
 }
+
+void Node::remove_self()
+{
+	parent->remove(this);
+}

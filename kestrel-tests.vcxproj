@@ -313,6 +313,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="C:\kestrel\src\Brush.cpp" />
     <ClCompile Include="C:\kestrel\src\Camera.cpp" />
     <ClCompile Include="C:\kestrel\src\Chunk.cpp" />
     <ClCompile Include="C:\kestrel\src\Chunks.cpp" />
@@ -333,6 +334,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\kestrel\src\Scene.cpp" />
     <ClCompile Include="C:\kestrel\src\Terrian.cpp" />
     <ClCompile Include="C:\kestrel\src\main.cpp" />
+    <ClInclude Include="C:\kestrel\src\Brush.h" />
     <ClInclude Include="C:\kestrel\src\Camera.h" />
     <ClInclude Include="C:\kestrel\src\Chunk.h" />
     <ClInclude Include="C:\kestrel\src\Chunks.h" />
@@ -353,7 +355,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\Runner.h" />
     <ClInclude Include="C:\kestrel\src\Scene.h" />
     <ClInclude Include="C:\kestrel\src\Terrian.h" />
-    <ClInclude Include="C:\kestrel\src\Test.h" />
     <ClInclude Include="C:\kestrel\src\linalg.h" />
     <ClInclude Include="C:\kestrel\src\types.h" />
     <ClCompile Include="C:\kestrel\tests\ChunkTests.cpp" />

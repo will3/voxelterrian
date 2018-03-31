@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="C:\kestrel\src\Brush.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\kestrel\src\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -84,6 +87,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="C:\kestrel\src\Brush.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="C:\kestrel\src\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -142,9 +148,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Terrian.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\kestrel\src\Test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\linalg.h">

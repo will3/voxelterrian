@@ -9,6 +9,7 @@
 typedef GLbyte voxel_type;
 class DirectionalLight;
 class Chunks;
+class Brush;
 
 class Chunk
 {
@@ -16,9 +17,9 @@ private:
 	std::vector<voxel_type> data;
 	Coord3 origin;
 	Coord3 offset;
-	std::unordered_map<int, bool> has_light_map;
+
+	std::unordered_map<int, bool> raw_light_map;
 	std::unordered_map<int, int> smooth_light_map;
-	float get_light(int i, int j, int k);
 
 public:
 	Chunk(int size, Coord3 origin);
@@ -38,20 +39,28 @@ public:
 
 	void set(Coord3 coord, voxel_type v);
 
+	bool needs_calc_light = true;
+	bool needs_smooth_light = true;
+	bool light_calculated = false;
+
+	void calc_light_if_needed(DirectionalLight *light);
 	void calc_light(DirectionalLight *light);
-	void smooth_light(DirectionalLight *light);
+
+	void smooth_light_if_needed(DirectionalLight *light, Brush *brush);
+	void smooth_light(DirectionalLight *light, Brush *brush);
+
+	// lighting
+	bool get_light_raw(int i, int j, int k);
+	bool has_light_raw(int i, int j, int k);
+
+	int get_light(Coord3 coord);
 
 	// meshing
-	std::vector<Mask> masks;
-	Geometry *geometry = 0;
-	bool geometry_ready = false;
 	Mesh *mesh = 0;
 
 	// terrian
 	NoiseMap2 *height_map = 0;
 	bool rasterized = false;
 	int distance_from_player = 0;
-
-	void drop_node_if_needed();
 };
 

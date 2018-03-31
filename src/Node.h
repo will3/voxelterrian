@@ -21,4 +21,6 @@ public:
 	void remove(Node *node);
 
 	void update_matrix();
+
+	void remove_self();
 };
