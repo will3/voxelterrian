@@ -47,6 +47,7 @@ bool Mesher::stop_merge(MaskValue & c, MaskValue & next) {
 void Mesher::copy_quads(Mask& mask, Geometry *geometry, int x, int y, int w, int h, int ao0, int ao1, int ao2, int ao3, int l) {
 	bool front = mask.front;
 	float ao_strength = 0.1f;
+	float light_strength = 0.4f;
 	auto &vertices = geometry->vertices;
 	auto &colors = geometry->colors;
 	auto &lighting = geometry->lighting;
@@ -70,7 +71,7 @@ void Mesher::copy_quads(Mask& mask, Geometry *geometry, int x, int y, int w, int
 	colors.insert(colors.end(), { 255, 255, 255 });
 	colors.insert(colors.end(), { 255, 255, 255 });
 
-	float light_f = (1.0f - (ao0 / 3.0f * ao_strength)) * (l / 15.0f);
+	float light_f = (1.0f - (ao0 / 3.0f * ao_strength)) * (1 - ((1 - l / 15.0f) * light_strength));
 	int light = floor(light_f * 16);
 
 	lighting.insert(lighting.end(), { light, light, light, light });
@@ -165,10 +166,11 @@ Geometry* Mesher::mesh(Chunk* chunk, Chunks* chunks) {
 
 	int size = chunk->size;
 
+	std::vector<Mask *> masks;
 	for (int d = 0; d < 3; d++) {
 		for (int i = 0; i <= size; i++) {
-			Mask front_mask = Mask(size, i, d, true);
-			Mask back_mask = Mask(size, i, d, false);
+			Mask *front_mask = new Mask(size, i, d, true);
+			Mask *back_mask = new Mask(size, i, d, false);
 			for (int j = 0; j < size; j++) {
 				for (int k = 0; k < size; k++) {
 					Coord3 coord_a = Coord3(i - 1, j, k).rotate(d);
@@ -181,6 +183,14 @@ Geometry* Mesher::mesh(Chunk* chunk, Chunks* chunks) {
 
 					if ((a == 0 && b == 0) || (a != 0 && b != 0))
 					{
+						continue;
+					}
+
+					if (i == 0 && front) {
+						continue;
+					}
+
+					if (i == size && !front) {
 						continue;
 					}
 
@@ -204,26 +214,33 @@ Geometry* Mesher::mesh(Chunk* chunk, Chunks* chunks) {
 					int s21 = get_voxel(c21, *chunk, *chunks) > 0 ? 1 : 0;
 					int s22 = get_voxel(c22, *chunk, *chunks) > 0 ? 1 : 0;
 
-					//Coord3 coord = front ? coord_a : coord_b;
-					int light_amount = light->calc_light(chunk, chunks, d, i, j, k, front);
-						//chunk->get_light(coord);
+					Coord3 coord = front ? coord_a : coord_b;
+					int light_amount = chunk->get_light(coord);
 
 					MaskValue v = MaskValue(a || b,
 						get_ao(s10, s01, s00), get_ao(s01, s12, s02), get_ao(s12, s21, s22), get_ao(s21, s10, s20),
 						light_amount);
 
 					if (front) {
-						front_mask.set(j, k, v);
+						front_mask->set(j, k, v);
 					}
 					else {
-						back_mask.set(j, k, v);
+						back_mask->set(j, k, v);
 					}
 				}
 			}
 
-			copy_quads(front_mask, geometry);
-			copy_quads(back_mask, geometry);
+			masks.push_back(front_mask);
+			masks.push_back(back_mask);
 		}
+	}
+
+	for (Mask *mask : masks) {
+		copy_quads(*mask, geometry);
+	}
+
+	for (Mask *mask : masks) {
+		delete mask;
 	}
 
 	chunk->position = { chunk->get_offset().i, chunk->get_offset().j, chunk->get_offset().k };

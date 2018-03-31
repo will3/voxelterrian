@@ -6,6 +6,7 @@
 #include <mutex>
 #include "Mesh.h"
 #include "Brush.h"
+#include "Sculptor.h"
 
 inline int fast_floor(int x, int y) {
 	return x / y - (x % y < 0);
@@ -14,17 +15,18 @@ inline int fast_floor(int x, int y) {
 static Brush *shadow_brush = new Brush();
 
 void terrian_work(Terrian *terrian) {
+	int chunk_size = terrian->chunk_size;
+	terrian->player_origin = { fast_floor(terrian->player_position.x, chunk_size), fast_floor(terrian->player_position.z, chunk_size) };
 	Chunks *chunks = terrian->chunks;
 	DirectionalLight *light = terrian->light;
 	glm::vec3 player_position = terrian->player_position;
 	Coord2 player_origin = terrian->player_origin;
-	int chunk_size = terrian->chunk_size;
 
 	// Tessallate
 	for (auto origin : terrian->coords_within_dis(terrian->tessellate_dis)) {
 		Chunk *chunk = chunks->get_or_create_chunk(origin);
 		if (!chunk->rasterized) {
-			terrian->rasterize_height_chunk(chunk);
+			Sculptor::rasterize_height(chunk, terrian->height_noise);
 			chunk->rasterized = true;
 		}
 	}
@@ -42,10 +44,10 @@ void terrian_work(Terrian *terrian) {
 	}
 
 	// Smooth light
-	for (auto coord : terrian->coords_within_dis(terrian->smooth_light_dis)) {
-		Chunk *chunk = chunks->get_chunk(coord);
-		chunk->smooth_light_if_needed(terrian->light, shadow_brush);
-	}
+	//for (auto coord : terrian->coords_within_dis(terrian->smooth_light_dis)) {
+	//	Chunk *chunk = chunks->get_chunk(coord);
+	//	chunk->smooth_light_if_needed(terrian->light, shadow_brush);
+	//}
 
 	// Mesh
 	for (auto coord : terrian->coords_within_dis(terrian->gen_geometry_dis)) {
@@ -57,6 +59,10 @@ void terrian_work(Terrian *terrian) {
 		if (chunk->mesh != 0) {
 			chunk->mesh->get_geometry()->drop();
 			chunk->mesh->parent->remove(chunk->mesh);
+		}
+
+		if (chunk->needs_calc_light) {
+			continue;
 		}
 
 		Geometry *geometry = Mesher::mesh(chunk, chunks);
@@ -94,9 +100,9 @@ std::vector<Coord3> Terrian::coords_within_dis(int dis) {
 	std::vector<Coord3> coords;
 
 	// rasterize height
-	for (int i = start.i; i <= end.i; i++) {
+	for (int i = player_origin.i - dis; i <= player_origin.i + dis; i++) {
 		for (int j = 0; j < max_chunks_y; j++) {
-			for (int k = start.j; k <= end.j; k++) {
+			for (int k = player_origin.j - dis; k <= player_origin.j + dis; k++) {
 				coords.push_back({ i, j, k });
 			}
 		}
@@ -112,7 +118,6 @@ void Terrian::start() {
 }
 
 void Terrian::update() {
-	player_origin = { fast_floor(player_position.x, chunk_size), fast_floor(player_position.z, chunk_size) };
 }
 
 void Terrian::remove() {
@@ -125,38 +130,15 @@ void Terrian::set_draw_dis(int dis)
 	tessellate_dis = remove_chunk_dis = dis + 2;
 }
 
-void Terrian::rasterize_height_chunk(Chunk *chunk) {
-	Coord3 offset = chunk->get_offset();
-
-	if (chunk->height_map == 0) {
-		chunk->height_map = new NoiseMap2(height_noise, chunk->size, offset.ik(), 1);
-		chunk->height_map->amplitude = max_height;
-		chunk->height_map->populate();
-	}
-
-	for (int i = 0; i < chunk_size; i++) {
-		for (int k = 0; k < chunk_size; k++) {
-			Coord2 uv = { i,k };
-
-			float height = chunk->height_map->sample(uv);
-
-			if (height < offset.j) {
-				continue;
-			}
-
-			for (int j = 0; j < fmin(chunk_size, height - offset.j); j++) {
-				chunk->set({ i, j, k }, 1);
-			}
-		}
-	}
-}
-
 Terrian::Terrian()
 {
 	this->chunks = new Chunks(chunk_size);
+
+	terrian_noise->SetFrequency(0.5);
 }
 
 Terrian::~Terrian()
 {
 	delete height_noise;
+	delete terrian_noise;
 }

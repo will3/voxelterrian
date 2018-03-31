@@ -5,6 +5,10 @@ RayCastResult Raycast::raycast(Chunks *chunks, float3 position, float3 direction
 }
 
 RayCastResult Raycast::raycast(Chunks *chunks, float3 position, float3 direction, int max_d, bool ignore_first) {
+	return raycast(chunks, position, direction, max_d, ignore_first, 0);
+}
+
+RayCastResult Raycast::raycast(Chunks *chunks, float3 position, float3 direction, int max_d, bool ignore_first, int max_y) {
 	// unit vector
 	float length = sqrt(direction.x * direction.x + direction.y* direction.y + direction.z * direction.z);
 	direction = direction / length;
@@ -45,8 +49,13 @@ RayCastResult Raycast::raycast(Chunks *chunks, float3 position, float3 direction
 	bool first = true;
 	// main loop along raycast vector
 	while (t <= max_d) {
+		if (max_y != 0 && iy >= max_y) {
+			break;
+		}
+
 		// exit check
 		Coord3 coord = { ix, iy, iz };
+
 		int b = chunks->get(coord);
 
 		if (b) {

@@ -58,6 +58,9 @@
     <ClCompile Include="C:\kestrel\src\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\kestrel\src\ShadowMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\kestrel\src\Terrian.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -79,6 +82,7 @@
     <ClCompile Include="C:\kestrel\external\imgui\imgui_impl_glfw_gl3.cpp">
       <Filter>external\imgui</Filter>
     </ClCompile>
+    <ClCompile Include="src\Sculptor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\kestrel\src\Brush.h">
@@ -139,6 +143,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\Sculptor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\ShadowMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Terrian.h">

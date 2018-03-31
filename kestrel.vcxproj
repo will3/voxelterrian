@@ -332,8 +332,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\kestrel\src\Renderer.cpp" />
     <ClCompile Include="C:\kestrel\src\Runner.cpp" />
     <ClCompile Include="C:\kestrel\src\Scene.cpp" />
+    <ClCompile Include="C:\kestrel\src\ShadowMap.cpp" />
     <ClCompile Include="C:\kestrel\src\Terrian.cpp" />
     <ClCompile Include="C:\kestrel\src\main.cpp" />
+    <ClCompile Include="src\Sculptor.cpp" />
     <ClInclude Include="C:\kestrel\src\Brush.h" />
     <ClInclude Include="C:\kestrel\src\Camera.h" />
     <ClInclude Include="C:\kestrel\src\Chunk.h" />
@@ -354,6 +356,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\Renderer.h" />
     <ClInclude Include="C:\kestrel\src\Runner.h" />
     <ClInclude Include="C:\kestrel\src\Scene.h" />
+    <ClInclude Include="C:\kestrel\src\Sculptor.h" />
+    <ClInclude Include="C:\kestrel\src\ShadowMap.h" />
     <ClInclude Include="C:\kestrel\src\Terrian.h" />
     <ClInclude Include="C:\kestrel\src\linalg.h" />
     <ClInclude Include="C:\kestrel\src\types.h" />

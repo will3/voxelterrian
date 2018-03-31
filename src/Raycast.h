@@ -14,6 +14,7 @@ public:
 
 class Raycast {
 public:
+	static RayCastResult raycast(Chunks *chunks, float3 position, float3 direction, int max_d, bool ignore_first, int max_y);
 	static RayCastResult raycast(Chunks *chunks, float3 position, float3 direction, int max_d, bool ignore_first);
 	static RayCastResult raycast(Chunks *chunks, float3 position, float3 direction, int max_d);
 };

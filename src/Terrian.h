@@ -9,12 +9,13 @@
 #include "DirectionalLight.h"
 #include "Scene.h"
 
+#define max_height 128
+
 class MeshResult;
 
 class Terrian : public Entity {
 public:
-	int max_height = 128;
-	int max_chunks_y = 8;
+	int max_chunks_y = 4;
 
 	int tessellate_dis = 7;
 	int calc_light_dis = 6;
@@ -23,9 +24,9 @@ public:
 	int remove_chunk_dis = 7;
 
 	std::vector<Coord3> coords_within_dis(int dis);
-	void rasterize_height_chunk(Chunk *chunk);
 
 	FastNoise *height_noise = new FastNoise();
+	FastNoise *terrian_noise = new FastNoise();
 
 	Terrian();
 	~Terrian();

@@ -30,7 +30,7 @@ Chunk * Chunks::get_chunk(Coord3 origin)
 	return map[origin];
 }
 
-std::unordered_set<Coord3> Chunks::get_coords()
+std::unordered_set<Coord3>& Chunks::get_coords()
 {
 	return coords;
 }

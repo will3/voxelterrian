@@ -10,6 +10,7 @@ typedef GLbyte voxel_type;
 class DirectionalLight;
 class Chunks;
 class Brush;
+class ShadowMap;
 
 class Chunk
 {
@@ -20,6 +21,7 @@ private:
 
 	std::unordered_map<int, bool> raw_light_map;
 	std::unordered_map<int, int> smooth_light_map;
+	ShadowMap *shadow_map;
 
 public:
 	Chunk(int size, Coord3 origin);

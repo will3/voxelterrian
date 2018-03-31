@@ -7,7 +7,7 @@ float3 unit_vector(float3 vector) {
 	return vector / dis;
 }
 DirectionalLight::DirectionalLight() {
-	direction = unit_vector({ 0.3f, 1.0f, -0.2f });
+	direction = unit_vector({ 0.5f, 1.0f, -0.1f });
 }
 
 DirectionalLight::~DirectionalLight()
@@ -40,7 +40,7 @@ int DirectionalLight::calc_light(Chunk *chunk, Chunks *chunks, int d, int i, int
 	position[u] += 0.5f;
 	position[v] += 0.5f;
 
-	bool hit = Raycast::raycast(chunks, position, direction, 100, true).v > 0;
+	bool hit = Raycast::raycast(chunks, position, direction, 100, true, 128).v > 0;
 
 	if (hit) {
 		return 0;
