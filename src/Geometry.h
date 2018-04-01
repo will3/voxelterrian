@@ -1,15 +1,14 @@
 #pragma once
-#include "ReferenceCounted.h"
 #include <GL\glew.h>
 #include <vector>
 
-class Geometry : public ReferenceCounted
+class Geometry
 {
 private:
-	GLuint vertexbuffer;
-	GLuint colorbuffer;
-	GLuint lightingbuffer;
-	GLuint elementbuffer;
+	GLuint vertexbuffer = 0;
+	GLuint colorbuffer = 0;
+	GLuint lightingbuffer = 0;
+	GLuint elementbuffer = 0;
 
 public:
 	bool vbo_loaded = false;

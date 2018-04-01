@@ -14,21 +14,25 @@ inline int fast_floor(int x, int y) {
 
 static Brush *shadow_brush = new Brush();
 
-void terrian_work(Terrian *terrian) {
-	terrian->player_origin = { fast_floor(terrian->player_position.x, CHUNK_SIZE), fast_floor(terrian->player_position.z, CHUNK_SIZE) };
-	Chunks *chunks = terrian->chunks;
-	DirectionalLight *light = terrian->light;
-	glm::vec3 player_position = terrian->player_position;
-	Coord2 player_origin = terrian->player_origin;
+void terrian_worker(Terrian *terrian) {
+	while (!terrian->removed) {
+		terrian->update_terrian();
+	}
+}
 
-	// Tessallate
-	for (auto origin : terrian->coords_within_dis(terrian->tessellate_dis)) {
+void Terrian::update_terrian() {
+	player_origin = { fast_floor(player_position.x, CHUNK_SIZE), fast_floor(player_position.z, CHUNK_SIZE) };
+
+	// height
+	for (auto origin : coords_within_dis(tessellate_dis)) {
 		Chunk *chunk = chunks->get_or_create_chunk(origin);
-		if (!chunk->rasterized) {
-			Sculptor::rasterize_height(chunk, terrian->height_noise);
+		if (dirty || !chunk->rasterized) {
+			Sculptor::rasterize_height(chunk, height_noise);
 			chunk->rasterized = true;
 		}
 	}
+
+	dirty = false;
 
 	// Update distance from player
 	for (auto origin : chunks->get_coords()) {
@@ -37,37 +41,29 @@ void terrian_work(Terrian *terrian) {
 	}
 
 	// Calc light
-	for (auto coord : terrian->coords_within_dis(terrian->calc_light_dis)) {
+	for (auto coord : coords_within_dis(calc_light_dis)) {
 		Chunk *chunk = chunks->get_chunk(coord);
-		chunk->calc_light_if_needed(terrian->light);
+		chunk->calc_light_if_needed(light);
 	}
 
-	// Smooth light
-	//for (auto coord : terrian->coords_within_dis(terrian->smooth_light_dis)) {
-	//	Chunk *chunk = chunks->get_chunk(coord);
-	//	chunk->smooth_light_if_needed(terrian->light, shadow_brush);
-	//}
-
 	// Mesh
-	for (auto coord : terrian->coords_within_dis(terrian->gen_geometry_dis)) {
+	for (auto coord : coords_within_dis(gen_geometry_dis)) {
 		Chunk *chunk = chunks->get_chunk(coord);
 		if (!chunk->dirty) {
 			continue;
 		}
 
 		if (chunk->mesh != 0) {
-			chunk->mesh->get_geometry()->drop();
-			chunk->mesh->parent->remove(chunk->mesh);
-		}
-
-		if (chunk->needs_calc_light) {
-			continue;
+			delete chunk->mesh->get_geometry();
+			chunk->mesh->remove_self();
+			delete chunk->mesh;
+			chunk->mesh = 0;
 		}
 
 		Geometry *geometry = Mesher::mesh(chunk, chunks);
-		Mesh *mesh = new Mesh(geometry, terrian->material);
+		Mesh *mesh = new Mesh(geometry, material);
 		mesh->position = chunk->position;
-		terrian->scene->add(mesh);
+		scene->add(mesh);
 		chunk->mesh = mesh;
 
 		chunk->dirty = false;
@@ -76,19 +72,15 @@ void terrian_work(Terrian *terrian) {
 	// Discard
 	for (auto coord : chunks->get_coords()) {
 		Chunk *chunk = chunks->get_chunk(coord);
-		if (chunk->distance_from_player > terrian->remove_chunk_dis) {
+		if (chunk->distance_from_player > remove_chunk_dis) {
 			if (chunk->mesh != 0) {
-				chunk->mesh->get_geometry()->drop();
+				delete chunk->mesh->get_geometry();
 				chunk->mesh->remove_self();
+				delete chunk->mesh;
+				chunk->mesh = 0;
 			}
 			chunks->delete_chunk(chunk->get_origin());
 		}
-	}
-}
-
-void terrian_worker(Terrian *terrian) {
-	while (!terrian->removed) {
-		terrian_work(terrian);
 	}
 }
 

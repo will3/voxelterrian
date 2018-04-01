@@ -1,12 +1,11 @@
 #pragma once
 
 #include "types.h"
-#include "ReferenceCounted.h"
 #include "Camera.h"
 #include <unordered_set>
 #include <glm/gtc/quaternion.hpp>
 
-class Node : public ReferenceCounted {
+class Node {
 public:
 	glm::vec3 position;
 	glm::quat rotation;

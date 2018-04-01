@@ -63,19 +63,11 @@ bool Chunk::has_light_raw(int i, int j, int k) {
 }
 
 int Chunk::get_light(Coord3 coord) {
-	return shadow_map->get(coord);
-	//if (coord.i < 0 || coord.i >= size ||
-	//	coord.j < 0 || coord.j >= size ||
-	//	coord.k < 0 || coord.k >= size) {
-	//	Coord3 c = coord + offset;
-	//	return chunks->get_light(c);
-	//}
+	if (this->light_calculated) {
+		return shadow_map->get(coord);
+	}
 
-	//int index = coord.i * size * size + coord.j * size + coord.k;
-	//if (raw_light_map.find(index) == raw_light_map.end()) {
-	//	return 0;
-	//}
-	//return raw_light_map[index] ? max_light_value : 0;
+	return max_light_value;
 }
 
 void Chunk::calc_light_if_needed(DirectionalLight * light)

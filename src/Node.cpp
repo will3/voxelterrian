@@ -10,13 +10,11 @@ void Node::add(Node * node)
 	}
 
 	nodes.insert(node);
-	node->grab();
 	node->parent = this;
 }
 
 void Node::remove(Node * node)
 {
-	node->drop();
 	nodes.erase(node);
 	node->parent = 0;
 }

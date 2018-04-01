@@ -153,9 +153,6 @@
     <ClInclude Include="C:\kestrel\src\Raycast.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\kestrel\src\ReferenceCounted.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="C:\kestrel\src\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>

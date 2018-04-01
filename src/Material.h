@@ -1,9 +1,8 @@
 #pragma once
 
 #include <GL/glew.h>
-#include "ReferenceCounted.h"
 
-class Material : public ReferenceCounted {
+class Material {
 public:
 	GLuint programID;
 	GLuint MatrixID;

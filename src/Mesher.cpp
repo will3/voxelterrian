@@ -240,7 +240,5 @@ Geometry* Mesher::mesh(Chunk* chunk, Chunks* chunks) {
 
 	chunk->position = { chunk->get_offset().i, chunk->get_offset().j, chunk->get_offset().k };
 
-	chunk->shadow_softened = false;
-
 	return geometry;
 }

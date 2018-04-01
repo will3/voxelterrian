@@ -50,6 +50,4 @@ void Mesh::render(Camera * camera) {
 }
 
 Mesh::~Mesh() {
-	geometry->drop();
-	material->drop();
 }

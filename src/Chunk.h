@@ -33,7 +33,6 @@ public:
 	bool dirty;
 	Chunks *chunks;
 
-	bool shadow_softened = false;
 	glm::vec3 position;
 
 	voxel_type get(Coord3 coord);

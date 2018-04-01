@@ -83,23 +83,10 @@ int main() {
 
 		ImGui_ImplGlfwGL3_NewFrame();
 
-		ImGui::Begin("Editor");
-		static int camera_speed = 1;
-		ImGui::Text("Generation Speed");
-		ImGui::RadioButton("1", &camera_speed, 1); ImGui::SameLine();
-		ImGui::RadioButton("2", &camera_speed, 2); ImGui::SameLine();
-		ImGui::RadioButton("4", &camera_speed, 4); ImGui::SameLine();
-		ImGui::RadioButton("8", &camera_speed, 8); ImGui::SameLine();
-		ImGui::RadioButton("16", &camera_speed, 16);
-
-		editor->gui_noise(terrian->height_noise);
-
-		ImGui::End();
-
-		camera_control->speed = camera_speed * 4;
-
-		//ImGui::SetNextWindowPos(ImVec2(650, 20), ImGuiCond_FirstUseEver); // Normally user code doesn't need/want to call this because positions are saved in .ini file anyway. Here we just want to make the demo initial state a bit more friendly!
-		//ImGui::ShowDemoWindow(&show_demo_window);
+		bool changed = editor->show(terrian->height_noise, camera_control);
+		if (changed) {
+			terrian->dirty = true;
+		}
 
 		runner->update();
 

@@ -359,7 +359,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\Noise.h" />
     <ClInclude Include="C:\kestrel\src\NoiseMap2.h" />
     <ClInclude Include="C:\kestrel\src\Raycast.h" />
-    <ClInclude Include="C:\kestrel\src\ReferenceCounted.h" />
     <ClInclude Include="C:\kestrel\src\Renderer.h" />
     <ClInclude Include="C:\kestrel\src\Runner.h" />
     <ClInclude Include="C:\kestrel\src\Scene.h" />

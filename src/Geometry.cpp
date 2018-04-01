@@ -9,10 +9,12 @@ Geometry::Geometry()
 
 Geometry::~Geometry()
 {
-	glDeleteBuffers(1, &vertexbuffer);
-	glDeleteBuffers(1, &colorbuffer);
-	glDeleteBuffers(1, &lightingbuffer);
-	glDeleteBuffers(1, &elementbuffer);
+	if (vbo_loaded) {
+		glDeleteBuffers(1, &vertexbuffer);
+		glDeleteBuffers(1, &colorbuffer);
+		glDeleteBuffers(1, &lightingbuffer);
+		glDeleteBuffers(1, &elementbuffer);
+	}
 }
 
 void Geometry::load_vbo() {
@@ -31,6 +33,8 @@ void Geometry::load_vbo() {
 	glGenBuffers(1, &elementbuffer);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
+
+	vbo_loaded = true;
 }
 
 int Geometry::num_vertices()
