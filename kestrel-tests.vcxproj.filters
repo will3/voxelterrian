@@ -28,6 +28,9 @@
     <ClCompile Include="C:\kestrel\src\Field3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\kestrel\src\GUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\kestrel\src\Geometry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -44,6 +47,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\kestrel\src\Node.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\kestrel\src\Noise.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\kestrel\src\NoiseMap2.cpp">
@@ -126,6 +132,9 @@
     <ClInclude Include="C:\kestrel\src\Field3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="C:\kestrel\src\GUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="C:\kestrel\src\Geometry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -142,6 +151,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Node.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\Noise.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\NoiseMap2.h">

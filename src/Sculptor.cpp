@@ -1,27 +1,18 @@
 #include "Sculptor.h"
 #include "Field3.h"
 
-FastNoise * terrian_noise = new FastNoise();
-FastNoise * height_noise = new FastNoise();
-
-//int get_terrian(int i, int j, int k) {
-//	//float height = height_noise->GetSimplex(i, k);
-//	//float gradient = (1 - j / 128.0);
-//	float height = ;
-//	float v = j <= height ? 1 : 0;
-//	return v > 0.5 ? 1 : 0;
-//}
-
-void Sculptor::rasterize_height(Chunk * chunk, FastNoise * height_noise) {
+void Sculptor::rasterize_height(Chunk * chunk, Noise * height_noise) {
 	Coord3 offset = chunk->get_offset();
 
-	int noise_size = 16;
+	int noise_size = 17;
 	Field3<float> *field = new Field3<float>(noise_size);
 	for (int i = 0; i < noise_size; i++) {
 		for (int j = 0; j < noise_size; j++) {
 			for (int k = 0; k < noise_size; k++) {
 				Coord3 coord = Coord3(i, j, k) * 2 + offset;
-				float density = terrian_noise->GetSimplexFractal(coord.i, coord.j * 0.4, coord.k) * 128.0 - coord.j;
+
+				float density = height_noise->noise->GetSimplexFractal(coord.i, coord.j * 0.0, coord.k) * 128.0 - coord.j;
+				//float density = height_noise->noise->GetSimplexFractal(coord.i, coord.j * 0.4, coord.k) * 128.0 - coord.j;
 				field->set(i, j, k, density);
 			}
 		}

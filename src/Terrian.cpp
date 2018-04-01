@@ -133,11 +133,10 @@ Terrian::Terrian()
 {
 	this->chunks = new Chunks();
 
-	terrian_noise->SetFrequency(0.5);
+	height_noise->amplitude = 128.0;
 }
 
 Terrian::~Terrian()
 {
 	delete height_noise;
-	delete terrian_noise;
 }

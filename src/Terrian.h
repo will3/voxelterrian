@@ -8,6 +8,7 @@
 #include "NoiseMap2.h"
 #include "DirectionalLight.h"
 #include "Scene.h"
+#include "Noise.h"
 
 #define max_height 128
 
@@ -25,8 +26,7 @@ public:
 
 	std::vector<Coord3> coords_within_dis(int dis);
 
-	FastNoise *height_noise = new FastNoise();
-	FastNoise *terrian_noise = new FastNoise();
+	Noise *height_noise = new Noise();
 
 	Terrian();
 	~Terrian();

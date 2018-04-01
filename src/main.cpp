@@ -20,6 +20,7 @@
 #include "Renderer.h"
 #include "imgui.h"
 #include "imgui_impl_glfw_gl3.h"
+#include "Editor.h"
 
 using namespace glm;
 using namespace std::chrono;
@@ -75,6 +76,8 @@ int main() {
 
 	__int64 last_tick = 0;
 
+	Editor *editor = new Editor();
+
 	do {
 		glfwPollEvents();
 
@@ -88,9 +91,13 @@ int main() {
 		ImGui::RadioButton("4", &camera_speed, 4); ImGui::SameLine();
 		ImGui::RadioButton("8", &camera_speed, 8); ImGui::SameLine();
 		ImGui::RadioButton("16", &camera_speed, 16);
+
+		editor->gui_noise(terrian->height_noise);
+
 		ImGui::End();
 
 		camera_control->speed = camera_speed * 4;
+
 		//ImGui::SetNextWindowPos(ImVec2(650, 20), ImGuiCond_FirstUseEver); // Normally user code doesn't need/want to call this because positions are saved in .ini file anyway. Here we just want to make the demo initial state a bit more friendly!
 		//ImGui::ShowDemoWindow(&show_demo_window);
 

@@ -43,6 +43,7 @@ Chunk::Chunk(Coord3 origin)
 Chunk::~Chunk()
 {
 	delete height_map;
+	delete shadow_map;
 }
 
 bool Chunk::get_light_raw(int i, int j, int k) {
