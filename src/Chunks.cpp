@@ -34,17 +34,6 @@ std::unordered_set<Coord3>& Chunks::get_coords()
 	return coords;
 }
 
-int Chunks::get_light(Coord3 coord)
-{
-	Coord3 origin = get_origin(coord);
-
-	if (!has_chunk(origin)) {
-		return 0;
-	}
-
-	return map[origin]->get_light(coord - origin * CHUNK_SIZE);
-}
-
 voxel_type Chunks::get(Coord3 coord) {
 	Coord3 origin = get_origin(coord);
 

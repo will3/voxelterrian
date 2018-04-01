@@ -24,7 +24,5 @@ public:
 	Chunk *get_chunk(Coord3 origin);
 
 	std::unordered_set<Coord3>& get_coords();
-
-	int get_light(Coord3 coord);
 };
 
