@@ -9,6 +9,7 @@ private:
 	GLuint colorbuffer = 0;
 	GLuint lightingbuffer = 0;
 	GLuint elementbuffer = 0;
+	void unload_vbo();
 
 public:
 	bool vbo_loaded = false;

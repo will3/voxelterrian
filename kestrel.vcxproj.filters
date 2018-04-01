@@ -16,6 +16,9 @@
     <ClCompile Include="C:\kestrel\src\DirectionalLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\kestrel\src\Editor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\kestrel\src\EditorCameraControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -91,9 +94,6 @@
     <ClCompile Include="C:\kestrel\external\imgui\imgui_impl_glfw_gl3.cpp">
       <Filter>external\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Editor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\kestrel\src\Brush.h">
@@ -112,6 +112,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\DirectionalLight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\Dispatcher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\Editor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\EditorCameraControl.h">
@@ -171,6 +177,9 @@
     <ClInclude Include="C:\kestrel\src\Terrian.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="C:\kestrel\src\Worker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="C:\kestrel\src\linalg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -200,9 +209,6 @@
     </ClInclude>
     <ClInclude Include="C:\kestrel\external\imgui\stb_truetype.h">
       <Filter>external\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Editor.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

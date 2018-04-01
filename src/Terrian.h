@@ -9,6 +9,7 @@
 #include "DirectionalLight.h"
 #include "Scene.h"
 #include "Noise.h"
+#include "Dispatcher.h"
 
 #define max_height 128
 
@@ -33,6 +34,7 @@ public:
 	Scene *scene;
 	Material *material;
 	Coord2 player_origin;
+	Dispatcher *dispatcher;
 
 	Terrian();
 	~Terrian();

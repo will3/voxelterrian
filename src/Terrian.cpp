@@ -8,6 +8,18 @@
 #include "Brush.h"
 #include "Sculptor.h"
 
+// It's not safe to delete gl resources in other threads
+class RemoveMeshWorker : public Worker {
+public:
+	Mesh *mesh;
+	RemoveMeshWorker(Mesh *mesh) :mesh(mesh) {}
+	void run() {
+		delete mesh->get_geometry();
+		mesh->remove_self();
+		delete mesh;
+	}
+};
+
 inline int fast_floor(int x, int y) {
 	return x / y - (x % y < 0);
 }
@@ -23,12 +35,17 @@ void terrian_worker(Terrian *terrian) {
 void Terrian::update_terrian() {
 	player_origin = { fast_floor(player_position.x, CHUNK_SIZE), fast_floor(player_position.z, CHUNK_SIZE) };
 
-	// height
-	for (auto origin : coords_within_dis(tessellate_dis)) {
-		Chunk *chunk = chunks->get_or_create_chunk(origin);
-		if (dirty || !chunk->rasterized) {
-			Sculptor::rasterize_height(chunk, height_noise);
-			chunk->rasterized = true;
+	// rasterize height
+	for (int i = player_origin.i - tessellate_dis; i <= player_origin.i + tessellate_dis; i++) {
+		for (int j = 0; j < max_chunks_y; j++) {
+			for (int k = player_origin.j - tessellate_dis; k <= player_origin.j + tessellate_dis; k++) {
+				Coord3 origin = Coord3(i, j, k);
+				Chunk *chunk = chunks->get_or_create_chunk(origin);
+				if (dirty || !chunk->rasterized) {
+					Sculptor::rasterize_height(chunk, height_noise);
+					chunk->rasterized = true;
+				}
+			}
 		}
 	}
 
@@ -41,26 +58,33 @@ void Terrian::update_terrian() {
 	}
 
 	// Calc light
-	for (auto coord : coords_within_dis(calc_light_dis)) {
-		Chunk *chunk = chunks->get_chunk(coord);
+	for (auto kv : chunks->map) {
+		Chunk *chunk = kv.second;
+		if (chunk->distance_from_player > calc_light_dis) {
+			continue;
+		}
 		chunk->calc_light_if_needed(light);
 	}
 
 	// Mesh
-	for (auto coord : coords_within_dis(gen_geometry_dis)) {
-		Chunk *chunk = chunks->get_chunk(coord);
+	for (auto kv : chunks->map) {
+		Chunk *chunk = kv.second;
+
+		if (chunk->distance_from_player > gen_geometry_dis) {
+			continue;
+		}
+
 		if (!chunk->dirty) {
 			continue;
 		}
 
 		if (chunk->mesh != 0) {
-			delete chunk->mesh->get_geometry();
-			chunk->mesh->remove_self();
-			delete chunk->mesh;
-			chunk->mesh = 0;
+			dispatcher->add(new RemoveMeshWorker(chunk->mesh));
 		}
 
 		Geometry *geometry = Mesher::mesh(chunk, chunks);
+		chunk->next_geometry = geometry;
+
 		Mesh *mesh = new Mesh(geometry, material);
 		mesh->position = chunk->position;
 		scene->add(mesh);
@@ -74,10 +98,7 @@ void Terrian::update_terrian() {
 		Chunk *chunk = chunks->get_chunk(coord);
 		if (chunk->distance_from_player > remove_chunk_dis) {
 			if (chunk->mesh != 0) {
-				delete chunk->mesh->get_geometry();
-				chunk->mesh->remove_self();
-				delete chunk->mesh;
-				chunk->mesh = 0;
+				dispatcher->add(new RemoveMeshWorker(chunk->mesh));
 			}
 			chunks->delete_chunk(chunk->get_origin());
 		}
@@ -109,6 +130,7 @@ void Terrian::start() {
 }
 
 void Terrian::update() {
+	
 }
 
 void Terrian::remove() {

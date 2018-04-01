@@ -21,6 +21,7 @@
 #include "imgui.h"
 #include "imgui_impl_glfw_gl3.h"
 #include "Editor.h"
+#include "Dispatcher.h"
 
 using namespace glm;
 using namespace std::chrono;
@@ -57,6 +58,7 @@ int main() {
 	// Ensure we can capture the escape key being pressed below
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
+	Dispatcher *dispatcher = new Dispatcher();
 	Runner *runner = new Runner();
 	DirectionalLight *light = new DirectionalLight();
 	float ratio = width / (float)height;
@@ -67,6 +69,7 @@ int main() {
 	terrian->light = light;
 	terrian->scene = scene;
 	terrian->material = material;
+	terrian->dispatcher = dispatcher;
 	terrian->set_draw_dis(3);
 	runner->add(terrian);
 	EditorCameraControl *camera_control = new EditorCameraControl();
@@ -88,8 +91,8 @@ int main() {
 			terrian->dirty = true;
 		}
 
+		dispatcher->update();
 		runner->update();
-
 		renderer->render(scene, camera);
 
 		ImGui::Render();

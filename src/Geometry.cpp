@@ -9,12 +9,14 @@ Geometry::Geometry()
 
 Geometry::~Geometry()
 {
-	if (vbo_loaded) {
-		glDeleteBuffers(1, &vertexbuffer);
-		glDeleteBuffers(1, &colorbuffer);
-		glDeleteBuffers(1, &lightingbuffer);
-		glDeleteBuffers(1, &elementbuffer);
-	}
+	unload_vbo();
+}
+
+void Geometry::unload_vbo() {
+	glDeleteBuffers(1, &vertexbuffer);
+	glDeleteBuffers(1, &colorbuffer);
+	glDeleteBuffers(1, &lightingbuffer);
+	glDeleteBuffers(1, &elementbuffer);
 }
 
 void Geometry::load_vbo() {

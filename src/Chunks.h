@@ -11,7 +11,6 @@ class Chunks
 {
 private:
 	Coord3 get_origin(Coord3 coord);
-	std::unordered_map<Coord3, Chunk *> map;
 	std::unordered_set<Coord3> coords;
 public:
 	Chunks();
@@ -22,6 +21,7 @@ public:
 	void delete_chunk(Coord3 origin);
 	bool has_chunk(Coord3 origin);
 	Chunk *get_chunk(Coord3 origin);
+	std::unordered_map<Coord3, Chunk *> map;
 
 	std::unordered_set<Coord3>& get_coords();
 };

@@ -54,6 +54,7 @@ public:
 
 	// meshing
 	Mesh *mesh = 0;
+	Geometry *next_geometry = 0;
 
 	// terrian
 	NoiseMap2 *height_map = 0;
