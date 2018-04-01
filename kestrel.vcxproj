@@ -374,6 +374,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\external\imgui\imconfig.h" />
     <ClCompile Include="C:\kestrel\external\imgui\imgui.cpp" />
     <ClInclude Include="C:\kestrel\external\imgui\imgui.h" />
+    <ClCompile Include="C:\kestrel\external\imgui\imgui_color_gradient.cpp" />
+    <ClInclude Include="C:\kestrel\external\imgui\imgui_color_gradient.h" />
     <ClCompile Include="C:\kestrel\external\imgui\imgui_demo.cpp" />
     <ClCompile Include="C:\kestrel\external\imgui\imgui_draw.cpp" />
     <ClCompile Include="C:\kestrel\external\imgui\imgui_impl_glfw_gl3.cpp" />

@@ -10,8 +10,9 @@
 #include "Scene.h"
 #include "Noise.h"
 #include "Dispatcher.h"
+#include "imgui_color_gradient.h"
 
-#define max_height 128
+#define max_height 128.0
 
 class MeshResult;
 
@@ -30,6 +31,8 @@ public:
 
 	Noise *height_noise = new Noise();
 	Noise *overhang_noise = new Noise();
+	Noise *canyon_noise = new Noise();
+	ImGradient *rock_color_gradient = new ImGradient();
 
 	DirectionalLight *light;
 	Chunks *chunks;

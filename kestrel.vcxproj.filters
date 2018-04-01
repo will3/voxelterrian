@@ -82,6 +82,9 @@
     <ClCompile Include="C:\kestrel\external\imgui\imgui.cpp">
       <Filter>external\imgui</Filter>
     </ClCompile>
+    <ClCompile Include="C:\kestrel\external\imgui\imgui_color_gradient.cpp">
+      <Filter>external\imgui</Filter>
+    </ClCompile>
     <ClCompile Include="C:\kestrel\external\imgui\imgui_demo.cpp">
       <Filter>external\imgui</Filter>
     </ClCompile>
@@ -187,6 +190,9 @@
       <Filter>external\imgui</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\external\imgui\imgui.h">
+      <Filter>external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\external\imgui\imgui_color_gradient.h">
       <Filter>external\imgui</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\external\imgui\imgui_impl_glfw_gl3.h">

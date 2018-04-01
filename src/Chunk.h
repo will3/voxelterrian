@@ -18,6 +18,8 @@ class Chunk
 {
 private:
 	std::vector<voxel_type> data;
+	std::vector<uint8_t> data_color;
+
 	Coord3 origin;
 	Coord3 offset;
 
@@ -36,9 +38,14 @@ public:
 	glm::vec3 position;
 
 	voxel_type get(Coord3 coord);
+
 	voxel_type get_global(Coord3 coord);
 
 	void set(Coord3 coord, voxel_type v);
+
+	void set_color(Coord3 coord, uint8_t r, uint8_t g, uint8_t b);
+
+	void get_color(Coord3 coord, uint8_t &r, uint8_t &g, uint8_t &b);
 
 	bool needs_calc_light = true;
 	bool light_calculated = false;

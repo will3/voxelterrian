@@ -3,21 +3,31 @@
 #include "Noise.h"
 #include "imgui.h"
 #include <math.h>
+#include "imgui_color_gradient.h"
+
+ImGradientMark *draggingMark;
+ImGradientMark *selectedMark;
 
 class Editor {
 public:
-	bool show(Noise *height_noise, EditorCameraControl *control) {
+	bool show(Terrian *terrian, EditorCameraControl *control) {
 		bool result = false;
 		ImGui::Begin("Editor");
 		camera_speed(control);
-		result |= noise(height_noise);
+
+		ImGui::Text("height");
+		result |= noise(terrian->height_noise);
+
+		ImGui::Text("rock color");
+		ImGui::GradientEditor(terrian->rock_color_gradient, draggingMark, selectedMark);
+
 		ImGui::End();
 		return result;
 	}
 
 	void camera_speed(EditorCameraControl *control) {
 		int camera_speed = control->speed / 4;
-		ImGui::Text("Generation Speed");
+		ImGui::Text("speed");
 		ImGui::RadioButton("0", &camera_speed, 0); ImGui::SameLine();
 		ImGui::RadioButton("1", &camera_speed, 1); ImGui::SameLine();
 		ImGui::RadioButton("2", &camera_speed, 2); ImGui::SameLine();

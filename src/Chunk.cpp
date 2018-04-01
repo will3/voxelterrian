@@ -23,11 +23,29 @@ voxel_type Chunk::get_global(Coord3 coord) {
 	return get(coord);
 }
  
+inline int get_index(int i, int j, int k) {
+	return i * CHUNK_SIZE * CHUNK_SIZE + j * CHUNK_SIZE + k;
+}
 void Chunk::set(Coord3 coord, voxel_type v) {
-	int index = coord.i * CHUNK_SIZE * CHUNK_SIZE + coord.j * CHUNK_SIZE + coord.k;
+	int index = get_index(coord.i, coord.j, coord.k);
 	data[index] = v;
 	dirty = true;
 	needs_calc_light = true;
+}
+
+void Chunk::set_color(Coord3 coord, uint8_t r, uint8_t g, uint8_t b)
+{
+	int index = get_index(coord.i, coord.j, coord.k) * 3;
+	data_color[index] = r;
+	data_color[index + 1] = g;
+	data_color[index + 2] = b;
+}
+
+void Chunk::get_color(Coord3 coord, uint8_t &r, uint8_t &g, uint8_t &b) {
+	int index = get_index(coord.i, coord.j, coord.k) * 3;
+	r = data_color[index];
+	g = data_color[index + 1];
+	b = data_color[index + 2];
 }
 
 Chunk::Chunk(Coord3 origin)
@@ -36,7 +54,7 @@ Chunk::Chunk(Coord3 origin)
 	this->offset = origin * CHUNK_SIZE;
 
 	data.resize(CHUNK_SIZE * CHUNK_SIZE * CHUNK_SIZE);
-
+	data_color.resize(CHUNK_SIZE * CHUNK_SIZE * CHUNK_SIZE * 3);
 	shadow_map = new ShadowMap();
 }
 

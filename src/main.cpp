@@ -86,7 +86,7 @@ int main() {
 
 		ImGui_ImplGlfwGL3_NewFrame();
 
-		bool changed = editor->show(terrian->height_noise, camera_control);
+		bool changed = editor->show(terrian, camera_control);
 		if (changed) {
 			//terrian->set_needs_rasterize();
 		}

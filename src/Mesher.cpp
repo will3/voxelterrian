@@ -39,10 +39,10 @@ ao_type Mesher::get_ao(int s1, int s2, int c) {
 }
 
 bool Mesher::stop_merge(MaskValue & c, MaskValue & next) {
-	return next.v != c.v || next.has_ao() || next.lighting != c.lighting;
+	return next.v != c.v || next.has_ao() || next.lighting != c.lighting || c.r != next.r || c.g != next.g || c.b != next.b;
 }
 
-void Mesher::copy_quads(Mask& mask, Geometry *geometry, int x, int y, int w, int h, int ao0, int ao1, int ao2, int ao3, int l) {
+void Mesher::copy_quads(Mask& mask, Geometry *geometry, int x, int y, int w, int h, int ao0, int ao1, int ao2, int ao3, int l, uint8_t r, uint8_t g, uint8_t b) {
 	bool front = mask.front;
 	float ao_strength = 0.1f;
 	float light_strength = 0.6f;
@@ -64,10 +64,11 @@ void Mesher::copy_quads(Mask& mask, Geometry *geometry, int x, int y, int w, int
 	vertices.insert(vertices.end(), { v2.i, v2.j, v2.k });
 	vertices.insert(vertices.end(), { v3.i, v3.j, v3.k });
 
-	colors.insert(colors.end(), { 255, 255, 255 });
-	colors.insert(colors.end(), { 255, 255, 255 });
-	colors.insert(colors.end(), { 255, 255, 255 });
-	colors.insert(colors.end(), { 255, 255, 255 });
+	auto color = { (int)r,(int)g,(int)b };
+	colors.insert(colors.end(), color);
+	colors.insert(colors.end(), color);
+	colors.insert(colors.end(), color);
+	colors.insert(colors.end(), color);
 
 	float light_f = (1.0f - (ao0 / 3.0f * ao_strength)) * (1 - ((1 - l / 15.0f) * light_strength));
 	int light = floor(light_f * 16);
@@ -110,7 +111,7 @@ void Mesher::copy_quads(Mask& mask, Geometry *geometry) {
 
 			// Check AO
 			if (c.has_ao()) {
-				copy_quads(mask, geometry, j, i, 1, 1, c.ao0, c.ao1, c.ao2, c.ao3, c.lighting);
+				copy_quads(mask, geometry, j, i, 1, 1, c.ao0, c.ao1, c.ao2, c.ao3, c.lighting, c.r, c.g, c.b);
 				i++;
 				n++;
 				continue;
@@ -142,7 +143,7 @@ void Mesher::copy_quads(Mask& mask, Geometry *geometry) {
 			}
 
 			// Add Quad
-			copy_quads(mask, geometry, j, i, h, w, 0, 0, 0, 0, lighting);
+			copy_quads(mask, geometry, j, i, h, w, 0, 0, 0, 0, lighting, c.r, c.g, c.b);
 
 			//Zero-out mask
 			for (int l = 0; l < h; l++) {
@@ -212,9 +213,16 @@ Geometry* Mesher::mesh(Chunk* chunk, Chunks* chunks) {
 					Coord3 coord = front ? coord_a : coord_b;
 					int light_amount = chunk->get_light(coord);
 
+					
 					MaskValue v = MaskValue(a || b,
 						get_ao(s10, s01, s00), get_ao(s01, s12, s02), get_ao(s12, s21, s22), get_ao(s21, s10, s20),
 						light_amount);
+
+					uint8_t cr, cg, cb;
+					chunk->get_color(coord, cr, cg, cb);
+					v.r = cr;
+					v.g = cg;
+					v.b = cb;
 
 					if (front) {
 						front_mask->set(j, k, v);

@@ -13,6 +13,9 @@ public:
 	__int8 ao2;
 	__int8 ao3;
 	__int8 lighting = max_light_value;
+	__int8 r;
+	__int8 g;
+	__int8 b;
 
 	bool has_ao() {
 		return  ao0 || ao1 || ao2 || ao3;
