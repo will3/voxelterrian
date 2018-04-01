@@ -28,11 +28,12 @@ public:
 	}
 
 	bool noise(Noise *noise) {
-		float gain = noise->noise->GetFractalGain();
-		int octaves = noise->noise->GetFractalOctaves();
+		float gain = noise->get_noise()->GetFractalGain();
+		int octaves = noise->get_noise()->GetFractalOctaves();
 		float amplitude = noise->amplitude;
-		float frequency = pow(noise->noise->GetFrequency(), 1 / 2.0);
-		float lacunarity = noise->noise->GetFractalLacunarity();
+		float frequency = pow(noise->get_noise()->GetFrequency(), 1 / 2.0);
+		float lacunarity = noise->get_noise()->GetFractalLacunarity();
+		float y_scale = noise->y_scale;
 
 		bool result = false;
 		result |= ImGui::SliderFloat("gain", &gain, 0, 1.0);
@@ -40,12 +41,14 @@ public:
 		result |= ImGui::SliderFloat("amplitude", &amplitude, 10, 128);
 		result |= ImGui::SliderFloat("frequency", &frequency, 0, 1);
 		result |= ImGui::SliderFloat("lacunarity", &lacunarity, 0, 10.0);
+		result |= ImGui::SliderFloat("y-scale", &y_scale, 0, 1.0);
 
-		noise->noise->SetFractalGain(gain);
-		noise->noise->SetFractalOctaves(octaves);
+		noise->get_noise()->SetFractalGain(gain);
+		noise->get_noise()->SetFractalOctaves(octaves);
 		noise->amplitude = amplitude;
-		noise->noise->SetFrequency(pow(frequency, 2.0));
-		noise->noise->SetFractalLacunarity(lacunarity);
+		noise->get_noise()->SetFrequency(pow(frequency, 2.0));
+		noise->get_noise()->SetFractalLacunarity(lacunarity);
+		noise->y_scale = y_scale;
 
 		return result;
 	}

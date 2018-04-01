@@ -88,7 +88,7 @@ int main() {
 
 		bool changed = editor->show(terrian->height_noise, camera_control);
 		if (changed) {
-			terrian->dirty = true;
+			//terrian->set_needs_rasterize();
 		}
 
 		dispatcher->update();

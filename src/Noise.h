@@ -2,13 +2,14 @@
 #include "FastNoise.h"
 
 class Noise {
+private:
+	FastNoise * noise = new FastNoise();
+
 public:
-	FastNoise *noise = new FastNoise();
 	float amplitude = 1.0;
-	
-	float Get(float x, float y, float z) {
-		return noise->GetValue(x, y, z) * amplitude;
-	}
+	float y_scale = 1.0;
+	FastNoise *get_noise() { return noise; }
+
 	~Noise() {
 		delete noise;
 	}

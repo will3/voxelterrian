@@ -6,7 +6,7 @@
 #include <mutex>
 #include "Mesh.h"
 #include "Brush.h"
-#include "Sculptor.h"
+#include "Field3.h"
 
 // It's not safe to delete gl resources in other threads
 class RemoveMeshWorker : public Worker {
@@ -41,15 +41,13 @@ void Terrian::update_terrian() {
 			for (int k = player_origin.j - tessellate_dis; k <= player_origin.j + tessellate_dis; k++) {
 				Coord3 origin = Coord3(i, j, k);
 				Chunk *chunk = chunks->get_or_create_chunk(origin);
-				if (dirty || !chunk->rasterized) {
-					Sculptor::rasterize_height(chunk, height_noise);
+				if (!chunk->rasterized) {
+					rasterize_height(chunk);
 					chunk->rasterized = true;
 				}
 			}
 		}
 	}
-
-	dirty = false;
 
 	// Update distance from player
 	for (auto origin : chunks->get_coords()) {
@@ -143,14 +141,57 @@ void Terrian::set_draw_dis(int dis)
 	tessellate_dis = remove_chunk_dis = dis + 2;
 }
 
+void Terrian::set_needs_rasterize() {
+	for (auto coord : chunks->get_coords()) {
+		Chunk *chunk = chunks->get_chunk(coord);
+		if (chunk == 0) {
+			continue;
+		}
+		chunk->rasterized = false;
+	}
+}
+
 Terrian::Terrian()
 {
 	this->chunks = new Chunks();
 
 	height_noise->amplitude = 128.0;
+	height_noise->get_noise()->SetFractalOctaves(5);
+	height_noise->y_scale = 0.4;
 }
 
 Terrian::~Terrian()
 {
 	delete height_noise;
+}
+
+void Terrian::rasterize_height(Chunk * chunk) {
+	Coord3 offset = chunk->get_offset();
+
+	int noise_size = 17;
+	Field3<float> field = Field3<float>(noise_size);
+	for (int i = 0; i < noise_size; i++) {
+		for (int j = 0; j < noise_size; j++) {
+			for (int k = 0; k < noise_size; k++) {
+				Coord3 coord = Coord3(i, j, k) * 2 + offset;
+
+				float j_offset = overhang_noise->get_noise()->GetSimplexFractal(coord.i, coord.j, coord.k);
+				float fractal = height_noise->get_noise()->GetSimplexFractal(coord.i + j_offset, coord.j * height_noise->y_scale, coord.k + j_offset);
+				fractal = (fractal + 1) * 0.5;
+				float density = fractal * height_noise->amplitude - coord.j;
+
+				//float density = height_noise->noise->GetSimplexFractal(coord.i, coord.j * 0.4, coord.k) * 128.0 - coord.j;
+				field.set(i, j, k, density);
+			}
+		}
+	}
+
+	for (int i = 0; i < CHUNK_SIZE; i++) {
+		for (int j = 0; j < CHUNK_SIZE; j++) {
+			for (int k = 0; k < CHUNK_SIZE; k++) {
+				float density = field.sample(i * 0.5, j * 0.5, k * 0.5);
+				chunk->set({ i, j, k }, density > 0.5 ? 1 : 0);
+			}
+		}
+	}
 }

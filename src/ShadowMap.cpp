@@ -38,36 +38,10 @@ void ShadowMap::calc_shadow(Chunk * chunk, DirectionalLight *light)
 }
 
 void ShadowMap::set(Coord3 coord, int d, int front, int v) {
-	int face = d * 2 + front;
-	data[coord][face] = v;
-}
-
-int ShadowMap::get(Coord3 coord, int d, int front) {
-	int face = d * 2 + front;
-	if (data[coord].find(face) == data[coord].end()) {
-		return 0;
-	}
-	return data[coord][face];
+	total[coord] += v;
+	count[coord] += 1.0;
 }
 
 int ShadowMap::get(Coord3 coord) {
-	if (average_data.find(coord) != average_data.end()) {
-		return average_data[coord];
-	}
-
-	if (data.find(coord) == data.end()) {
-		throw std::exception("out of index");
-	}
-
-	std::unordered_map<int, int> faces = data[coord];
-
-	float value = 0;
-	float count = 0;
-	for (auto kv : faces) {
-		value += kv.second;
-		count += 1.0;
-	}
-	value /= count;
-	average_data[coord] = value;
-	return (int)value;
+	return total[coord] / count[coord];
 }
