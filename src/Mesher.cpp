@@ -8,11 +8,9 @@
 #include "Mesh.h"
 
 voxel_type Mesher::get_voxel(Coord3 &coord, Chunk &chunk, Chunks &chunks) {
-	int size = chunk.size;
-
-	if (coord.i < 0 || coord.i >= size ||
-		coord.j < 0 || coord.j >= size ||
-		coord.k < 0 || coord.k >= size) {
+	if (coord.i < 0 || coord.i >= CHUNK_SIZE ||
+		coord.j < 0 || coord.j >= CHUNK_SIZE ||
+		coord.k < 0 || coord.k >= CHUNK_SIZE) {
 		Coord3 c = coord + chunk.get_offset();
 		return chunks.get(c);
 	}
@@ -98,11 +96,10 @@ void Mesher::copy_quads(Mask& mask, Geometry *geometry) {
 	int n = 0;
 	MaskValue c;
 	int w, h;
-	int size = mask.size;
 	auto data = mask.data;
 
-	for (int j = 0; j < size; j++) {
-		for (int i = 0; i < size; ) {
+	for (int j = 0; j < CHUNK_SIZE; j++) {
+		for (int i = 0; i < CHUNK_SIZE; ) {
 			c = data[n];
 
 			if (c.v == 0) {
@@ -122,7 +119,7 @@ void Mesher::copy_quads(Mask& mask, Geometry *geometry) {
 			int lighting = c.lighting;
 
 			// Compute width
-			for (w = 1; i + w < size; ++w) {
+			for (w = 1; i + w < CHUNK_SIZE; ++w) {
 				MaskValue &next = data[n + w];
 				if (stop_merge(c, next)) {
 					break;
@@ -131,9 +128,9 @@ void Mesher::copy_quads(Mask& mask, Geometry *geometry) {
 
 			// Compute height
 			bool done = false;
-			for (h = 1; j + h < size; h++) {
+			for (h = 1; j + h < CHUNK_SIZE; h++) {
 				for (int k = 0; k < w; k++) {
-					MaskValue &next = data[n + k + h * size];
+					MaskValue &next = data[n + k + h * CHUNK_SIZE];
 					if (stop_merge(c, next)) {
 						done = true;
 						break;
@@ -150,7 +147,7 @@ void Mesher::copy_quads(Mask& mask, Geometry *geometry) {
 			//Zero-out mask
 			for (int l = 0; l < h; l++) {
 				for (int k = 0; k < w; k++) {
-					data[n + k + l * size] = 0;
+					data[n + k + l * CHUNK_SIZE] = 0;
 				}
 			}
 
@@ -164,15 +161,13 @@ DirectionalLight *light = new DirectionalLight();
 Geometry* Mesher::mesh(Chunk* chunk, Chunks* chunks) {
 	Geometry *geometry = new Geometry();
 
-	int size = chunk->size;
-
 	std::vector<Mask *> masks;
 	for (int d = 0; d < 3; d++) {
-		for (int i = 0; i <= size; i++) {
-			Mask *front_mask = new Mask(size, i, d, true);
-			Mask *back_mask = new Mask(size, i, d, false);
-			for (int j = 0; j < size; j++) {
-				for (int k = 0; k < size; k++) {
+		for (int i = 0; i <= CHUNK_SIZE; i++) {
+			Mask *front_mask = new Mask(i, d, true);
+			Mask *back_mask = new Mask(i, d, false);
+			for (int j = 0; j < CHUNK_SIZE; j++) {
+				for (int k = 0; k < CHUNK_SIZE; k++) {
 					Coord3 coord_a = Coord3(i - 1, j, k).rotate(d);
 					int a = get_voxel(coord_a, *chunk, *chunks);
 
@@ -190,7 +185,7 @@ Geometry* Mesher::mesh(Chunk* chunk, Chunks* chunks) {
 						continue;
 					}
 
-					if (i == size && !front) {
+					if (i == CHUNK_SIZE && !front) {
 						continue;
 					}
 

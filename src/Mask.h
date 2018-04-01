@@ -25,12 +25,11 @@ public:
 class Mask {
 public:
 	std::vector<MaskValue> data;
-	int size;
 	bool front = false;
 	int i = 0;
 	int d = 0;
 
-	Mask(int size, int i, int d, int front);
+	Mask(int i, int d, int front);
 	~Mask();
 
 	bool is_empty(int j, int k);

@@ -14,9 +14,7 @@ private:
 	std::unordered_map<Coord3, Chunk *> map;
 	std::unordered_set<Coord3> coords;
 public:
-	int size;
-
-	Chunks(int size = 32);
+	Chunks();
 	~Chunks();
 	voxel_type get(Coord3 coord);
 	void set(Coord3 coord, voxel_type v);

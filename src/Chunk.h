@@ -6,6 +6,8 @@
 #include "Mesh.h"
 #include <unordered_map>
 
+#define CHUNK_SIZE 32
+
 typedef GLbyte voxel_type;
 class DirectionalLight;
 class Chunks;
@@ -24,12 +26,10 @@ private:
 	ShadowMap *shadow_map;
 
 public:
-	Chunk(int size, Coord3 origin);
-	Chunk(int size = 32);
+	Chunk(Coord3 origin);
 	~Chunk();
 	Coord3& get_origin() { return origin; }
 	Coord3& get_offset() { return offset; }
-	int size;
 	bool dirty;
 	Chunks *chunks;
 
@@ -42,14 +42,10 @@ public:
 	void set(Coord3 coord, voxel_type v);
 
 	bool needs_calc_light = true;
-	bool needs_smooth_light = true;
 	bool light_calculated = false;
 
 	void calc_light_if_needed(DirectionalLight *light);
 	void calc_light(DirectionalLight *light);
-
-	void smooth_light_if_needed(DirectionalLight *light, Brush *brush);
-	void smooth_light(DirectionalLight *light, Brush *brush);
 
 	// lighting
 	bool get_light_raw(int i, int j, int k);

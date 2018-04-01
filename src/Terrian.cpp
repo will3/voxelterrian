@@ -15,8 +15,7 @@ inline int fast_floor(int x, int y) {
 static Brush *shadow_brush = new Brush();
 
 void terrian_work(Terrian *terrian) {
-	int chunk_size = terrian->chunk_size;
-	terrian->player_origin = { fast_floor(terrian->player_position.x, chunk_size), fast_floor(terrian->player_position.z, chunk_size) };
+	terrian->player_origin = { fast_floor(terrian->player_position.x, CHUNK_SIZE), fast_floor(terrian->player_position.z, CHUNK_SIZE) };
 	Chunks *chunks = terrian->chunks;
 	DirectionalLight *light = terrian->light;
 	glm::vec3 player_position = terrian->player_position;
@@ -112,7 +111,7 @@ std::vector<Coord3> Terrian::coords_within_dis(int dis) {
 }
 
 void Terrian::start() {
-	player_origin = { fast_floor(player_position.x, chunk_size), fast_floor(player_position.z, chunk_size) };
+	player_origin = { fast_floor(player_position.x, CHUNK_SIZE), fast_floor(player_position.z, CHUNK_SIZE) };
 	std::thread t(terrian_worker, this);
 	t.detach();
 }
@@ -132,7 +131,7 @@ void Terrian::set_draw_dis(int dis)
 
 Terrian::Terrian()
 {
-	this->chunks = new Chunks(chunk_size);
+	this->chunks = new Chunks();
 
 	terrian_noise->SetFrequency(0.5);
 }

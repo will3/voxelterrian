@@ -41,7 +41,6 @@ public:
 	Scene *scene;
 	Material *material;
 	glm::vec3 player_position = glm::vec3(0, 0, 0);
-	int chunk_size = 32;
 	Coord2 player_origin;
 };
 

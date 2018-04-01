@@ -2,13 +2,10 @@
 
 void ShadowMap::calc_shadow(Chunk * chunk, DirectionalLight *light)
 {
-	int size = chunk->size;
 	for (int d = 0; d < 3; d++) {
-		for (int i = 0; i <= size; i++) {
-			Mask front_mask = Mask(size, i, d, true);
-			Mask back_mask = Mask(size, i, d, false);
-			for (int j = 0; j < size; j++) {
-				for (int k = 0; k < size; k++) {
+		for (int i = 0; i <= CHUNK_SIZE; i++) {
+			for (int j = 0; j < CHUNK_SIZE; j++) {
+				for (int k = 0; k < CHUNK_SIZE; k++) {
 					Coord3 coord_front = Coord3(i - 1, j, k).rotate(d);
 					int a = chunk->get_global(coord_front);
 
@@ -26,7 +23,7 @@ void ShadowMap::calc_shadow(Chunk * chunk, DirectionalLight *light)
 						continue;
 					}
 
-					if (i == size && !front) {
+					if (i == CHUNK_SIZE && !front) {
 						continue;
 					}
 
