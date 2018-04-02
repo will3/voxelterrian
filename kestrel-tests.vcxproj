@@ -333,6 +333,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\core\Renderer.h" />
     <ClCompile Include="C:\kestrel\src\core\Scene.cpp" />
     <ClInclude Include="C:\kestrel\src\core\Scene.h" />
+    <ClInclude Include="C:\kestrel\src\core\ShaderLoader.h" />
+    <ClInclude Include="C:\kestrel\src\core\ShadowMapPass.h" />
     <ClInclude Include="C:\kestrel\src\core\StandardGeometry.h" />
     <ClInclude Include="C:\kestrel\src\core\StandardMaterial.h" />
     <ClCompile Include="C:\kestrel\src\Brush.cpp" />
@@ -375,6 +377,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\types.h" />
     <None Include="C:\kestrel\shaders\copy.fragmentshader" />
     <None Include="C:\kestrel\shaders\copy.vertexshader" />
+    <None Include="C:\kestrel\shaders\depth.fragmentshader" />
+    <None Include="C:\kestrel\shaders\depth.vertexshader" />
     <None Include="C:\kestrel\shaders\standard.fragmentshader" />
     <None Include="C:\kestrel\shaders\standard.vertexshader" />
     <None Include="C:\kestrel\shaders\voxel.fragmentshader" />

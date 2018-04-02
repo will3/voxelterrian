@@ -150,6 +150,12 @@
     <ClInclude Include="C:\kestrel\src\core\Scene.h">
       <Filter>src\core</Filter>
     </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\ShaderLoader.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\ShadowMapPass.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
     <ClInclude Include="C:\kestrel\src\core\StandardGeometry.h">
       <Filter>src\core</Filter>
     </ClInclude>
@@ -261,6 +267,12 @@
       <Filter>shaders</Filter>
     </None>
     <None Include="C:\kestrel\shaders\copy.vertexshader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="C:\kestrel\shaders\depth.fragmentshader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="C:\kestrel\shaders\depth.vertexshader">
       <Filter>shaders</Filter>
     </None>
     <None Include="C:\kestrel\shaders\standard.fragmentshader">

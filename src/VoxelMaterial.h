@@ -10,7 +10,7 @@ class VoxelMaterial : public Material {
 		MatrixID = glGetUniformLocation(programID, "MVP");
 	}
 
-	void bind_uniforms() override{
+	void bind_uniforms() override {
 		glm::mat4 MVP = current_camera->Projection * current_camera->View * current_node->matrix;
 		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 	}

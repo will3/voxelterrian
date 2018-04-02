@@ -3,6 +3,7 @@
 #include "Pass.h"
 #include "common\shader.hpp"
 #include "Scene.h"
+#include "ShaderLoader.h"
 
 class CopyPass : public Pass {
 
@@ -28,8 +29,7 @@ private:
 		glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(g_quad_vertex_buffer_data), g_quad_vertex_buffer_data, GL_STATIC_DRAW);
 
-		// Create and compile our GLSL program from the shaders
-		programID = LoadShaders("shaders/copy.vertexshader", "shaders/copy.fragmentshader");
+		programID = ShaderLoader::LoadProgram("copy");
 		texID = glGetUniformLocation(programID, "renderedTexture");
 		MatrixID = glGetUniformLocation(programID, "MVP");
 	}
