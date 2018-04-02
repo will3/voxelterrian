@@ -2,7 +2,6 @@
 #include <vector>
 #include "types.h"
 #include "Mask.h"
-#include "NoiseMap2.h"
 #include "Mesh.h"
 #include <unordered_map>
 
@@ -64,7 +63,6 @@ public:
 	Geometry *next_geometry = 0;
 
 	// terrian
-	NoiseMap2 *height_map = 0;
 	bool rasterized = false;
 	int distance_from_player = 0;
 };

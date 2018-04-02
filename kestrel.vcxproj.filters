@@ -55,9 +55,6 @@
     <ClCompile Include="C:\kestrel\src\Noise.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="C:\kestrel\src\NoiseMap2.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="C:\kestrel\src\Raycast.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -135,12 +132,6 @@
     <ClInclude Include="C:\kestrel\src\Chunks.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="C:\kestrel\src\Data3.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\kestrel\src\Density_SSBO.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="C:\kestrel\src\Dispatcher.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -169,9 +160,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Noise.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\kestrel\src\NoiseMap2.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Raycast.h">

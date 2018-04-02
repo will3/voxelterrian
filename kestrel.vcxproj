@@ -337,8 +337,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\Chunk.h" />
     <ClCompile Include="C:\kestrel\src\Chunks.cpp" />
     <ClInclude Include="C:\kestrel\src\Chunks.h" />
-    <ClInclude Include="C:\kestrel\src\Data3.h" />
-    <ClInclude Include="C:\kestrel\src\Density_SSBO.h" />
     <ClInclude Include="C:\kestrel\src\Dispatcher.h" />
     <ClCompile Include="C:\kestrel\src\Editor.cpp" />
     <ClInclude Include="C:\kestrel\src\Editor.h" />
@@ -357,8 +355,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\Mesher.h" />
     <ClCompile Include="C:\kestrel\src\Noise.cpp" />
     <ClInclude Include="C:\kestrel\src\Noise.h" />
-    <ClCompile Include="C:\kestrel\src\NoiseMap2.cpp" />
-    <ClInclude Include="C:\kestrel\src\NoiseMap2.h" />
     <ClCompile Include="C:\kestrel\src\Raycast.cpp" />
     <ClInclude Include="C:\kestrel\src\Raycast.h" />
     <ClCompile Include="C:\kestrel\src\Runner.cpp" />

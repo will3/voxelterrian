@@ -5,7 +5,6 @@
 #include "FastNoise.h"
 #include "Entity.h"
 #include "types.h"
-#include "NoiseMap2.h"
 #include "DirectionalLight.h"
 #include "Scene.h"
 #include "Noise.h"
