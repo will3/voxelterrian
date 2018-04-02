@@ -2,9 +2,11 @@
 
 in vec3 fragmentColor;
 in vec3 fragmentNormal;
+in vec4 shadowCoord;
 
 uniform vec3 light_dir;
 uniform vec3 ambient_light;
+uniform sampler2DShadow shadowMap;
 
 out vec3 color;
 
@@ -14,5 +16,7 @@ void main()
 
 	vec3 ambient = ambient_light;
 
-	color = fragmentColor * cosTheta + ambient;
+	float visibility = texture( shadowMap, vec3(shadowCoord.xy, (shadowCoord.z)/shadowCoord.w) );
+
+	color = fragmentColor * cosTheta * visibility + ambient;
 }

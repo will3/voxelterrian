@@ -7,7 +7,9 @@
 class Camera {
 public:
 	virtual void update_projection_matrix() {};
-	virtual void update_view_matrix() {};
+	void update_view_matrix() {
+		View = glm::lookAt(position, target, up);
+	};
 	glm::vec3 position = glm::vec3(0, 0, 0);
 	glm::vec3 target = glm::vec3(0, 0, 1);
 	glm::vec3 up = glm::vec3(0, 1, 0);
@@ -29,10 +31,6 @@ public:
 	void update_projection_matrix() override {
 		Projection = glm::perspective(glm::radians(fov), ratio, near, far);
 	}
-
-	void update_view_matrix() override {
-		View = glm::lookAt(position, target, up);
-	}
 };
 
 class OrthographicCamera : public Camera {
@@ -50,8 +48,5 @@ public:
 	};
 	void update_projection_matrix() override {
 		Projection = glm::ortho<float>(left, right, bottom, top, near, far);
-	}
-	void update_view_matrix() override {
-		View = glm::lookAt(position, target, up);
 	}
 };

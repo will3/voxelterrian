@@ -2,24 +2,22 @@
 
 #include <GL/glew.h>
 #include <common/shader.hpp>
+#include "Shader.h"
+
+class Scene;
 
 class Material {
 public:
-	GLuint programID;
-
 	bool loaded = false;
 
-	Node *current_node;
-
-	Camera *current_camera;
+	UniformAttributes uniforms;
+	Scene *scene;
 
 	virtual void load() {};
 
-	virtual void bind_uniforms() {};
+	virtual void bind() {};
 
 	Material() {};
 
-	~Material() {
-		glDeleteProgram(programID);
-	}
+	~Material() {};
 };

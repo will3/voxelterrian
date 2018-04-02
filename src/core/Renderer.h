@@ -9,24 +9,25 @@
 class Renderer {
 public:
 	GLuint VertexArrayID;
-	
+	GLFWwindow * window;
+	int window_width;
+	int window_height;
+
+	Renderer()
+	{
+	}
+
 	void render(Scene *scene, Camera *camera) {
 		render(scene, camera, 0);
 	}
 
 	void render(Scene *scene, Camera *camera, RenderTarget *renderTarget) {
-		if (renderTarget != 0) {
-			if (!renderTarget->loaded) {
-				renderTarget->load();
-				renderTarget->loaded = true;
-			}
-		}
-
 		if (renderTarget == 0) {
 			glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		}
 		else {
-			glBindFramebuffer(GL_FRAMEBUFFER, renderTarget->FramebufferName);
+			renderTarget->loadIfNeeded();
+			renderTarget->bind();
 		}
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -42,9 +43,6 @@ public:
 	}
 
 	void start_window(int width, int height);
-	GLFWwindow * window;
-	int window_width;
-	int window_height;
-	Renderer();
+
 	~Renderer();
 };

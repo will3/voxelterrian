@@ -24,18 +24,19 @@ void Mesh::render(Camera * camera) {
 		geometry->loaded = true;
 	}
 
-	if (!material->loaded) {
-		material->load();
-		material->loaded = true;
+	Material *material_to_use = scene->override_material == 0 ? material : scene->override_material;
+
+	material_to_use->scene = scene;
+
+	if (!material_to_use->loaded) {
+		material_to_use->load();
+		material_to_use->loaded = true;
 	}
 
-	if (!scene->override_material) {
-		glUseProgram(material->programID);
+	material_to_use->bind();
 
-		material->current_node = this;
-		material->current_camera = camera;
-		material->bind_uniforms();
-	}
+	glm::mat4 MVP = camera->Projection * camera->View * matrix;
+	material_to_use->uniforms.set("MVP", MVP);
 
 	geometry->bind();
 

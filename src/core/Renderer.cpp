@@ -57,10 +57,6 @@ void Renderer::start_window(int width, int height) {
 	glfwGetFramebufferSize(window, &window_width, &window_height);
 }
 
-Renderer::Renderer()
-{
-}
-
 Renderer::~Renderer()
 {
 	glDeleteVertexArrays(1, &VertexArrayID);

@@ -6,11 +6,15 @@
 #include "DirectionalLight.h"
 #include "AmbientLight.h"
 #include <set>
+#include "Material.h"
+#include "ShadowMap.h"
+
 class Scene : public Node {
 public:
 	std::set<DirectionalLight *> directional_lights;
 	std::set<AmbientLight *> ambient_lights;
-	bool override_material = false;
+	Material *override_material = 0;
+	ShadowMap *shadowMap;
 
 	void add(Node *node) override {
 		Node::add(node);

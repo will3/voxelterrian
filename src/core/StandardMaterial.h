@@ -3,35 +3,45 @@
 #include "Material.h"
 #include <common/shader.hpp>
 #include "DirectionalLight.h"
+#include <map>
+#include "Shader.h"
 
 class StandardMaterial : public Material {
 public:
-	GLuint light_dir;
-	GLuint ambient_light;
-	GLuint MatrixID;
+	GLuint programID;
+	UniformAttributes uniforms;
+
+	StandardMaterial() {
+		uniforms.add(UniformAttribute("light_dir"));
+		uniforms.add(UniformAttribute("ambient_light"));
+		uniforms.add(UniformAttribute("shadowMap"));
+		uniforms.add(UniformAttribute("shadowMVP"));
+	}
 
 	void load() {
 		programID = LoadShaders("shaders/standard.vertexshader", "shaders/standard.fragmentshader");
-		MatrixID = glGetUniformLocation(programID, "MVP");
-		light_dir = glGetUniformLocation(programID, "light_dir");
-		ambient_light = glGetUniformLocation(programID, "ambient_light");
+		uniforms.get_handles(programID);
 	}
 
-	void bind_uniforms() override {
-		Scene *scene = current_node->scene;
+	void bind() override {
+		glUseProgram(programID);
+
 		for (auto light : scene->directional_lights) {
-			glUniform3f(light_dir, light->inverse_direction[0], light->inverse_direction[1], light->inverse_direction[2]);
+			uniforms.set("light_dir", light->inverse_direction[0], light->inverse_direction[1], light->inverse_direction[2]);
 			// only support one directional light
 			break;
 		}
 		for (auto light : scene->ambient_lights) {
-			glUniform3f(ambient_light, light->color[0], light->color[1], light->color[2]);
+			uniforms.set("ambient_light", light->color[0], light->color[1], light->color[2]);
 			// only support one ambient light
 			break;
 		}
 
-		glm::mat4 MVP = current_camera->Projection * current_camera->View * current_node->matrix;
-
-		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
+		if (scene->shadowMap != 0) {
+			uniforms.set_texture("shadowMap", scene->shadowMap->renderTarget->depthTexture);
+			Camera *camera = scene->shadowMap->camera;
+			glm::mat4 MVP = camera->Projection * camera->View;
+			uniforms.set("shadowMVP", MVP);
+		}
 	}
 };

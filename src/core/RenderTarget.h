@@ -2,16 +2,7 @@
 #include "GL/glew.h"
 
 class RenderTarget {
-public:
-	int width;
-	int height;
-	RenderTarget(int width, int height) : width(width), height(height) {};
-	GLuint renderedTexture;
-	GLuint depthTexture;
-	GLuint FramebufferName = 0;
-
-	bool loaded = false;
-
+private:
 	bool load() {
 		// The framebuffer, which regroups 0, 1, or more textures, and 0 or 1 depth buffer.
 		glGenFramebuffers(1, &FramebufferName);
@@ -52,11 +43,41 @@ public:
 		GLenum DrawBuffers[1] = { GL_COLOR_ATTACHMENT0 };
 		glDrawBuffers(1, DrawBuffers); // "1" is the size of DrawBuffers
 
-		// Always check that our framebuffer is ok
+									   // Always check that our framebuffer is ok
 		if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
 			return false;
 		}
 
 		return true;
+	}
+	void unload() {
+		glDeleteTextures(1, &renderedTexture);
+		glDeleteTextures(1, &depthTexture);
+		glDeleteFramebuffers(1, &FramebufferName);
+	};
+	bool loaded = false;
+
+public:
+	RenderTarget(int width, int height) : width(width), height(height) {};
+
+	void bind() {
+		glBindFramebuffer(GL_FRAMEBUFFER, FramebufferName);
+	}
+
+	void loadIfNeeded() {
+		if (!loaded) {
+			load();
+			loaded = true;
+		}
+	}
+
+	int width;
+	int height;
+	GLuint renderedTexture;
+	GLuint depthTexture;
+	GLuint FramebufferName = 0;
+
+	~RenderTarget() {
+		unload();
 	}
 };

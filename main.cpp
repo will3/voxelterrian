@@ -27,6 +27,7 @@
 #include "EffectComposer.h"
 #include "CopyPass.h"
 #include "RenderPass.h"
+#include "ShadowMap.h"
 
 using namespace glm;
 using namespace std::chrono;
@@ -112,6 +113,12 @@ int main() {
 	composer->add_pass(copyPass);
 	copyPass->renderToScreen = true;
 
+	ShadowMap *shadowMap = new ShadowMap(512, 512, 0.1, 1000);
+	//shadowMap->camera->position = { 0, 100.0, 0.0 };
+	//shadowMap->setTarget({ 1.0, 1.0 ,1.0 });
+	//shadowMap->camera->position = glm::vec3(0, 100, -100);
+	//shadowMap->camera->target = glm::vec3(0, 0, 0);
+
 	do {
 		glfwPollEvents();
 
@@ -125,6 +132,7 @@ int main() {
 		runner->update();
 
 		composer->render();
+		//shadowMap->renderToScreen(scene);
 
 		ImGui::Render();
 		ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
