@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Entity.h"
-#include "Terrian.h"
+#include "Camera.h"
 
 class EditorCameraControl : public Entity
 {

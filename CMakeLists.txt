@@ -52,8 +52,6 @@ add_executable(kestrel
 	${SHADER_FILES}
 	common/shader.cpp
 	common/shader.hpp
-	shaders/voxel.vertexshader
-	shaders/voxel.fragmentshader
 	${EXTERNAL_FILES}
 	main.cpp
 	)
@@ -63,9 +61,9 @@ target_link_libraries(kestrel
 )
 
 SOURCE_GROUP(common REGULAR_EXPRESSION ".*/common/.*" )
-SOURCE_GROUP(shaders REGULAR_EXPRESSION ".*/.*shader$" )
+SOURCE_GROUP(shaders REGULAR_EXPRESSION ".*/shaders/.*" )
 SOURCE_GROUP(tests REGULAR_EXPRESSION ".*/tests/.*" )
-
+SOURCE_GROUP(src REGULAR_EXPRESSION ".*/src/.*" )
 SOURCE_GROUP(external\\imgui REGULAR_EXPRESSION ".*/external/imgui/.*" )
 
 # test
@@ -104,8 +102,6 @@ add_executable(kestrel-tests
 	${SHADER_FILES}
 	common/shader.cpp
 	common/shader.hpp
-	shaders/voxel.vertexshader
-	shaders/voxel.fragmentshader
 	${EXTERNAL_FILES} 
 	${TEST_FILES})
 

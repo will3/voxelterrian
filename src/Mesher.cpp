@@ -42,7 +42,7 @@ bool Mesher::stop_merge(MaskValue & c, MaskValue & next) {
 	return next.v != c.v || next.has_ao() || next.lighting != c.lighting || c.r != next.r || c.g != next.g || c.b != next.b;
 }
 
-void Mesher::copy_quads(Mask& mask, Geometry *geometry, int x, int y, int w, int h, int ao0, int ao1, int ao2, int ao3, int l, uint8_t r, uint8_t g, uint8_t b) {
+void Mesher::copy_quads(Mask& mask, VoxelGeometry *geometry, int x, int y, int w, int h, int ao0, int ao1, int ao2, int ao3, int l, uint8_t r, uint8_t g, uint8_t b) {
 	bool front = mask.front;
 	float ao_strength = 0.1f;
 	float light_strength = 0.6f;
@@ -52,7 +52,7 @@ void Mesher::copy_quads(Mask& mask, Geometry *geometry, int x, int y, int w, int
 	auto &indices = geometry->indices;
 	int i = mask.i;
 	int d = mask.d;
-	int index = geometry->num_vertices();
+	int index = geometry->vertices.size() / 3;
 
 	Coord3 v0 = Coord3(i, x, y).rotate(d);
 	Coord3 v1 = Coord3(i, x + w, y).rotate(d);
@@ -93,7 +93,7 @@ void Mesher::copy_quads(Mask& mask, Geometry *geometry, int x, int y, int w, int
 	}
 }
 
-void Mesher::copy_quads(Mask& mask, Geometry *geometry) {
+void Mesher::copy_quads(Mask& mask, VoxelGeometry *geometry) {
 	int n = 0;
 	MaskValue c;
 	int w, h;
@@ -160,7 +160,7 @@ void Mesher::copy_quads(Mask& mask, Geometry *geometry) {
 DirectionalLight *light = new DirectionalLight();
 
 Geometry* Mesher::mesh(Chunk* chunk, Chunks* chunks) {
-	Geometry *geometry = new Geometry();
+	VoxelGeometry *geometry = new VoxelGeometry();
 
 	std::vector<Mask *> masks;
 	for (int d = 0; d < 3; d++) {

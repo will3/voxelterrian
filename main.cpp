@@ -22,6 +22,7 @@
 #include "imgui_impl_glfw_gl3.h"
 #include "Editor.h"
 #include "Dispatcher.h"
+#include "Terrian2.h"
 
 using namespace glm;
 using namespace std::chrono;
@@ -65,17 +66,25 @@ int main() {
 	Camera *camera = new Camera(60, ratio, 0.1f, 1000.0f);
 	Scene *scene = new Scene();
 	Material *material = new Material();
-	Terrian *terrian = new Terrian();
-	terrian->light = light;
-	terrian->scene = scene;
-	terrian->material = material;
-	terrian->dispatcher = dispatcher;
-
-	terrian->set_draw_dis(3);
-	runner->add(terrian);
 	EditorCameraControl *camera_control = new EditorCameraControl();
-	terrian->cameraControl = camera_control;
 
+	Terrian *terrian;
+	int scenario = 0;
+	if (scenario == 0) {
+		terrian = new Terrian();
+		terrian->light = light;
+		terrian->scene = scene;
+		terrian->material = material;
+		terrian->dispatcher = dispatcher;
+		terrian->camera_control = camera_control;
+		terrian->set_draw_dis(3);
+		runner->add(terrian);
+	}
+	else {
+		Terrian2 *terrian2 = new Terrian2();
+		runner->add(terrian2);
+	}
+	
 	camera_control->camera = camera;
 	runner->add(camera_control);
 
@@ -88,9 +97,8 @@ int main() {
 
 		ImGui_ImplGlfwGL3_NewFrame();
 
-		bool changed = editor->show(terrian, camera_control);
-		if (changed) {
-			//terrian->set_needs_rasterize();
+		if (scenario == 0) {
+			editor->show(terrian, camera_control);
 		}
 
 		dispatcher->update();

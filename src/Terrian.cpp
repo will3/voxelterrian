@@ -128,7 +128,7 @@ void Terrian::start() {
 }
 
 void Terrian::update() {
-	player_position = cameraControl->camera->target;
+	player_position = camera_control->camera->target;
 }
 
 void Terrian::remove() {

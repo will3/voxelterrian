@@ -41,7 +41,7 @@ public:
 	Material *material;
 	Coord2 player_origin;
 	Dispatcher *dispatcher;
-	EditorCameraControl *cameraControl;
+	EditorCameraControl *camera_control;
 
 	Terrian();
 	~Terrian();

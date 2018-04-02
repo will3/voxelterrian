@@ -18,9 +18,9 @@ Material * Mesh::get_material()
 }
 
 void Mesh::render(Camera * camera) {
-	if (!geometry->vbo_loaded) {
-		geometry->load_vbo();
-		geometry->vbo_loaded = true;
+	if (!geometry->loaded) {
+		geometry->load();
+		geometry->loaded = true;
 	}
 
 	// Use our shader
@@ -36,7 +36,7 @@ void Mesh::render(Camera * camera) {
 											   // in the "MVP" uniform
 	glUniformMatrix4fv(material->MatrixID, 1, GL_FALSE, &MVP[0][0]);
 
-	geometry->bind_vbo();
+	geometry->bind();
 
 	// Draw the triangles !
 	glDrawElements(
@@ -46,7 +46,7 @@ void Mesh::render(Camera * camera) {
 		(void*)0           // element array buffer offset
 	);
 
-	geometry->unbind_vbo();
+	geometry->unbind();
 }
 
 Mesh::~Mesh() {

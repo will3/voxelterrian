@@ -4,11 +4,11 @@
 
 class Density_SSBO {
 public:
+	GLuint handle;
 	std::vector<float> density;
 	void load() {
-		GLuint ssbo;
-		glGenBuffers(1, &ssbo);
-		glBindBuffer(GL_SHADER_STORAGE_BUFFER, ssbo);
-		glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(float) * density.size(), density.data(), GL_STATIC_READ);
+		glGenBuffers(1, &handle);
+		glBindBuffer(GL_SHADER_STORAGE_BUFFER, handle);
+		glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(float) * density.size(), density.data(), GL_DYNAMIC_DRAW);
 	}
 };
