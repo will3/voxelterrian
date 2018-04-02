@@ -4,6 +4,9 @@
     <ClCompile Include="C:\kestrel\src\core\Camera.cpp">
       <Filter>src\core</Filter>
     </ClCompile>
+    <ClCompile Include="C:\kestrel\src\core\DirectionalLight.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
     <ClCompile Include="C:\kestrel\src\core\Geometry.cpp">
       <Filter>src\core</Filter>
     </ClCompile>
@@ -26,9 +29,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="C:\kestrel\src\Chunks.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\kestrel\src\DirectionalLight.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="C:\kestrel\src\Editor.cpp">
@@ -62,9 +62,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="C:\kestrel\src\Runner.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\kestrel\src\Sculptor.m">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="C:\kestrel\src\ShadowMap.cpp">
@@ -120,6 +117,9 @@
     <ClInclude Include="C:\kestrel\src\core\ComputeShader.h">
       <Filter>src\core</Filter>
     </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\DirectionalLight.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
     <ClInclude Include="C:\kestrel\src\core\Geometry.h">
       <Filter>src\core</Filter>
     </ClInclude>
@@ -157,9 +157,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Density_SSBO.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\kestrel\src\DirectionalLight.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Dispatcher.h">
@@ -202,9 +199,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\ShadowMap.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\kestrel\src\StandardGeometry.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Terrian.h">

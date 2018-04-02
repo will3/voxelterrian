@@ -62,10 +62,14 @@ int main() {
 
 	Dispatcher *dispatcher = new Dispatcher();
 	Runner *runner = new Runner();
-	DirectionalLight *light = new DirectionalLight();
 	float ratio = width / (float)height;
 	Camera *camera = new Camera(60, ratio, 0.1f, 1000.0f);
 	Scene *scene = new Scene();
+	DirectionalLight *light = new DirectionalLight();
+	scene->add(light);
+	AmbientLight *ambientLight = new AmbientLight();
+	scene->add(ambientLight);
+
 	VoxelMaterial *material = new VoxelMaterial();
 	EditorCameraControl *camera_control;
 
@@ -89,8 +93,7 @@ int main() {
 		Terrian2 *terrian2 = new Terrian2();
 		runner->add(terrian2);
 		terrian2->scene = scene;
-
-		camera->position = glm::vec3(0, 0, -5);
+		camera->position = glm::vec3(0, 0, -10);
 		camera->target = glm::vec3(0, 0, 0);
 	}
 	

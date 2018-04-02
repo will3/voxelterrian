@@ -4,6 +4,7 @@
 #include <array>
 #include <Windows.h>
 #include <string>
+#include <GL/glew.h>
 
 class RayCastResult {
 public:

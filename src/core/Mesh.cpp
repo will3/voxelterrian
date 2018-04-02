@@ -41,6 +41,8 @@ void Mesh::render(Camera * camera) {
 											   // in the "MVP" uniform
 	glUniformMatrix4fv(material->MatrixID, 1, GL_FALSE, &MVP[0][0]);
 
+	material->bind_uniforms(this);
+
 	geometry->bind();
 
 	// Draw the triangles !

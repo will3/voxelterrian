@@ -9,6 +9,20 @@ private:
 	ElementBuffer indices;
 
 public:
+	void push_vertice(glm::vec3 position, glm::vec3 normal, glm::ivec3 color) {
+		positions.get_data().push_back(position[0]);
+		positions.get_data().push_back(position[1]);
+		positions.get_data().push_back(position[2]);
+
+		normals.get_data().push_back(normal[0]);
+		normals.get_data().push_back(normal[1]);
+		normals.get_data().push_back(normal[2]);
+
+		colors.get_data().push_back(color[0]);
+		colors.get_data().push_back(color[1]);
+		colors.get_data().push_back(color[2]);
+	}
+
 	ArrayBuffer<GLfloat, GL_FLOAT>& get_positions() {
 		return positions;
 	}

@@ -3,9 +3,17 @@
 in vec3 fragmentColor;
 in vec3 fragmentNormal;
 
+uniform vec3 light_dir;
+uniform vec3 ambient_light;
+
 out vec3 color;
 
 void main()
 {
-	color = fragmentColor;
+	float cosTheta = dot(fragmentNormal, light_dir);
+
+	vec3 ambient = ambient_light;
+
+	color = fragmentColor * cosTheta + ambient;
+
 }

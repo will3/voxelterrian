@@ -11,6 +11,9 @@ void Node::add(Node * node)
 
 	nodes.insert(node);
 	node->parent = this;
+	if (scene != 0) {
+		node->scene = scene;
+	}
 }
 
 void Node::remove(Node * node)
