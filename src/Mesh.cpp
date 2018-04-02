@@ -41,7 +41,7 @@ void Mesh::render(Camera * camera) {
 	// Draw the triangles !
 	glDrawElements(
 		GL_TRIANGLES,      // mode
-		geometry->indices.size(),    // count
+		geometry->get_indices_count(),    // count
 		GL_UNSIGNED_INT,   // type
 		(void*)0           // element array buffer offset
 	);

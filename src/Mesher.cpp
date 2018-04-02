@@ -46,13 +46,13 @@ void Mesher::copy_quads(Mask& mask, VoxelGeometry *geometry, int x, int y, int w
 	bool front = mask.front;
 	float ao_strength = 0.1f;
 	float light_strength = 0.6f;
-	auto &vertices = geometry->vertices;
-	auto &colors = geometry->colors;
-	auto &lighting = geometry->lighting;
-	auto &indices = geometry->indices;
+	auto &vertices = geometry->get_vertices().get_data();
+	auto &colors = geometry->get_colors().get_data();
+	auto &lighting = geometry->get_lighting().get_data();
+	auto &indices = geometry->get_indices().get_data();
 	int i = mask.i;
 	int d = mask.d;
-	int index = geometry->vertices.size() / 3;
+	int index = geometry->get_vertices().get_data().size() / 3;
 
 	Coord3 v0 = Coord3(i, x, y).rotate(d);
 	Coord3 v1 = Coord3(i, x + w, y).rotate(d);

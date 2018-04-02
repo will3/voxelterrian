@@ -3,63 +3,59 @@
 
 class VoxelGeometry : public Geometry {
 private:
-	GLuint vertexbuffer = 0;
-	GLuint colorbuffer = 0;
-	GLuint lightingbuffer = 0;
-	GLuint elementbuffer = 0;
+	ArrayBuffer<GLint, GL_INT> vertices = ArrayBuffer<GLint, GL_INT>(0, 3);
+	ArrayBuffer<GLint, GL_INT> colors = ArrayBuffer<GLint, GL_INT>(1, 3);
+	ArrayBuffer<GLint, GL_INT> lighting = ArrayBuffer<GLint, GL_INT>(2, 1);
+	ElementBuffer indices;
 public:
-	std::vector<GLint> vertices;
-	std::vector<GLint> colors;
-	std::vector<GLint> lighting;
 
-	void unload() {
-		glDeleteBuffers(1, &vertexbuffer);
-		glDeleteBuffers(1, &colorbuffer);
-		glDeleteBuffers(1, &lightingbuffer);
-		glDeleteBuffers(1, &elementbuffer);
+	ArrayBuffer<GLint, GL_INT>& get_vertices() {
+		return vertices;
+	}
+
+	ArrayBuffer<GLint, GL_INT>& get_colors() {
+		return colors;
+	}
+
+	ArrayBuffer<GLint, GL_INT>& get_lighting() {
+		return lighting;
+	}
+
+	ElementBuffer& get_indices() {
+		return indices;
 	}
 
 	void load() {
-		glGenBuffers(1, &vertexbuffer);
-		glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLint), vertices.data(), GL_STATIC_DRAW);
+		vertices.load();
+		colors.load();
+		lighting.load();
+		indices.load();
+	}
 
-		glGenBuffers(1, &colorbuffer);
-		glBindBuffer(GL_ARRAY_BUFFER, colorbuffer);
-		glBufferData(GL_ARRAY_BUFFER, colors.size() * sizeof(GLint), colors.data(), GL_STATIC_DRAW);
-
-		glGenBuffers(1, &lightingbuffer);
-		glBindBuffer(GL_ARRAY_BUFFER, lightingbuffer);
-		glBufferData(GL_ARRAY_BUFFER, lighting.size() * sizeof(GLint), lighting.data(), GL_STATIC_DRAW);
-
-		glGenBuffers(1, &elementbuffer);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
-
-		loaded = true;
+	void unload() {
+		vertices.unload();
+		colors.unload();
+		lighting.unload();
+		indices.unload();
 	}
 
 	void bind()
 	{
-		glEnableVertexAttribArray(0);
-		glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-		glVertexAttribIPointer(0, 3, GL_INT, 0, (void*)0);
-
-		glEnableVertexAttribArray(1);
-		glBindBuffer(GL_ARRAY_BUFFER, colorbuffer);
-		glVertexAttribIPointer(1, 3, GL_INT, 0, (void*)0);
-
-		glEnableVertexAttribArray(2);
-		glBindBuffer(GL_ARRAY_BUFFER, lightingbuffer);
-		glVertexAttribIPointer(2, 1, GL_INT, 0, (void*)0);
-
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
+		vertices.bind();
+		colors.bind();
+		lighting.bind();
+		indices.bind();
 	}
 
 	void unbind()
 	{
-		glDisableVertexAttribArray(0);
-		glDisableVertexAttribArray(1);
-		glDisableVertexAttribArray(2);
+		vertices.unbind();
+		colors.unbind();
+		lighting.unbind();
+		indices.unbind();
+	}
+
+	int get_indices_count() {
+		return indices.get_data().size();
 	}
 };
