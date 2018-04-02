@@ -83,7 +83,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\external\googletest\include;C:\kestrel\external\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\googletest-src\googletest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -101,10 +101,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;TW_STATIC;TW_NO_LIB_PRAGMA;TW_NO_DIRECT3D;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\external\googletest\include;C:\kestrel\external\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\googletest-src\googletest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\external\googletest\include;C:\kestrel\external\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\googletest-src\googletest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -112,7 +112,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>external\googletest\Debug\gtestd.lib;external\googletest\Debug\gtest_maind.lib;external\googletest\Debug\gtestd.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;external\glfw-3.1.2\src\Debug\glfw3.lib;external\Debug\GLEW_1130.lib;googletest-build\googlemock\gtest\Debug\gtestd.lib;googletest-build\googlemock\gtest\Debug\gtest_maind.lib;opengl32.lib;glu32.lib;googletest-build\googlemock\gtest\Debug\gtestd.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -127,7 +127,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\external\googletest\include;C:\kestrel\external\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\googletest-src\googletest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Release/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -145,10 +145,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;TW_STATIC;TW_NO_LIB_PRAGMA;TW_NO_DIRECT3D;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\external\googletest\include;C:\kestrel\external\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\googletest-src\googletest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\external\googletest\include;C:\kestrel\external\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\googletest-src\googletest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -156,7 +156,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>external\googletest\Release\gtest.lib;external\googletest\Release\gtest_main.lib;external\googletest\Release\gtest.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;external\glfw-3.1.2\src\Release\glfw3.lib;external\Release\GLEW_1130.lib;googletest-build\googlemock\gtest\Release\gtest.lib;googletest-build\googlemock\gtest\Release\gtest_main.lib;opengl32.lib;glu32.lib;googletest-build\googlemock\gtest\Release\gtest.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -171,7 +171,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\external\googletest\include;C:\kestrel\external\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\googletest-src\googletest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -189,10 +189,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;TW_STATIC;TW_NO_LIB_PRAGMA;TW_NO_DIRECT3D;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\external\googletest\include;C:\kestrel\external\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\googletest-src\googletest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\external\googletest\include;C:\kestrel\external\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\googletest-src\googletest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -200,7 +200,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>external\googletest\MinSizeRel\gtest.lib;external\googletest\MinSizeRel\gtest_main.lib;external\googletest\MinSizeRel\gtest.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;external\glfw-3.1.2\src\MinSizeRel\glfw3.lib;external\MinSizeRel\GLEW_1130.lib;googletest-build\googlemock\gtest\MinSizeRel\gtest.lib;googletest-build\googlemock\gtest\MinSizeRel\gtest_main.lib;opengl32.lib;glu32.lib;googletest-build\googlemock\gtest\MinSizeRel\gtest.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -215,7 +215,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\external\googletest\include;C:\kestrel\external\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\googletest-src\googletest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -232,10 +232,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;TW_STATIC;TW_NO_LIB_PRAGMA;TW_NO_DIRECT3D;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\external\googletest\include;C:\kestrel\external\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\googletest-src\googletest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\external\googletest\include;C:\kestrel\external\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;C:\kestrel\googletest-src\googletest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -243,7 +243,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>external\googletest\RelWithDebInfo\gtest.lib;external\googletest\RelWithDebInfo\gtest_main.lib;external\googletest\RelWithDebInfo\gtest.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;external\glfw-3.1.2\src\RelWithDebInfo\glfw3.lib;external\RelWithDebInfo\GLEW_1130.lib;googletest-build\googlemock\gtest\RelWithDebInfo\gtest.lib;googletest-build\googlemock\gtest\RelWithDebInfo\gtest_main.lib;opengl32.lib;glu32.lib;googletest-build\googlemock\gtest\RelWithDebInfo\gtest.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -268,7 +268,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/kestrel/CMakeLists.txt;C:\kestrel\CMakeLists.txt;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInitialize.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeCCompiler.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\CreateLaunchers.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\CleanDirectoryList.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\MSVCMultipleProcessCompile.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\ListCombinations.cmake;C:\kestrel\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/kestrel/CMakeLists.txt;C:\kestrel\CMakeLists.txt;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInitialize.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeCCompiler.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\CreateLaunchers.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\CleanDirectoryList.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\MSVCMultipleProcessCompile.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\ListCombinations.cmake;C:\kestrel\CMakeLists.txt.in;C:\kestrel\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\kestrel\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/kestrel/CMakeLists.txt</Message>
@@ -281,7 +281,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/kestrel/CMakeLists.txt;C:\kestrel\CMakeLists.txt;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInitialize.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeCCompiler.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\CreateLaunchers.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\CleanDirectoryList.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\MSVCMultipleProcessCompile.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\ListCombinations.cmake;C:\kestrel\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/kestrel/CMakeLists.txt;C:\kestrel\CMakeLists.txt;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInitialize.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeCCompiler.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\CreateLaunchers.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\CleanDirectoryList.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\MSVCMultipleProcessCompile.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\ListCombinations.cmake;C:\kestrel\CMakeLists.txt.in;C:\kestrel\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\kestrel\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/kestrel/CMakeLists.txt</Message>
@@ -294,7 +294,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/kestrel/CMakeLists.txt;C:\kestrel\CMakeLists.txt;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInitialize.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeCCompiler.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\CreateLaunchers.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\CleanDirectoryList.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\MSVCMultipleProcessCompile.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\ListCombinations.cmake;C:\kestrel\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/kestrel/CMakeLists.txt;C:\kestrel\CMakeLists.txt;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInitialize.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeCCompiler.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\CreateLaunchers.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\CleanDirectoryList.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\MSVCMultipleProcessCompile.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\ListCombinations.cmake;C:\kestrel\CMakeLists.txt.in;C:\kestrel\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\kestrel\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/kestrel/CMakeLists.txt</Message>
@@ -307,7 +307,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/kestrel/CMakeLists.txt;C:\kestrel\CMakeLists.txt;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInitialize.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeCCompiler.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\CreateLaunchers.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\CleanDirectoryList.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\MSVCMultipleProcessCompile.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\ListCombinations.cmake;C:\kestrel\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/kestrel/CMakeLists.txt;C:\kestrel\CMakeLists.txt;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInitialize.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeCCompiler.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeCXXCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\kestrel\CMakeFiles\3.11.0-rc3\CMakeRCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\FindPackageMessage.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\CreateLaunchers.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\CleanDirectoryList.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\MSVCMultipleProcessCompile.cmake;C:\kestrel\external\rpavlik-cmake-modules-fe2273\ListCombinations.cmake;C:\kestrel\CMakeLists.txt.in;C:\kestrel\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\kestrel\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
@@ -337,11 +337,11 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\kestrel\src\Scene.cpp" />
     <ClCompile Include="C:\kestrel\src\ShadowMap.cpp" />
     <ClCompile Include="C:\kestrel\src\Terrian.cpp" />
-    <ClCompile Include="C:\kestrel\src\main.cpp" />
     <ClInclude Include="C:\kestrel\src\Brush.h" />
     <ClInclude Include="C:\kestrel\src\Camera.h" />
     <ClInclude Include="C:\kestrel\src\Chunk.h" />
     <ClInclude Include="C:\kestrel\src\Chunks.h" />
+    <ClInclude Include="C:\kestrel\src\ComputeData.h" />
     <ClInclude Include="C:\kestrel\src\Data3.h" />
     <ClInclude Include="C:\kestrel\src\DirectionalLight.h" />
     <ClInclude Include="C:\kestrel\src\Dispatcher.h" />
@@ -367,6 +367,23 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\Worker.h" />
     <ClInclude Include="C:\kestrel\src\linalg.h" />
     <ClInclude Include="C:\kestrel\src\types.h" />
+    <None Include="C:\kestrel\shaders\voxel.fragmentshader" />
+    <None Include="C:\kestrel\shaders\voxel.vertexshader" />
+    <ClCompile Include="C:\kestrel\common\shader.cpp" />
+    <ClInclude Include="C:\kestrel\common\shader.hpp" />
+    <ClInclude Include="C:\kestrel\external\imgui\imconfig.h" />
+    <ClCompile Include="C:\kestrel\external\imgui\imgui.cpp" />
+    <ClInclude Include="C:\kestrel\external\imgui\imgui.h" />
+    <ClCompile Include="C:\kestrel\external\imgui\imgui_color_gradient.cpp" />
+    <ClInclude Include="C:\kestrel\external\imgui\imgui_color_gradient.h" />
+    <ClCompile Include="C:\kestrel\external\imgui\imgui_demo.cpp" />
+    <ClCompile Include="C:\kestrel\external\imgui\imgui_draw.cpp" />
+    <ClCompile Include="C:\kestrel\external\imgui\imgui_impl_glfw_gl3.cpp" />
+    <ClInclude Include="C:\kestrel\external\imgui\imgui_impl_glfw_gl3.h" />
+    <ClInclude Include="C:\kestrel\external\imgui\imgui_internal.h" />
+    <ClInclude Include="C:\kestrel\external\imgui\stb_rect_pack.h" />
+    <ClInclude Include="C:\kestrel\external\imgui\stb_textedit.h" />
+    <ClInclude Include="C:\kestrel\external\imgui\stb_truetype.h" />
     <ClCompile Include="C:\kestrel\tests\ChunkTests.cpp" />
     <ClCompile Include="C:\kestrel\tests\ChunksTests.cpp" />
     <ClCompile Include="C:\kestrel\tests\Coord3Tests.cpp" />
@@ -380,11 +397,19 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{D2B74FD7-433E-37EB-8F60-6D6934A14EA0}</Project>
       <Name>ZERO_CHECK</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\kestrel\external\googletest\gtest.vcxproj">
+    <ProjectReference Include="C:\kestrel\external\GLEW_1130.vcxproj">
+      <Project>{CE420558-50D1-36C2-BE5B-FB234E048F28}</Project>
+      <Name>GLEW_1130</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\kestrel\external\glfw-3.1.2\src\glfw.vcxproj">
+      <Project>{564D3140-72AD-3602-AF50-1368B56983F6}</Project>
+      <Name>glfw</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\kestrel\googletest-build\googlemock\gtest\gtest.vcxproj">
       <Project>{0E6EB13C-8E3D-328A-9290-1C175CE22547}</Project>
       <Name>gtest</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\kestrel\external\googletest\gtest_main.vcxproj">
+    <ProjectReference Include="C:\kestrel\googletest-build\googlemock\gtest\gtest_main.vcxproj">
       <Project>{3E8CADE6-1ED4-37BE-8417-84BF11BD8728}</Project>
       <Name>gtest_main</Name>
     </ProjectReference>

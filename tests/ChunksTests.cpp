@@ -10,9 +10,9 @@ TEST(Chunks, Set) {
 
 TEST(Chunks, Set2) {
 	Chunks* chunks = new Chunks();
-	chunks->set(Coord3(111, 222, 333), 444);
+	chunks->set(Coord3(111, 222, 333), 12);
 
-	EXPECT_EQ(chunks->get(Coord3(111, 222, 333)), 444);
+	EXPECT_EQ(chunks->get(Coord3(111, 222, 333)), 12);
 }
 
 TEST(Chunks, CreateChunk) {

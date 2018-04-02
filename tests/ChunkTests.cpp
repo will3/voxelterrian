@@ -8,10 +8,10 @@ TEST(Chunk, Set) {
 }
 
 TEST(Chunk, SetMillion) {
-	Chunk* chunk = new Chunk(100);
-	for (int i = 0; i < 100; i++) {
-		for (int j = 0; j< 100; j++) {
-			for (int k = 0; k < 100; k++) {
+	Chunk* chunk = new Chunk();
+	for (int i = 0; i < CHUNK_SIZE; i++) {
+		for (int j = 0; j< CHUNK_SIZE; j++) {
+			for (int k = 0; k < CHUNK_SIZE; k++) {
 				chunk->set({ i, j, k }, 1);
 			}
 		}

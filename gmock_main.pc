@@ -1,0 +1,9 @@
+libdir=C:/Program Files/kestrel/lib
+includedir=C:/Program Files/kestrel/include
+
+Name: gmock_main
+Description: GoogleMock (with main() function)
+Version: 1.9.0
+URL: https://github.com/google/googletest
+Libs: -L${libdir} -lgmock_main 
+Cflags: -I${includedir} -DGTEST_HAS_PTHREAD=0 

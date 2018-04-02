@@ -73,8 +73,23 @@
     <ClCompile Include="C:\kestrel\src\Terrian.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\kestrel\src\main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="C:\kestrel\common\shader.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\kestrel\external\imgui\imgui.cpp">
+      <Filter>external\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\kestrel\external\imgui\imgui_color_gradient.cpp">
+      <Filter>external\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\kestrel\external\imgui\imgui_demo.cpp">
+      <Filter>external\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\kestrel\external\imgui\imgui_draw.cpp">
+      <Filter>external\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\kestrel\external\imgui\imgui_impl_glfw_gl3.cpp">
+      <Filter>external\imgui</Filter>
     </ClCompile>
     <ClCompile Include="C:\kestrel\tests\ChunkTests.cpp">
       <Filter>tests</Filter>
@@ -109,6 +124,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Chunks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\ComputeData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Data3.h">
@@ -186,9 +204,44 @@
     <ClInclude Include="C:\kestrel\src\types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="C:\kestrel\common\shader.hpp">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\external\imgui\imconfig.h">
+      <Filter>external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\external\imgui\imgui.h">
+      <Filter>external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\external\imgui\imgui_color_gradient.h">
+      <Filter>external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\external\imgui\imgui_impl_glfw_gl3.h">
+      <Filter>external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\external\imgui\imgui_internal.h">
+      <Filter>external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\external\imgui\stb_rect_pack.h">
+      <Filter>external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\external\imgui\stb_textedit.h">
+      <Filter>external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\external\imgui\stb_truetype.h">
+      <Filter>external\imgui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\kestrel\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\kestrel\shaders\voxel.fragmentshader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="C:\kestrel\shaders\voxel.vertexshader">
+      <Filter>shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -196,6 +249,18 @@
     </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{D08100CD-907D-396B-B4E0-DC68131A90FF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{2E02E82D-D10D-3383-9541-31A22A6EFEAA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external">
+      <UniqueIdentifier>{CCE28236-860F-38F4-B1FF-17C1EAFF6901}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external\imgui">
+      <UniqueIdentifier>{AB78A127-BD88-351C-B887-BD1B214719AF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{CEA7EFAA-A83A-3017-BA13-7318A7FEA30D}</UniqueIdentifier>
     </Filter>
     <Filter Include="tests">
       <UniqueIdentifier>{A9AD2C82-304A-3C92-8533-7782A2DBCB1E}</UniqueIdentifier>

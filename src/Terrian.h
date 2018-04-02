@@ -11,6 +11,7 @@
 #include "Noise.h"
 #include "Dispatcher.h"
 #include "imgui_color_gradient.h"
+#include "EditorCameraControl.h"
 
 #define max_height 128.0
 
@@ -40,6 +41,7 @@ public:
 	Material *material;
 	Coord2 player_origin;
 	Dispatcher *dispatcher;
+	EditorCameraControl *cameraControl;
 
 	Terrian();
 	~Terrian();

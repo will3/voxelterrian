@@ -45,8 +45,7 @@ add_definitions(
 
 file(GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/src/*.cpp ${PROJECT_SOURCE_DIR}/src/*.h)
 file(GLOB SHADER_FILES ${PROJECT_SOURCE_DIR}/shaders/*.*)
-file(GLOB EXTERNAL_FILES 
-	${PROJECT_SOURCE_DIR}/external/imgui/*.*)
+file(GLOB EXTERNAL_FILES ${PROJECT_SOURCE_DIR}/external/imgui/*.*)
 
 add_executable(kestrel 
 	${SRC_FILES}
@@ -56,6 +55,7 @@ add_executable(kestrel
 	shaders/voxel.vertexshader
 	shaders/voxel.fragmentshader
 	${EXTERNAL_FILES}
+	main.cpp
 	)
 
 target_link_libraries(kestrel
@@ -70,13 +70,49 @@ SOURCE_GROUP(external\\imgui REGULAR_EXPRESSION ".*/external/imgui/.*" )
 
 # test
 
-add_subdirectory(external/googletest)
+# Download and unpack googletest at configure time
+configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
+execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
+  RESULT_VARIABLE result
+  WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/googletest-download )
+if(result)
+  message(FATAL_ERROR "CMake step for googletest failed: ${result}")
+endif()
+
+execute_process(COMMAND ${CMAKE_COMMAND} --build .
+  RESULT_VARIABLE result
+  WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/googletest-download )
+if(result)
+  message(FATAL_ERROR "Build step for googletest failed: ${result}")
+endif()
+
+# Prevent overriding the parent project's compiler/linker
+# settings on Windows
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+
+# Add googletest directly to our build. This defines
+# the gtest and gtest_main targets.
+add_subdirectory(${CMAKE_BINARY_DIR}/googletest-src
+                 ${CMAKE_BINARY_DIR}/googletest-build
+                 EXCLUDE_FROM_ALL)
 
 enable_testing()
 
-include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
-
 file(GLOB TEST_FILES ${PROJECT_SOURCE_DIR}/tests/*.*)
-add_executable(kestrel-tests ${SRC_FILES} ${TEST_FILES})
+add_executable(kestrel-tests 	
+	${SRC_FILES}
+	${SHADER_FILES}
+	common/shader.cpp
+	common/shader.hpp
+	shaders/voxel.vertexshader
+	shaders/voxel.fragmentshader
+	${EXTERNAL_FILES} 
+	${TEST_FILES})
+
+target_link_libraries(kestrel-tests
+	${ALL_LIBS}
+)
 
 target_link_libraries(kestrel-tests gtest gtest_main)
+
+add_test(NAME AllTestsInKestrel COMMAND kestrel-tests)

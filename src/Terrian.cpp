@@ -128,7 +128,7 @@ void Terrian::start() {
 }
 
 void Terrian::update() {
-	
+	player_position = cameraControl->camera->target;
 }
 
 void Terrian::remove() {
@@ -190,6 +190,7 @@ void Terrian::rasterize_height(Chunk * chunk) {
 				float j_offset = overhang_noise->get_noise()->GetSimplexFractal(coord.i, coord.j, coord.k);
 				float fractal = height_noise->get_noise()->GetSimplexFractal(coord.i + j_offset, coord.j * height_noise->y_scale, coord.k + j_offset);
 				float density = fractal * height_noise->amplitude - coord.j;
+
 				//if (density > 1.0) {
 				//	density = 1.0;
 				//}

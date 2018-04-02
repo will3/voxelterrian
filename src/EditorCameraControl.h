@@ -10,7 +10,6 @@ public:
 	~EditorCameraControl();
 
 	Camera *camera;
-	Terrian *terrian;
 
 	float speed = 0.0;
 

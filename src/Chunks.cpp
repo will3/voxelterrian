@@ -41,7 +41,8 @@ voxel_type Chunks::get(Coord3 coord) {
 		return 0;
 	}
 
-	return map[origin]->get(coord - origin * CHUNK_SIZE);
+	Chunk *chunk = map[origin];
+	chunk->get(coord - chunk->get_offset());
 }
 
 void Chunks::set(Coord3 coord, voxel_type v) {

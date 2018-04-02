@@ -28,7 +28,7 @@ private:
 	ShadowMap *shadow_map;
 
 public:
-	Chunk(Coord3 origin);
+	Chunk(Coord3 origin = Coord3());
 	~Chunk();
 	Coord3& get_origin() { return origin; }
 	Coord3& get_offset() { return offset; }

@@ -70,11 +70,13 @@ int main() {
 	terrian->scene = scene;
 	terrian->material = material;
 	terrian->dispatcher = dispatcher;
+
 	terrian->set_draw_dis(3);
 	runner->add(terrian);
 	EditorCameraControl *camera_control = new EditorCameraControl();
+	terrian->cameraControl = camera_control;
+
 	camera_control->camera = camera;
-	camera_control->terrian = terrian;
 	runner->add(camera_control);
 
 	__int64 last_tick = 0;
