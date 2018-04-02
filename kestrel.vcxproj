@@ -83,7 +83,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -101,10 +101,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;TW_STATIC;TW_NO_LIB_PRAGMA;TW_NO_DIRECT3D;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -127,7 +127,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Release/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -145,10 +145,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;TW_STATIC;TW_NO_LIB_PRAGMA;TW_NO_DIRECT3D;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -171,7 +171,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -189,10 +189,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;TW_STATIC;TW_NO_LIB_PRAGMA;TW_NO_DIRECT3D;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -215,7 +215,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -232,10 +232,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;TW_STATIC;TW_NO_LIB_PRAGMA;TW_NO_DIRECT3D;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -313,65 +313,71 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="C:\kestrel\src\core\Camera.cpp" />
+    <ClInclude Include="C:\kestrel\src\core\Camera.h" />
+    <ClInclude Include="C:\kestrel\src\core\ComputeShader.h" />
+    <ClCompile Include="C:\kestrel\src\core\Geometry.cpp" />
+    <ClInclude Include="C:\kestrel\src\core\Geometry.h" />
+    <ClCompile Include="C:\kestrel\src\core\Material.cpp" />
+    <ClInclude Include="C:\kestrel\src\core\Material.h" />
+    <ClCompile Include="C:\kestrel\src\core\Node.cpp" />
+    <ClInclude Include="C:\kestrel\src\core\Node.h" />
+    <ClCompile Include="C:\kestrel\src\core\Renderer.cpp" />
+    <ClInclude Include="C:\kestrel\src\core\Renderer.h" />
+    <ClCompile Include="C:\kestrel\src\core\Scene.cpp" />
+    <ClInclude Include="C:\kestrel\src\core\Scene.h" />
     <ClCompile Include="C:\kestrel\src\Brush.cpp" />
-    <ClCompile Include="C:\kestrel\src\Camera.cpp" />
-    <ClCompile Include="C:\kestrel\src\Chunk.cpp" />
-    <ClCompile Include="C:\kestrel\src\Chunks.cpp" />
-    <ClCompile Include="C:\kestrel\src\DirectionalLight.cpp" />
-    <ClCompile Include="C:\kestrel\src\Editor.cpp" />
-    <ClCompile Include="C:\kestrel\src\EditorCameraControl.cpp" />
-    <ClCompile Include="C:\kestrel\src\Entity.cpp" />
-    <ClCompile Include="C:\kestrel\src\FastNoise.cpp" />
-    <ClCompile Include="C:\kestrel\src\Field3.cpp" />
-    <ClCompile Include="C:\kestrel\src\Geometry.cpp" />
-    <ClCompile Include="C:\kestrel\src\Mask.cpp" />
-    <ClCompile Include="C:\kestrel\src\Material.cpp" />
-    <ClCompile Include="C:\kestrel\src\Mesh.cpp" />
-    <ClCompile Include="C:\kestrel\src\Mesher.cpp" />
-    <ClCompile Include="C:\kestrel\src\Node.cpp" />
-    <ClCompile Include="C:\kestrel\src\Noise.cpp" />
-    <ClCompile Include="C:\kestrel\src\NoiseMap2.cpp" />
-    <ClCompile Include="C:\kestrel\src\Raycast.cpp" />
-    <ClCompile Include="C:\kestrel\src\Renderer.cpp" />
-    <ClCompile Include="C:\kestrel\src\Runner.cpp" />
-    <ClCompile Include="C:\kestrel\src\Scene.cpp" />
-    <ClCompile Include="C:\kestrel\src\ShadowMap.cpp" />
-    <ClCompile Include="C:\kestrel\src\Terrian.cpp" />
     <ClInclude Include="C:\kestrel\src\Brush.h" />
-    <ClInclude Include="C:\kestrel\src\Camera.h" />
+    <ClCompile Include="C:\kestrel\src\Chunk.cpp" />
     <ClInclude Include="C:\kestrel\src\Chunk.h" />
+    <ClCompile Include="C:\kestrel\src\Chunks.cpp" />
     <ClInclude Include="C:\kestrel\src\Chunks.h" />
-    <ClInclude Include="C:\kestrel\src\ComputeShader.h" />
     <ClInclude Include="C:\kestrel\src\Data3.h" />
     <ClInclude Include="C:\kestrel\src\Density_SSBO.h" />
+    <ClCompile Include="C:\kestrel\src\DirectionalLight.cpp" />
     <ClInclude Include="C:\kestrel\src\DirectionalLight.h" />
     <ClInclude Include="C:\kestrel\src\Dispatcher.h" />
+    <ClCompile Include="C:\kestrel\src\Editor.cpp" />
     <ClInclude Include="C:\kestrel\src\Editor.h" />
+    <ClCompile Include="C:\kestrel\src\EditorCameraControl.cpp" />
     <ClInclude Include="C:\kestrel\src\EditorCameraControl.h" />
+    <ClCompile Include="C:\kestrel\src\Entity.cpp" />
     <ClInclude Include="C:\kestrel\src\Entity.h" />
+    <ClCompile Include="C:\kestrel\src\FastNoise.cpp" />
     <ClInclude Include="C:\kestrel\src\FastNoise.h" />
+    <ClCompile Include="C:\kestrel\src\Field3.cpp" />
     <ClInclude Include="C:\kestrel\src\Field3.h" />
-    <ClInclude Include="C:\kestrel\src\Geometry.h" />
     <ClInclude Include="C:\kestrel\src\MarchingCube.h" />
+    <ClCompile Include="C:\kestrel\src\Mask.cpp" />
     <ClInclude Include="C:\kestrel\src\Mask.h" />
-    <ClInclude Include="C:\kestrel\src\Material.h" />
+    <ClCompile Include="C:\kestrel\src\Mesh.cpp" />
     <ClInclude Include="C:\kestrel\src\Mesh.h" />
+    <ClCompile Include="C:\kestrel\src\Mesher.cpp" />
     <ClInclude Include="C:\kestrel\src\Mesher.h" />
-    <ClInclude Include="C:\kestrel\src\Node.h" />
+    <ClCompile Include="C:\kestrel\src\Noise.cpp" />
     <ClInclude Include="C:\kestrel\src\Noise.h" />
+    <ClCompile Include="C:\kestrel\src\NoiseMap2.cpp" />
     <ClInclude Include="C:\kestrel\src\NoiseMap2.h" />
+    <ClCompile Include="C:\kestrel\src\Raycast.cpp" />
     <ClInclude Include="C:\kestrel\src\Raycast.h" />
-    <ClInclude Include="C:\kestrel\src\Renderer.h" />
+    <ClCompile Include="C:\kestrel\src\Runner.cpp" />
     <ClInclude Include="C:\kestrel\src\Runner.h" />
-    <ClInclude Include="C:\kestrel\src\Scene.h" />
+    <ClCompile Include="C:\kestrel\src\Sculptor.m">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="C:\kestrel\src\ShadowMap.cpp" />
     <ClInclude Include="C:\kestrel\src\ShadowMap.h" />
+    <ClInclude Include="C:\kestrel\src\StandardGeometry.h" />
+    <ClCompile Include="C:\kestrel\src\Terrian.cpp" />
     <ClInclude Include="C:\kestrel\src\Terrian.h" />
     <ClInclude Include="C:\kestrel\src\Terrian2.h" />
     <ClInclude Include="C:\kestrel\src\VoxelGeometry.h" />
     <ClInclude Include="C:\kestrel\src\Worker.h" />
     <ClInclude Include="C:\kestrel\src\linalg.h" />
     <ClInclude Include="C:\kestrel\src\types.h" />
-    <ClInclude Include="src\StandardGeometry.h" />
     <None Include="C:\kestrel\shaders\voxel.fragmentshader" />
     <None Include="C:\kestrel\shaders\voxel.vertexshader" />
     <ClCompile Include="C:\kestrel\common\shader.cpp" />

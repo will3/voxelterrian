@@ -1,10 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\kestrel\src\Brush.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="C:\kestrel\src\core\Camera.cpp">
+      <Filter>src\core</Filter>
     </ClCompile>
-    <ClCompile Include="C:\kestrel\src\Camera.cpp">
+    <ClCompile Include="C:\kestrel\src\core\Geometry.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\kestrel\src\core\Material.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\kestrel\src\core\Node.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\kestrel\src\core\Renderer.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\kestrel\src\core\Scene.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\kestrel\src\Brush.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="C:\kestrel\src\Chunk.cpp">
@@ -31,22 +46,13 @@
     <ClCompile Include="C:\kestrel\src\Field3.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="C:\kestrel\src\Geometry.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="C:\kestrel\src\Mask.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\kestrel\src\Material.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="C:\kestrel\src\Mesh.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="C:\kestrel\src\Mesher.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\kestrel\src\Node.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="C:\kestrel\src\Noise.cpp">
@@ -58,13 +64,10 @@
     <ClCompile Include="C:\kestrel\src\Raycast.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="C:\kestrel\src\Renderer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="C:\kestrel\src\Runner.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="C:\kestrel\src\Scene.cpp">
+    <ClCompile Include="C:\kestrel\src\Sculptor.m">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="C:\kestrel\src\ShadowMap.cpp">
@@ -96,19 +99,34 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\kestrel\src\Brush.h">
-      <Filter>src</Filter>
+    <ClInclude Include="C:\kestrel\src\core\Camera.h">
+      <Filter>src\core</Filter>
     </ClInclude>
-    <ClInclude Include="C:\kestrel\src\Camera.h">
+    <ClInclude Include="C:\kestrel\src\core\ComputeShader.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\Geometry.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\Material.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\Node.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\Renderer.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\Scene.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\Brush.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Chunk.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Chunks.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\kestrel\src\ComputeShader.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Data3.h">
@@ -138,25 +156,16 @@
     <ClInclude Include="C:\kestrel\src\Field3.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="C:\kestrel\src\Geometry.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="C:\kestrel\src\MarchingCube.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Mask.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="C:\kestrel\src\Material.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="C:\kestrel\src\Mesh.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Mesher.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\kestrel\src\Node.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Noise.h">
@@ -168,16 +177,13 @@
     <ClInclude Include="C:\kestrel\src\Raycast.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="C:\kestrel\src\Renderer.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="C:\kestrel\src\Runner.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="C:\kestrel\src\Scene.h">
+    <ClInclude Include="C:\kestrel\src\ShadowMap.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="C:\kestrel\src\ShadowMap.h">
+    <ClInclude Include="C:\kestrel\src\StandardGeometry.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Terrian.h">
@@ -225,9 +231,6 @@
     <ClInclude Include="C:\kestrel\external\imgui\stb_truetype.h">
       <Filter>external\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="src\StandardGeometry.h">
-      <Filter>src</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\kestrel\CMakeLists.txt" />
@@ -258,6 +261,9 @@
     </Filter>
     <Filter Include="src">
       <UniqueIdentifier>{0F2C0649-6DA6-3C02-B0F4-52BF92612CCF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\core">
+      <UniqueIdentifier>{CF474511-E65B-3A34-98E9-FA2D9B9D229B}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -26,6 +26,7 @@ include_directories(
 	external/bullet-2.81-rev2613/src/
 	external/imgui
 	./src
+	./src/core
 	.
 )
 
@@ -43,7 +44,7 @@ add_definitions(
 	-D_CRT_SECURE_NO_WARNINGS
 )
 
-file(GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/src/*.cpp ${PROJECT_SOURCE_DIR}/src/*.h)
+file(GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/src/**/*.* ${PROJECT_SOURCE_DIR}/src/*.*)
 file(GLOB SHADER_FILES ${PROJECT_SOURCE_DIR}/shaders/*.*)
 file(GLOB EXTERNAL_FILES ${PROJECT_SOURCE_DIR}/external/imgui/*.*)
 
@@ -64,6 +65,7 @@ SOURCE_GROUP(common REGULAR_EXPRESSION ".*/common/.*" )
 SOURCE_GROUP(shaders REGULAR_EXPRESSION ".*/shaders/.*" )
 SOURCE_GROUP(tests REGULAR_EXPRESSION ".*/tests/.*" )
 SOURCE_GROUP(src REGULAR_EXPRESSION ".*/src/.*" )
+SOURCE_GROUP(src\\core REGULAR_EXPRESSION ".*/src/core/.*" )
 SOURCE_GROUP(external\\imgui REGULAR_EXPRESSION ".*/external/imgui/.*" )
 
 # test
