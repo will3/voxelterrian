@@ -3,7 +3,6 @@
 #include "FastNoise.h"
 #include "types.h"
 #include "Entity.h"
-#include "ComputeShader.h"
 #include "MarchingCube.h"
 #include "StandardGeometry.h"
 #include "StandardMaterial.h"
@@ -22,7 +21,7 @@ public:
 	Chunks *chunks = new Chunks();
 
 	Scene *scene;
-	float draw_distance = 128.0;
+	float draw_distance = 64.0;
 	float draw_height = 128.0;
 	float height_noise_y_scale = 0.4;
 	float height_noise_amplitude = 128.0;

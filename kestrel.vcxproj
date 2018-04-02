@@ -314,12 +314,11 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\kestrel\src\core\AmbientLight.h" />
-    <ClCompile Include="C:\kestrel\src\core\Camera.cpp" />
     <ClInclude Include="C:\kestrel\src\core\Camera.h" />
-    <ClInclude Include="C:\kestrel\src\core\ComputeShader.h" />
     <ClInclude Include="C:\kestrel\src\core\CopyPass.h" />
     <ClCompile Include="C:\kestrel\src\core\DirectionalLight.cpp" />
     <ClInclude Include="C:\kestrel\src\core\DirectionalLight.h" />
+    <ClInclude Include="C:\kestrel\src\core\EffectComposer.h" />
     <ClCompile Include="C:\kestrel\src\core\Geometry.cpp" />
     <ClInclude Include="C:\kestrel\src\core\Geometry.h" />
     <ClInclude Include="C:\kestrel\src\core\Material.h" />
@@ -327,6 +326,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\core\Mesh.h" />
     <ClCompile Include="C:\kestrel\src\core\Node.cpp" />
     <ClInclude Include="C:\kestrel\src\core\Node.h" />
+    <ClInclude Include="C:\kestrel\src\core\Pass.h" />
     <ClInclude Include="C:\kestrel\src\core\RenderPass.h" />
     <ClInclude Include="C:\kestrel\src\core\RenderTarget.h" />
     <ClCompile Include="C:\kestrel\src\core\Renderer.cpp" />

@@ -2,6 +2,7 @@
 #include "Renderer.h"
 #include <vector>
 #include "RenderTarget.h"
+#include "Pass.h"
 
 class EffectComposer {
 private:
@@ -24,9 +25,7 @@ public:
 		for (auto pass : passes) {
 			pass->render(renderer, writeBuffer, readBuffer);
 
-			if (pass->needsSwap) {
-				swapBuffers();
-			}
+			swapBuffers();
 		}
 	}
 
@@ -35,11 +34,4 @@ public:
 		readBuffer = writeBuffer;
 		writeBuffer = temp;
 	}
-};
-
-class Pass {
-public:
-	bool renderToScreen = false;
-	bool needsSwap = true;
-	virtual void render(Renderer *renderer, RenderTarget *writeBuffer, RenderTarget *readBuffer) {}
 };

@@ -9,22 +9,27 @@
 class Renderer {
 public:
 	GLuint VertexArrayID;
-	RenderTarget *currentRenderTarget;
 	
 	void render(Scene *scene, Camera *camera) {
 		render(scene, camera, 0);
 	}
 
 	void render(Scene *scene, Camera *camera, RenderTarget *renderTarget) {
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 		if (renderTarget != 0) {
-			currentRenderTarget = renderTarget;
-			glBindFramebuffer(GL_FRAMEBUFFER, renderTarget->FramebufferName);
+			if (!renderTarget->loaded) {
+				renderTarget->load();
+				renderTarget->loaded = true;
+			}
 		}
-		else {
+
+		if (renderTarget == 0) {
 			glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		}
+		else {
+			glBindFramebuffer(GL_FRAMEBUFFER, renderTarget->FramebufferName);
+		}
+
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		if (camera != 0) {
 			camera->update_view_matrix();

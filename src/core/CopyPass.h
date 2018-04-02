@@ -1,12 +1,17 @@
 #pragma once
-#include "EffectComposer.h"
+
+#include "Pass.h"
 #include "common\shader.hpp"
-#include "RenderTarget.h"
+#include "Scene.h"
 
 class CopyPass : public Pass {
-	GLuint quad_programID;
+
+private:
+
+	GLuint programID;
 	GLuint texID;
 	GLuint quad_vertexbuffer;
+	GLuint MatrixID;
 
 	void load() {
 		// The fullscreen quad's FBO
@@ -24,15 +29,24 @@ class CopyPass : public Pass {
 		glBufferData(GL_ARRAY_BUFFER, sizeof(g_quad_vertex_buffer_data), g_quad_vertex_buffer_data, GL_STATIC_DRAW);
 
 		// Create and compile our GLSL program from the shaders
-		quad_programID = LoadShaders("shaders/copy.vertexshader", "shaders/copy.fragmentshader");
-		texID = glGetUniformLocation(quad_programID, "renderedTexture");
+		programID = LoadShaders("shaders/copy.vertexshader", "shaders/copy.fragmentshader");
+		texID = glGetUniformLocation(programID, "renderedTexture");
+		MatrixID = glGetUniformLocation(programID, "MVP");
+	}
+
+public:
+
+	Scene *scene = new Scene();
+	Camera *camera = new OrthographicCamera(-1, 1, -1, 1, 0, 1);
+
+	CopyPass() {
+		load();
+	}
+	~CopyPass() {
+		delete scene;
 	}
 
 	void render(Renderer *renderer, RenderTarget *writeBuffer, RenderTarget *readBuffer) override {
-		glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 		if (renderToScreen) {
 			glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		}
@@ -40,9 +54,15 @@ class CopyPass : public Pass {
 			glBindFramebuffer(GL_FRAMEBUFFER, writeBuffer->FramebufferName);
 		}
 
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 		// Use our shader
-		glUseProgram(quad_programID);
-	
+		glUseProgram(programID);
+
+		glm::mat4 MVP = camera->Projection * camera->View;
+
+		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
+
 		// Bind our texture in Texture Unit 0
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, readBuffer->renderedTexture);

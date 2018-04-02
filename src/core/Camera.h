@@ -6,24 +6,52 @@
 
 class Camera {
 public:
+	virtual void update_projection_matrix() {};
+	virtual void update_view_matrix() {};
+	glm::vec3 position = glm::vec3(0, 0, 0);
+	glm::vec3 target = glm::vec3(0, 0, 1);
+	glm::vec3 up = glm::vec3(0, 1, 0);
+	glm::mat4 Projection;
+	glm::mat4 View;
+};
+
+class PerspectiveCamera : public Camera {
+public:
 	float fov;
 	float ratio;
 	float near;
 	float far;
 
-	Camera(float fov, float ratio, float near, float far);
+	PerspectiveCamera(float fov, float ratio, float near, float far) : fov(fov), ratio(ratio), near(near), far(far) {
+		update_projection_matrix();
+	};
 
-	void update_projection_matrix();
+	void update_projection_matrix() override {
+		Projection = glm::perspective(glm::radians(fov), ratio, near, far);
+	}
 
-	// Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
-	glm::mat4 Projection;
+	void update_view_matrix() override {
+		View = glm::lookAt(position, target, up);
+	}
+};
 
-	// Camera matrix
-	glm::mat4 View;
+class OrthographicCamera : public Camera {
+public:
+	float left;
+	float right;
+	float bottom;
+	float top;
+	float near;
+	float far;
 
-	glm::vec3 position = glm::vec3(0, 200, -200);
-	glm::vec3 target = glm::vec3(0, 0, 0);
-	glm::vec3 up = glm::vec3(0, 1, 0);
-
-	void update_view_matrix();
+	OrthographicCamera(float left, float right, float bottom, float top, float near, float far) :
+		left(left), right(right), bottom(bottom), top(top), near(near), far(far) {
+		update_projection_matrix();
+	};
+	void update_projection_matrix() override {
+		Projection = glm::ortho<float>(left, right, bottom, top, near, far);
+	}
+	void update_view_matrix() override {
+		View = glm::lookAt(position, target, up);
+	}
 };

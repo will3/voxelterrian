@@ -24,6 +24,9 @@
 #include "Dispatcher.h"
 #include "Terrian2.h"
 #include "VoxelMaterial.h"
+#include "EffectComposer.h"
+#include "CopyPass.h"
+#include "RenderPass.h"
 
 using namespace glm;
 using namespace std::chrono;
@@ -63,7 +66,7 @@ int main() {
 	Dispatcher *dispatcher = new Dispatcher();
 	Runner *runner = new Runner();
 	float ratio = width / (float)height;
-	Camera *camera = new Camera(60, ratio, 0.1f, 1000.0f);
+	Camera *camera = new PerspectiveCamera(60, ratio, 0.1f, 1000.0f);
 	Scene *scene = new Scene();
 	DirectionalLight *light = new DirectionalLight();
 	scene->add(light);
@@ -101,6 +104,14 @@ int main() {
 
 	Editor *editor = new Editor();
 
+	EffectComposer *composer = new EffectComposer(renderer);
+	RenderPass *renderPass = new RenderPass(scene, camera);
+	composer->add_pass(renderPass);
+
+	CopyPass *copyPass = new CopyPass();
+	composer->add_pass(copyPass);
+	copyPass->renderToScreen = true;
+
 	do {
 		glfwPollEvents();
 
@@ -112,7 +123,8 @@ int main() {
 
 		dispatcher->update();
 		runner->update();
-		renderer->render(scene, camera);
+
+		composer->render();
 
 		ImGui::Render();
 		ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
