@@ -108,7 +108,13 @@
     <ClInclude Include="C:\kestrel\src\Chunks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="C:\kestrel\src\ComputeShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="C:\kestrel\src\Data3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\Density_SSBO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\DirectionalLight.h">
@@ -174,6 +180,9 @@
     <ClInclude Include="C:\kestrel\src\Terrian.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="C:\kestrel\src\Terrian2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="C:\kestrel\src\Worker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -210,17 +219,12 @@
     <ClInclude Include="C:\kestrel\external\imgui\stb_truetype.h">
       <Filter>external\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="src\Density_SSBO.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ComputeShader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\kestrel\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="C:\kestrel\shaders\density_field_to_iso.compute" />
     <None Include="C:\kestrel\shaders\voxel.fragmentshader">
       <Filter>shaders</Filter>
     </None>
@@ -247,10 +251,5 @@
     <Filter Include="shaders">
       <UniqueIdentifier>{CEA7EFAA-A83A-3017-BA13-7318A7FEA30D}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="shaders\density_field_to_iso.compute">
-      <Filter>shaders</Filter>
-    </FxCompile>
   </ItemGroup>
 </Project>
