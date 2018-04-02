@@ -93,7 +93,7 @@ int main() {
 		Terrian2 *terrian2 = new Terrian2();
 		runner->add(terrian2);
 		terrian2->scene = scene;
-		camera->position = glm::vec3(0, 0, -10);
+		camera->position = glm::vec3(0, 200, -200);
 		camera->target = glm::vec3(0, 0, 0);
 	}
 	

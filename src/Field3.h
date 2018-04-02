@@ -1,10 +1,6 @@
 #pragma once
 #include <limits>
 
-bool fast_equal(int i, float f) {
-	return abs(i - f) < 0.0001;
-}
-
 template <typename T>
 class Field3 {
 private:
@@ -23,6 +19,10 @@ public:
 	void set(int i, int j, int k, T v) {
 		int index = i * size * size + j * size + k;
 		data[index] = v;
+	}
+
+	T sample(float i, float j, float k, float scale) {
+		return sample(i / scale, j / scale, k / scale);
 	}
 
 	T sample(float i, float j, float k) {
@@ -55,5 +55,9 @@ public:
 			((e * ri + f * ri2) * rj + (g * ri + h * ri2) * rj2) * rk2;
 
 		return v;
+	}
+
+	bool fast_equal(int i, float f) {
+		return abs(i - f) < 0.0001;
 	}
 };

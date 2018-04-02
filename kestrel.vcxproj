@@ -313,6 +313,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="C:\kestrel\src\core\AmbientLight.h" />
     <ClCompile Include="C:\kestrel\src\core\Camera.cpp" />
     <ClInclude Include="C:\kestrel\src\core\Camera.h" />
     <ClInclude Include="C:\kestrel\src\core\ComputeShader.h" />
@@ -369,7 +370,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\Worker.h" />
     <ClInclude Include="C:\kestrel\src\linalg.h" />
     <ClInclude Include="C:\kestrel\src\types.h" />
-    <ClInclude Include="src\core\AmbientLight.h" />
     <None Include="C:\kestrel\shaders\standard.fragmentshader" />
     <None Include="C:\kestrel\shaders\standard.vertexshader" />
     <None Include="C:\kestrel\shaders\voxel.fragmentshader" />

@@ -38,6 +38,8 @@ public:
 
 	voxel_type get(Coord3 coord);
 
+	voxel_type get(Coord3 coord, voxel_type out_of_bound_value);
+
 	voxel_type get_global(Coord3 coord);
 
 	void set(Coord3 coord, voxel_type v);

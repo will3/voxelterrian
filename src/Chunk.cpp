@@ -5,9 +5,17 @@
 #include "ShadowMap.h"
 
 voxel_type Chunk::get(Coord3 coord) {
-	if (data.size() == 0) {
-		return 0;
+	int index = coord.i * CHUNK_SIZE * CHUNK_SIZE + coord.j * CHUNK_SIZE + coord.k;
+	return data[index];
+}
+
+voxel_type Chunk::get(Coord3 coord, voxel_type out_of_bound_value) {
+	if (coord.i < 0 || coord.i >= CHUNK_SIZE ||
+		coord.j < 0 || coord.j >= CHUNK_SIZE ||
+		coord.k < 0 || coord.k >= CHUNK_SIZE) {
+		return out_of_bound_value;
 	}
+
 	int index = coord.i * CHUNK_SIZE * CHUNK_SIZE + coord.j * CHUNK_SIZE + coord.k;
 	return data[index];
 }

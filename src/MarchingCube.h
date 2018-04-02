@@ -92,7 +92,7 @@ static void triangle(int a, int b, int c, std::vector<Vertex> &vertices) {
 }
 
 static void do_edge(int n_edge, float va, float vb, int axis, const Vec3f &base, std::array<int, 12> &edge_indices, std::vector<Vertex> &vertices) {
-	if ((va == 0.0) == (vb == 0.0))
+	if ((va > 0.5) == (vb > 0.5))
 		return;
 
 	Vec3f v = base;
@@ -105,29 +105,29 @@ static void do_edge(int n_edge, float va, float vb, int axis, const Vec3f &base,
 static void generate_geometry(Chunk *chunk, std::vector<Vertex> &vertices, std::vector<int> &indices)
 {
 	int size = CHUNK_SIZE;
-	for (int z = 0; z < size - 1; z++) {
-		for (int y = 0; y < size - 1; y++) {
-			for (int x = 0; x < size - 1; x++) {
-				const float vs[8] = {
-					chunk->get({ x,   y,   z }),
-					chunk->get({ x + 1, y,   z }),
-					chunk->get({ x,   y + 1, z }),
-					chunk->get({ x + 1, y + 1, z }),
-					chunk->get({ x,   y,   z + 1 }),
-					chunk->get({ x + 1, y,   z + 1 }),
-					chunk->get({ x,   y + 1, z + 1 }),
-					chunk->get({ x + 1, y + 1, z + 1 })
+	for (int z = -1; z < size; z++) {
+		for (int y = -1; y < size; y++) {
+			for (int x = -1; x < size; x++) {
+				const int vs[8] = {
+					chunk->get_global({ x,   y,   z }),
+					chunk->get_global({ x + 1, y,   z }),
+					chunk->get_global({ x,   y + 1, z }),
+					chunk->get_global({ x + 1, y + 1, z }),
+					chunk->get_global({ x,   y,   z + 1 }),
+					chunk->get_global({ x + 1, y,   z + 1 }),
+					chunk->get_global({ x,   y + 1, z + 1 }),
+					chunk->get_global({ x + 1, y + 1, z + 1 })
 				};
 
 				const int config_n =
-					((vs[0] == 0) << 0) |
-					((vs[1] == 0) << 1) |
-					((vs[2] == 0) << 2) |
-					((vs[3] == 0) << 3) |
-					((vs[4] == 0) << 4) |
-					((vs[5] == 0) << 5) |
-					((vs[6] == 0) << 6) |
-					((vs[7] == 0) << 7);
+					((vs[0] > 0.5) << 0) |
+					((vs[1] > 0.5) << 1) |
+					((vs[2] > 0.5) << 2) |
+					((vs[3] > 0.5) << 3) |
+					((vs[4] > 0.5) << 4) |
+					((vs[5] > 0.5) << 5) |
+					((vs[6] > 0.5) << 6) |
+					((vs[7] > 0.5) << 7);
 
 				if (config_n == 0 || config_n == 255)
 					continue;
@@ -169,6 +169,8 @@ static void generate_geometry(Chunk *chunk, std::vector<Vertex> &vertices, std::
 			}
 		}
 	}
-	for (Vertex &v : vertices)
+	for (Vertex &v : vertices) {
 		v.normal = normalize(v.normal);
+		v.normal = v.normal * -1.0f;
+	}
 }

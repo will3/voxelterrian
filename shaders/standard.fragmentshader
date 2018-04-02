@@ -15,5 +15,4 @@ void main()
 	vec3 ambient = ambient_light;
 
 	color = fragmentColor * cosTheta + ambient;
-
 }

@@ -161,13 +161,6 @@ Terrian::Terrian()
 
 	canyon_noise->get_noise()->SetFractalType(FastNoise::RigidMulti);
 	canyon_noise->get_noise()->SetFractalOctaves(1);
-
-	for (auto mark : rock_color_gradient->getMarks()) {
-		rock_color_gradient->removeMark(mark);
-	}
-
-	rock_color_gradient->addMark(0.0, ImColor(255, 255, 255));
-	rock_color_gradient->addMark(1.0, ImColor(255, 255, 255));
 }
 
 Terrian::~Terrian()
@@ -180,7 +173,6 @@ void Terrian::rasterize_height(Chunk * chunk) {
 
 	int noise_size = 17;
 	Field3<float> field = Field3<float>(noise_size);
-	//Field3<float> canyon_field = Field3<float>(noise_size);
 
 	for (int i = 0; i < noise_size; i++) {
 		for (int j = 0; j < noise_size; j++) {
@@ -190,31 +182,6 @@ void Terrian::rasterize_height(Chunk * chunk) {
 				float j_offset = overhang_noise->get_noise()->GetSimplexFractal(coord.i, coord.j, coord.k);
 				float fractal = height_noise->get_noise()->GetSimplexFractal(coord.i + j_offset, coord.j * height_noise->y_scale, coord.k + j_offset);
 				float density = fractal * height_noise->amplitude - coord.j;
-
-				//if (density > 1.0) {
-				//	density = 1.0;
-				//}
-
-				//float canyon = canyon_noise->get_noise()->GetSimplexFractal(coord.i, coord.j * 0.0, coord.k);
-
-				//canyon = (canyon + 1) * 0.5;
-
-				//canyon_field.set(i, j, k, canyon);
-
-				//float ratio = 1 - ((canyon - 0.8) / 0.2);
-
-				//density *= ratio;
-
-		/*		float ratio = 1 - (canyon - 0.8) / (1 - 0.8);
-				if (ratio > 1.0) {
-					ratio = 1.0;
-				}
-
-				if (ratio < 0.0) {
-					ratio = 0.0;
-				}*/
-
-				//float density = height_noise->noise->GetSimplexFractal(coord.i, coord.j * 0.4, coord.k) * 128.0 - coord.j;
 				field.set(i, j, k, density);
 			}
 		}
@@ -224,12 +191,6 @@ void Terrian::rasterize_height(Chunk * chunk) {
 		for (int j = 0; j < CHUNK_SIZE; j++) {
 			for (int k = 0; k < CHUNK_SIZE; k++) {
 				Coord3 chunk_coord = Coord3(i, j, k) + offset;
-	/*			float canyon = canyon_field.sample(i * 0.5, j * 0.5, k * 0.5);
-
-				if (canyon > 0.8) {
-					continue;
-				}
-*/
 				float density = field.sample(i * 0.5, j * 0.5, k * 0.5);
 
 				if (density > 0.5) {
@@ -238,17 +199,6 @@ void Terrian::rasterize_height(Chunk * chunk) {
 					rock_color_gradient->getColorAt(chunk_coord.j / max_height, color.data());
 					chunk->set_color({ i,j,k }, UINT8_C(color[0] * 255), UINT8_C(color[1] * 255), UINT8_C(color[2] * 255));
 				}
-
-				/*chunk->set({ i, j, k }, density > 0.5 ? 1 : 0);
-
-				if (density > 0.5 ) {
-					if (canyon > 0.8) {
-						chunk->set_color({ i,j,k }, UINT8_C(255), UINT8_C(0), UINT8_C(0));
-					}
-					else {
-						chunk->set_color({ i,j,k }, UINT8_C(255), UINT8_C(255), UINT8_C(255));
-					}
-				}*/
 			}
 		}
 	}
