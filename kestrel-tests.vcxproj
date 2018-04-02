@@ -352,7 +352,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\FastNoise.h" />
     <ClInclude Include="C:\kestrel\src\Field3.h" />
     <ClInclude Include="C:\kestrel\src\Geometry.h" />
-    <ClInclude Include="C:\kestrel\src\LambertGeometry.h" />
     <ClInclude Include="C:\kestrel\src\MarchingCube.h" />
     <ClInclude Include="C:\kestrel\src\Mask.h" />
     <ClInclude Include="C:\kestrel\src\Material.h" />
