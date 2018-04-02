@@ -7,13 +7,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 void Renderer::render(Scene * scene, Camera * camera) {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	camera->update_view_matrix();
-	for (Node *node : scene->nodes) {
-		node->update_matrix();
-		node->render(camera);
-	}
+	scene->render(camera);
 }
 
 void Renderer::start_window(int width, int height) {
@@ -62,6 +56,9 @@ void Renderer::start_window(int width, int height) {
 	glDepthFunc(GL_LESS);
 	// Cull triangles which normal is not towards the camera
 	glEnable(GL_CULL_FACE);
+
+	// But on MacOS X with a retina screen it'll be 1024*2 and 768*2, so we get the actual framebuffer size:
+	glfwGetFramebufferSize(window, &window_width, &window_height);
 }
 
 Renderer::Renderer()

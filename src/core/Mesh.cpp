@@ -2,6 +2,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include "Material.h"
+#include "Scene.h"
 
 Mesh::Mesh(Geometry * geometry, Material * material) : geometry(geometry), material(material)
 {
@@ -28,12 +29,13 @@ void Mesh::render(Camera * camera) {
 		material->loaded = true;
 	}
 
-	// Use our shader
-	glUseProgram(material->programID);
+	if (!scene->override_material) {
+		glUseProgram(material->programID);
 
-	material->current_node = this;
-	material->current_camera = camera;
-	material->bind_uniforms();
+		material->current_node = this;
+		material->current_camera = camera;
+		material->bind_uniforms();
+	}
 
 	geometry->bind();
 

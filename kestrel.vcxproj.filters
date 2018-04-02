@@ -120,12 +120,6 @@
     <ClInclude Include="C:\kestrel\src\core\Scene.h">
       <Filter>src\core</Filter>
     </ClInclude>
-    <ClInclude Include="C:\kestrel\src\core\ShadowMap.h">
-      <Filter>src\core</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\kestrel\src\core\ShadowMaterial.h">
-      <Filter>src\core</Filter>
-    </ClInclude>
     <ClInclude Include="C:\kestrel\src\core\StandardGeometry.h">
       <Filter>src\core</Filter>
     </ClInclude>
@@ -233,10 +227,28 @@
     <CustomBuild Include="C:\kestrel\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="C:\kestrel\shaders\shadow.fragmentshader">
+    <None Include="C:\kestrel\shaders\DepthRTT.fragmentshader">
       <Filter>shaders</Filter>
     </None>
-    <None Include="C:\kestrel\shaders\shadow.vertexshader">
+    <None Include="C:\kestrel\shaders\DepthRTT.vertexshader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="C:\kestrel\shaders\Passthrough.vertexshader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="C:\kestrel\shaders\ShadowMapping.fragmentshader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="C:\kestrel\shaders\ShadowMapping.vertexshader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="C:\kestrel\shaders\ShadowMapping_SimpleVersion.fragmentshader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="C:\kestrel\shaders\ShadowMapping_SimpleVersion.vertexshader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="C:\kestrel\shaders\SimpleTexture.fragmentshader">
       <Filter>shaders</Filter>
     </None>
     <None Include="C:\kestrel\shaders\standard.fragmentshader">

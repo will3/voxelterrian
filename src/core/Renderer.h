@@ -11,6 +11,8 @@ public:
 	void render(Scene *scene, Camera *camera);
 	void start_window(int width, int height);
 	GLFWwindow * window;
+	int window_width;
+	int window_height;
 	Renderer();
 	~Renderer();
 };
