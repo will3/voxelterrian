@@ -99,6 +99,9 @@
     <ClInclude Include="C:\kestrel\src\core\ComputeShader.h">
       <Filter>src\core</Filter>
     </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\CopyPass.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
     <ClInclude Include="C:\kestrel\src\core\DirectionalLight.h">
       <Filter>src\core</Filter>
     </ClInclude>
@@ -112,6 +115,12 @@
       <Filter>src\core</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\core\Node.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\RenderPass.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\RenderTarget.h">
       <Filter>src\core</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\core\Renderer.h">
@@ -227,28 +236,10 @@
     <CustomBuild Include="C:\kestrel\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="C:\kestrel\shaders\DepthRTT.fragmentshader">
+    <None Include="C:\kestrel\shaders\copy.fragmentshader">
       <Filter>shaders</Filter>
     </None>
-    <None Include="C:\kestrel\shaders\DepthRTT.vertexshader">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="C:\kestrel\shaders\Passthrough.vertexshader">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="C:\kestrel\shaders\ShadowMapping.fragmentshader">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="C:\kestrel\shaders\ShadowMapping.vertexshader">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="C:\kestrel\shaders\ShadowMapping_SimpleVersion.fragmentshader">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="C:\kestrel\shaders\ShadowMapping_SimpleVersion.vertexshader">
-      <Filter>shaders</Filter>
-    </None>
-    <None Include="C:\kestrel\shaders\SimpleTexture.fragmentshader">
+    <None Include="C:\kestrel\shaders\copy.vertexshader">
       <Filter>shaders</Filter>
     </None>
     <None Include="C:\kestrel\shaders\standard.fragmentshader">

@@ -1,0 +1,7 @@
+varying vec2 vUv;
+uniform mat4 MVP;
+
+void main() {
+	vUv = uv;
+	gl_Position = MVP * vec4( position, 1.0 );
+};

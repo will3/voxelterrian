@@ -6,10 +6,6 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-void Renderer::render(Scene * scene, Camera * camera) {
-	scene->render(camera);
-}
-
 void Renderer::start_window(int width, int height) {
 	// Initialise GLFW
 	if (!glfwInit())

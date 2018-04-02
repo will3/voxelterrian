@@ -317,6 +317,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\kestrel\src\core\Camera.cpp" />
     <ClInclude Include="C:\kestrel\src\core\Camera.h" />
     <ClInclude Include="C:\kestrel\src\core\ComputeShader.h" />
+    <ClInclude Include="C:\kestrel\src\core\CopyPass.h" />
     <ClCompile Include="C:\kestrel\src\core\DirectionalLight.cpp" />
     <ClInclude Include="C:\kestrel\src\core\DirectionalLight.h" />
     <ClCompile Include="C:\kestrel\src\core\Geometry.cpp" />
@@ -326,6 +327,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\core\Mesh.h" />
     <ClCompile Include="C:\kestrel\src\core\Node.cpp" />
     <ClInclude Include="C:\kestrel\src\core\Node.h" />
+    <ClInclude Include="C:\kestrel\src\core\RenderPass.h" />
+    <ClInclude Include="C:\kestrel\src\core\RenderTarget.h" />
     <ClCompile Include="C:\kestrel\src\core\Renderer.cpp" />
     <ClInclude Include="C:\kestrel\src\core\Renderer.h" />
     <ClCompile Include="C:\kestrel\src\core\Scene.cpp" />
@@ -370,14 +373,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\Worker.h" />
     <ClInclude Include="C:\kestrel\src\linalg.h" />
     <ClInclude Include="C:\kestrel\src\types.h" />
-    <None Include="C:\kestrel\shaders\DepthRTT.fragmentshader" />
-    <None Include="C:\kestrel\shaders\DepthRTT.vertexshader" />
-    <None Include="C:\kestrel\shaders\Passthrough.vertexshader" />
-    <None Include="C:\kestrel\shaders\ShadowMapping.fragmentshader" />
-    <None Include="C:\kestrel\shaders\ShadowMapping.vertexshader" />
-    <None Include="C:\kestrel\shaders\ShadowMapping_SimpleVersion.fragmentshader" />
-    <None Include="C:\kestrel\shaders\ShadowMapping_SimpleVersion.vertexshader" />
-    <None Include="C:\kestrel\shaders\SimpleTexture.fragmentshader" />
+    <None Include="C:\kestrel\shaders\copy.fragmentshader" />
+    <None Include="C:\kestrel\shaders\copy.vertexshader" />
     <None Include="C:\kestrel\shaders\standard.fragmentshader" />
     <None Include="C:\kestrel\shaders\standard.vertexshader" />
     <None Include="C:\kestrel\shaders\voxel.fragmentshader" />

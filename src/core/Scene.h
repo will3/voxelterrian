@@ -27,17 +27,4 @@ public:
 			ambient_lights.insert(ambientLight);
 		}
 	}
-
-	virtual void render(Camera *camera) {
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-		if (camera != 0) {
-			camera->update_view_matrix();
-		}
-
-		for (Node *node : nodes) {
-			node->update_matrix();
-			node->render(camera);
-		}
-	}
 };
