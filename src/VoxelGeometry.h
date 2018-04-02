@@ -12,14 +12,14 @@ public:
 	std::vector<GLint> colors;
 	std::vector<GLint> lighting;
 
-	void unload_vbo() {
+	void unload() {
 		glDeleteBuffers(1, &vertexbuffer);
 		glDeleteBuffers(1, &colorbuffer);
 		glDeleteBuffers(1, &lightingbuffer);
 		glDeleteBuffers(1, &elementbuffer);
 	}
 
-	void load_vbo() {
+	void load() {
 		glGenBuffers(1, &vertexbuffer);
 		glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLint), vertices.data(), GL_STATIC_DRAW);
@@ -39,7 +39,7 @@ public:
 		loaded = true;
 	}
 
-	void bind_vbo()
+	void bind()
 	{
 		glEnableVertexAttribArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -56,7 +56,7 @@ public:
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
 	}
 
-	void unbind_vbo()
+	void unbind()
 	{
 		glDisableVertexAttribArray(0);
 		glDisableVertexAttribArray(1);
