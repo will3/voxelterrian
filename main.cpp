@@ -23,6 +23,7 @@
 #include "Editor.h"
 #include "Dispatcher.h"
 #include "Terrian2.h"
+#include "VoxelMaterial.h"
 
 using namespace glm;
 using namespace std::chrono;
@@ -65,7 +66,7 @@ int main() {
 	float ratio = width / (float)height;
 	Camera *camera = new Camera(60, ratio, 0.1f, 1000.0f);
 	Scene *scene = new Scene();
-	Material *material = new Material();
+	VoxelMaterial *material = new VoxelMaterial();
 	EditorCameraControl *camera_control = new EditorCameraControl();
 
 	Terrian *terrian;

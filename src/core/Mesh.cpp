@@ -23,6 +23,11 @@ void Mesh::render(Camera * camera) {
 		geometry->loaded = true;
 	}
 
+	if (!material->loaded) {
+		material->load();
+		material->loaded = true;
+	}
+
 	// Use our shader
 	glUseProgram(material->programID);
 

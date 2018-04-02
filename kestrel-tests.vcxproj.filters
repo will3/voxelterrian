@@ -7,7 +7,7 @@
     <ClCompile Include="C:\kestrel\src\core\Geometry.cpp">
       <Filter>src\core</Filter>
     </ClCompile>
-    <ClCompile Include="C:\kestrel\src\core\Material.cpp">
+    <ClCompile Include="C:\kestrel\src\core\Mesh.cpp">
       <Filter>src\core</Filter>
     </ClCompile>
     <ClCompile Include="C:\kestrel\src\core\Node.cpp">
@@ -47,9 +47,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="C:\kestrel\src\Mask.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\kestrel\src\Mesh.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="C:\kestrel\src\Mesher.cpp">
@@ -129,6 +126,9 @@
     <ClInclude Include="C:\kestrel\src\core\Material.h">
       <Filter>src\core</Filter>
     </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\Mesh.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
     <ClInclude Include="C:\kestrel\src\core\Node.h">
       <Filter>src\core</Filter>
     </ClInclude>
@@ -136,6 +136,12 @@
       <Filter>src\core</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\core\Scene.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\StandardGeometry.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\StandardMaterial.h">
       <Filter>src\core</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Brush.h">
@@ -180,9 +186,6 @@
     <ClInclude Include="C:\kestrel\src\Mask.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="C:\kestrel\src\Mesh.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="C:\kestrel\src\Mesher.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -211,6 +214,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\VoxelGeometry.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\VoxelMaterial.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Worker.h">

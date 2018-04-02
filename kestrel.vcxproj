@@ -318,14 +318,17 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\core\ComputeShader.h" />
     <ClCompile Include="C:\kestrel\src\core\Geometry.cpp" />
     <ClInclude Include="C:\kestrel\src\core\Geometry.h" />
-    <ClCompile Include="C:\kestrel\src\core\Material.cpp" />
     <ClInclude Include="C:\kestrel\src\core\Material.h" />
+    <ClCompile Include="C:\kestrel\src\core\Mesh.cpp" />
+    <ClInclude Include="C:\kestrel\src\core\Mesh.h" />
     <ClCompile Include="C:\kestrel\src\core\Node.cpp" />
     <ClInclude Include="C:\kestrel\src\core\Node.h" />
     <ClCompile Include="C:\kestrel\src\core\Renderer.cpp" />
     <ClInclude Include="C:\kestrel\src\core\Renderer.h" />
     <ClCompile Include="C:\kestrel\src\core\Scene.cpp" />
     <ClInclude Include="C:\kestrel\src\core\Scene.h" />
+    <ClInclude Include="C:\kestrel\src\core\StandardGeometry.h" />
+    <ClInclude Include="C:\kestrel\src\core\StandardMaterial.h" />
     <ClCompile Include="C:\kestrel\src\Brush.cpp" />
     <ClInclude Include="C:\kestrel\src\Brush.h" />
     <ClCompile Include="C:\kestrel\src\Chunk.cpp" />
@@ -350,8 +353,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\MarchingCube.h" />
     <ClCompile Include="C:\kestrel\src\Mask.cpp" />
     <ClInclude Include="C:\kestrel\src\Mask.h" />
-    <ClCompile Include="C:\kestrel\src\Mesh.cpp" />
-    <ClInclude Include="C:\kestrel\src\Mesh.h" />
     <ClCompile Include="C:\kestrel\src\Mesher.cpp" />
     <ClInclude Include="C:\kestrel\src\Mesher.h" />
     <ClCompile Include="C:\kestrel\src\Noise.cpp" />
@@ -375,6 +376,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\Terrian.h" />
     <ClInclude Include="C:\kestrel\src\Terrian2.h" />
     <ClInclude Include="C:\kestrel\src\VoxelGeometry.h" />
+    <ClInclude Include="C:\kestrel\src\VoxelMaterial.h" />
     <ClInclude Include="C:\kestrel\src\Worker.h" />
     <ClInclude Include="C:\kestrel\src\linalg.h" />
     <ClInclude Include="C:\kestrel\src\types.h" />
