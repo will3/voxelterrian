@@ -1,4 +1,4 @@
-#include "ShadowMap.h"
+#include "VoxelShadowMap.h"
 #include "Raycast.h"
 
 bool calc_light(DirectionalLight *light, Chunks *chunks, Coord3 coord) {
@@ -38,7 +38,7 @@ int calc_light(DirectionalLight *light, Chunk *chunk, Chunks *chunks, int d, int
 	return max_light_value;
 }
 
-void ShadowMap::calc_shadow(Chunk * chunk, DirectionalLight *light)
+void VoxelShadowMap::calc_shadow(Chunk * chunk, DirectionalLight *light)
 {
 	for (int d = 0; d < 3; d++) {
 		for (int i = 0; i <= CHUNK_SIZE; i++) {
@@ -75,11 +75,11 @@ void ShadowMap::calc_shadow(Chunk * chunk, DirectionalLight *light)
 	}
 }
 
-void ShadowMap::set(Coord3 coord, int d, int front, int v) {
+void VoxelShadowMap::set(Coord3 coord, int d, int front, int v) {
 	total[coord] += v;
 	count[coord] += 1.0;
 }
 
-int ShadowMap::get(Coord3 coord) {
+int VoxelShadowMap::get(Coord3 coord) {
 	return total[coord] / count[coord];
 }

@@ -2,7 +2,7 @@
 #include "DirectionalLight.h"
 #include "Chunks.h"
 #include "Brush.h"
-#include "ShadowMap.h"
+#include "VoxelShadowMap.h"
 
 voxel_type Chunk::get(Coord3 coord) {
 	int index = coord.i * CHUNK_SIZE * CHUNK_SIZE + coord.j * CHUNK_SIZE + coord.k;
@@ -63,7 +63,7 @@ Chunk::Chunk(Coord3 origin)
 
 	data.resize(CHUNK_SIZE * CHUNK_SIZE * CHUNK_SIZE);
 	data_color.resize(CHUNK_SIZE * CHUNK_SIZE * CHUNK_SIZE * 3);
-	shadow_map = new ShadowMap();
+	shadow_map = new VoxelShadowMap();
 }
 
 Chunk::~Chunk()
@@ -108,7 +108,7 @@ void Chunk::calc_light(DirectionalLight * light) {
 		delete shadow_map;
 	}
 
-	shadow_map = new ShadowMap();
+	shadow_map = new VoxelShadowMap();
 	shadow_map->calc_shadow(this, light);
 
 	light_calculated = true;

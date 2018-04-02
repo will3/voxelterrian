@@ -5,7 +5,7 @@
 #include "types.h"
 #include "Brush.h"
 
-class ShadowMap {
+class VoxelShadowMap {
 private:
 	std::unordered_map<Coord3, float> total;
 	std::unordered_map<Coord3, float> count;

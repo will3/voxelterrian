@@ -61,10 +61,10 @@
     <ClCompile Include="C:\kestrel\src\Runner.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="C:\kestrel\src\ShadowMap.cpp">
+    <ClCompile Include="C:\kestrel\src\Terrian.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="C:\kestrel\src\Terrian.cpp">
+    <ClCompile Include="C:\kestrel\src\VoxelShadowMap.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="C:\kestrel\common\shader.cpp">
@@ -120,6 +120,12 @@
     <ClInclude Include="C:\kestrel\src\core\Scene.h">
       <Filter>src\core</Filter>
     </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\ShadowMap.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\ShadowMaterial.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
     <ClInclude Include="C:\kestrel\src\core\StandardGeometry.h">
       <Filter>src\core</Filter>
     </ClInclude>
@@ -171,9 +177,6 @@
     <ClInclude Include="C:\kestrel\src\Runner.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="C:\kestrel\src\ShadowMap.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="C:\kestrel\src\Terrian.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -184,6 +187,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\VoxelMaterial.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\VoxelShadowMap.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Worker.h">
@@ -227,6 +233,12 @@
     <CustomBuild Include="C:\kestrel\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="C:\kestrel\shaders\shadow.fragmentshader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="C:\kestrel\shaders\shadow.vertexshader">
+      <Filter>shaders</Filter>
+    </None>
     <None Include="C:\kestrel\shaders\standard.fragmentshader">
       <Filter>shaders</Filter>
     </None>

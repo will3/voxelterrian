@@ -31,17 +31,9 @@ void Mesh::render(Camera * camera) {
 	// Use our shader
 	glUseProgram(material->programID);
 
-	// Model matrix : an identity matrix (model will be at the origin)
-	glm::mat4 Model = matrix;
-
-	// Our ModelViewProjection : multiplication of our 3 matrices
-	glm::mat4 MVP = camera->Projection * camera->View * Model; // Remember, matrix multiplication is the other way around
-
-											   // Send our transformation to the currently bound shader, 
-											   // in the "MVP" uniform
-	glUniformMatrix4fv(material->MatrixID, 1, GL_FALSE, &MVP[0][0]);
-
-	material->bind_uniforms(this);
+	material->current_node = this;
+	material->current_camera = camera;
+	material->bind_uniforms();
 
 	geometry->bind();
 

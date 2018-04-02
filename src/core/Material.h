@@ -6,13 +6,16 @@
 class Material {
 public:
 	GLuint programID;
-	GLuint MatrixID;
 
 	bool loaded = false;
 
+	Node *current_node;
+
+	Camera *current_camera;
+
 	virtual void load() {};
 
-	virtual void bind_uniforms(Node *node) {};
+	virtual void bind_uniforms() {};
 
 	Material() {};
 
