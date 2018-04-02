@@ -380,6 +380,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\Worker.h" />
     <ClInclude Include="C:\kestrel\src\linalg.h" />
     <ClInclude Include="C:\kestrel\src\types.h" />
+    <None Include="C:\kestrel\shaders\standard.fragmentshader" />
+    <None Include="C:\kestrel\shaders\standard.vertexshader" />
     <None Include="C:\kestrel\shaders\voxel.fragmentshader" />
     <None Include="C:\kestrel\shaders\voxel.vertexshader" />
     <ClCompile Include="C:\kestrel\common\shader.cpp" />

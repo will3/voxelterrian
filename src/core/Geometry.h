@@ -37,7 +37,9 @@ public:
 			glVertexAttribIPointer(location, elements_per_vertex, type_enum, 0, (void*)0);
 		}
 		else {
-			throw std::exception("not implemented");
+			glEnableVertexAttribArray(location);
+			glBindBuffer(GL_ARRAY_BUFFER, handle);
+			glVertexAttribPointer(location, elements_per_vertex, type_enum, false, 0, (void*)0);
 		}
 	}
 

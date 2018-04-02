@@ -260,6 +260,12 @@
     <CustomBuild Include="C:\kestrel\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="C:\kestrel\shaders\standard.fragmentshader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="C:\kestrel\shaders\standard.vertexshader">
+      <Filter>shaders</Filter>
+    </None>
     <None Include="C:\kestrel\shaders\voxel.fragmentshader">
       <Filter>shaders</Filter>
     </None>

@@ -7,11 +7,18 @@
 #include "Entity.h"
 #include "ComputeShader.h"
 #include "MarchingCube.h"
+#include "StandardGeometry.h"
+#include "StandardMaterial.h"
+#include "Mesh.h"
+#include "Scene.h"
 
 class Terrian2 : public Entity {
 public:
 	Noise *height_noise = new Noise();
 	Noise *canyon_noise = new Noise();
+	StandardGeometry *geometry = new StandardGeometry();
+	StandardMaterial *material = new StandardMaterial();
+	Scene *scene;
 
 	Terrian2() {
 		height_noise->amplitude = 128.0;
@@ -28,10 +35,28 @@ public:
 
 	void draw(Coord3 start_coord, int size) {
 		Chunk *chunk = new Chunk();
-		chunk->set({ 0, 0, 0 }, 1);
+		chunk->set({ 1, 1, 1 }, 1);
 		std::vector<Vertex> vertices;
-		std::vector<int> indices;
-		generate_geometry(chunk, vertices, indices);
+		std::vector<int> indicesOut;
+		generate_geometry(chunk, vertices, indicesOut);
+
+		auto& positions = geometry->get_positions().get_data();
+		auto& normals = geometry->get_normals().get_data();
+		auto& indices = geometry->get_indices().get_data();
+		for (auto vertex : vertices) {
+			positions.push_back(vertex.position[0]);
+			positions.push_back(vertex.position[1]);
+			positions.push_back(vertex.position[2]);
+			normals.push_back(vertex.normal[0]);
+			normals.push_back(vertex.normal[1]);
+			normals.push_back(vertex.normal[2]);
+		}
+		for (auto indice : indicesOut) {
+			indices.push_back(indice);
+		}
+		Mesh *mesh = new Mesh(geometry, material);
+
+		scene->add(mesh);
 	}
 
 	~Terrian2() {

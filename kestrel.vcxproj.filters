@@ -64,9 +64,6 @@
     <ClCompile Include="C:\kestrel\src\Runner.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="C:\kestrel\src\Sculptor.m">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="C:\kestrel\src\ShadowMap.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -186,9 +183,6 @@
     <ClInclude Include="C:\kestrel\src\ShadowMap.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="C:\kestrel\src\StandardGeometry.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="C:\kestrel\src\Terrian.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -242,6 +236,12 @@
     <CustomBuild Include="C:\kestrel\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="C:\kestrel\shaders\standard.fragmentshader">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="C:\kestrel\shaders\standard.vertexshader">
+      <Filter>shaders</Filter>
+    </None>
     <None Include="C:\kestrel\shaders\voxel.fragmentshader">
       <Filter>shaders</Filter>
     </None>

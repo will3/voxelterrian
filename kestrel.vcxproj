@@ -363,15 +363,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\Raycast.h" />
     <ClCompile Include="C:\kestrel\src\Runner.cpp" />
     <ClInclude Include="C:\kestrel\src\Runner.h" />
-    <ClCompile Include="C:\kestrel\src\Sculptor.m">
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsC</CompileAs>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsC</CompileAs>
-    </ClCompile>
     <ClCompile Include="C:\kestrel\src\ShadowMap.cpp" />
     <ClInclude Include="C:\kestrel\src\ShadowMap.h" />
-    <ClInclude Include="C:\kestrel\src\StandardGeometry.h" />
     <ClCompile Include="C:\kestrel\src\Terrian.cpp" />
     <ClInclude Include="C:\kestrel\src\Terrian.h" />
     <ClInclude Include="C:\kestrel\src\Terrian2.h" />
@@ -380,6 +373,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\Worker.h" />
     <ClInclude Include="C:\kestrel\src\linalg.h" />
     <ClInclude Include="C:\kestrel\src\types.h" />
+    <None Include="C:\kestrel\shaders\standard.fragmentshader" />
+    <None Include="C:\kestrel\shaders\standard.vertexshader" />
     <None Include="C:\kestrel\shaders\voxel.fragmentshader" />
     <None Include="C:\kestrel\shaders\voxel.vertexshader" />
     <ClCompile Include="C:\kestrel\common\shader.cpp" />

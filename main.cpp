@@ -67,11 +67,15 @@ int main() {
 	Camera *camera = new Camera(60, ratio, 0.1f, 1000.0f);
 	Scene *scene = new Scene();
 	VoxelMaterial *material = new VoxelMaterial();
-	EditorCameraControl *camera_control = new EditorCameraControl();
+	EditorCameraControl *camera_control;
 
 	Terrian *terrian;
-	int scenario = 0;
+	int scenario = 1;
 	if (scenario == 0) {
+		camera_control = new EditorCameraControl();
+		camera_control->camera = camera;
+		runner->add(camera_control);
+
 		terrian = new Terrian();
 		terrian->light = light;
 		terrian->scene = scene;
@@ -84,11 +88,12 @@ int main() {
 	else {
 		Terrian2 *terrian2 = new Terrian2();
 		runner->add(terrian2);
+		terrian2->scene = scene;
+
+		camera->position = glm::vec3(0, 0, -5);
+		camera->target = glm::vec3(0, 0, 0);
 	}
 	
-	camera_control->camera = camera;
-	runner->add(camera_control);
-
 	__int64 last_tick = 0;
 
 	Editor *editor = new Editor();
