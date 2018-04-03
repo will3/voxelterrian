@@ -5,6 +5,7 @@
 #include "DirectionalLight.h"
 #include <map>
 #include "Shader.h"
+#include "ShadowMap.h"
 
 class StandardMaterial : public Material {
 public:

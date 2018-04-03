@@ -71,7 +71,7 @@ int main() {
 	Scene *scene = new Scene();
 	DirectionalLight *light = new DirectionalLight();
 	scene->add(light);
-	AmbientLight *ambientLight = new AmbientLight();
+	AmbientLight *ambientLight = new AmbientLight({ 0.5, 0.5, 0.5 });
 	scene->add(ambientLight);
 
 	VoxelMaterial *material = new VoxelMaterial();
@@ -113,11 +113,7 @@ int main() {
 	composer->add_pass(copyPass);
 	copyPass->renderToScreen = true;
 
-	ShadowMap *shadowMap = new ShadowMap(512, 512, 0.1, 1000);
-	//shadowMap->camera->position = { 0, 100.0, 0.0 };
-	//shadowMap->setTarget({ 1.0, 1.0 ,1.0 });
-	//shadowMap->camera->position = glm::vec3(0, 100, -100);
-	//shadowMap->camera->target = glm::vec3(0, 0, 0);
+	scene->shadowMap = new ShadowMap(256, 256, 0.1, 1000);
 
 	do {
 		glfwPollEvents();
@@ -131,8 +127,8 @@ int main() {
 		dispatcher->update();
 		runner->update();
 
-		composer->render();
-		//shadowMap->renderToScreen(scene);
+		//composer->render();
+		scene->shadowMap->renderToScreen(scene);
 
 		ImGui::Render();
 		ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());

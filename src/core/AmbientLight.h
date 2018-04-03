@@ -6,5 +6,5 @@ class AmbientLight : public Node {
 public:
 	glm::vec3 color = glm::vec3(1.0, 1.0, 1.0);
 
-	AmbientLight() {}
+	AmbientLight(glm::vec3 color) : color(color) {}
 };

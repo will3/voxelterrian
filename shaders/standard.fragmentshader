@@ -12,11 +12,12 @@ out vec3 color;
 
 void main()
 {
-	float cosTheta = dot(fragmentNormal, light_dir);
+	float normalFactor = dot(fragmentNormal, light_dir);
 
 	vec3 ambient = ambient_light;
 
 	float visibility = texture( shadowMap, vec3(shadowCoord.xy, (shadowCoord.z)/shadowCoord.w) );
 
-	color = fragmentColor * cosTheta * visibility + ambient;
+	color = ambient +
+		fragmentColor * normalFactor * visibility;
 }

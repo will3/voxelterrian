@@ -7,7 +7,8 @@
 #include "AmbientLight.h"
 #include <set>
 #include "Material.h"
-#include "ShadowMap.h"
+
+class ShadowMap;
 
 class Scene : public Node {
 public:
