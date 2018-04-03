@@ -27,6 +27,7 @@ include_directories(
 	external/imgui
 	./src
 	./src/core
+	./src/postprocessing
 	.
 )
 
@@ -61,12 +62,25 @@ target_link_libraries(kestrel
 	${ALL_LIBS}
 )
 
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
 SOURCE_GROUP(common REGULAR_EXPRESSION ".*/common/.*" )
 SOURCE_GROUP(shaders REGULAR_EXPRESSION ".*/shaders/.*" )
 SOURCE_GROUP(tests REGULAR_EXPRESSION ".*/tests/.*" )
-SOURCE_GROUP(src REGULAR_EXPRESSION ".*/src/.*" )
-SOURCE_GROUP(src\\core REGULAR_EXPRESSION ".*/src/core/.*" )
 SOURCE_GROUP(external\\imgui REGULAR_EXPRESSION ".*/external/imgui/.*" )
+
+foreach(FILE ${SRC_FILES}) 
+    # Get the directory of the source file
+    get_filename_component(PARENT_DIR "${FILE}" DIRECTORY)
+
+    # Remove common directory prefix to make the group
+    string(REPLACE "${CMAKE_CURRENT_SOURCE_DIR}" "" GROUP "${PARENT_DIR}")
+
+    # Make sure we are using windows slashes
+    string(REPLACE "/" "\\" GROUP "${GROUP}")
+
+    source_group("${GROUP}" FILES "${FILE}")
+endforeach()
 
 # test
 

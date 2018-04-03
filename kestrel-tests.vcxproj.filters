@@ -91,6 +91,9 @@
     <ClCompile Include="C:\kestrel\tests\Coord3Tests.cpp">
       <Filter>tests</Filter>
     </ClCompile>
+    <ClCompile Include="C:\kestrel\tests\MarchingCubeTests.cpp">
+      <Filter>tests</Filter>
+    </ClCompile>
     <ClCompile Include="C:\kestrel\tests\MesherTests.cpp">
       <Filter>tests</Filter>
     </ClCompile>
@@ -114,13 +117,10 @@
     <ClInclude Include="C:\kestrel\src\core\Camera.h">
       <Filter>src\core</Filter>
     </ClInclude>
-    <ClInclude Include="C:\kestrel\src\core\CopyPass.h">
-      <Filter>src\core</Filter>
-    </ClInclude>
     <ClInclude Include="C:\kestrel\src\core\DirectionalLight.h">
       <Filter>src\core</Filter>
     </ClInclude>
-    <ClInclude Include="C:\kestrel\src\core\EffectComposer.h">
+    <ClInclude Include="C:\kestrel\src\core\FrameBuffer.h">
       <Filter>src\core</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\core\Geometry.h">
@@ -135,12 +135,6 @@
     <ClInclude Include="C:\kestrel\src\core\Node.h">
       <Filter>src\core</Filter>
     </ClInclude>
-    <ClInclude Include="C:\kestrel\src\core\Pass.h">
-      <Filter>src\core</Filter>
-    </ClInclude>
-    <ClInclude Include="C:\kestrel\src\core\RenderPass.h">
-      <Filter>src\core</Filter>
-    </ClInclude>
     <ClInclude Include="C:\kestrel\src\core\RenderTarget.h">
       <Filter>src\core</Filter>
     </ClInclude>
@@ -150,10 +144,13 @@
     <ClInclude Include="C:\kestrel\src\core\Scene.h">
       <Filter>src\core</Filter>
     </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\Shader.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
     <ClInclude Include="C:\kestrel\src\core\ShaderLoader.h">
       <Filter>src\core</Filter>
     </ClInclude>
-    <ClInclude Include="C:\kestrel\src\core\ShadowMapPass.h">
+    <ClInclude Include="C:\kestrel\src\core\ShaderMaterial.h">
       <Filter>src\core</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\core\StandardGeometry.h">
@@ -161,6 +158,30 @@
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\core\StandardMaterial.h">
       <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\Texture.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\postprocessing\CopyPass.h">
+      <Filter>src\postprocessing</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\postprocessing\DepthShader.h">
+      <Filter>src\postprocessing</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\postprocessing\EffectComposer.h">
+      <Filter>src\postprocessing</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\postprocessing\Pass.h">
+      <Filter>src\postprocessing</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\postprocessing\RenderPass.h">
+      <Filter>src\postprocessing</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\postprocessing\ShadowMapPass.h">
+      <Filter>src\postprocessing</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\postprocessing\ShadowPass.h">
+      <Filter>src\postprocessing</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Brush.h">
       <Filter>src</Filter>
@@ -306,6 +327,9 @@
     </Filter>
     <Filter Include="src\core">
       <UniqueIdentifier>{CF474511-E65B-3A34-98E9-FA2D9B9D229B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\postprocessing">
+      <UniqueIdentifier>{C8F2EF84-0A1C-30E0-95D2-D4B68940FCAB}</UniqueIdentifier>
     </Filter>
     <Filter Include="tests">
       <UniqueIdentifier>{A9AD2C82-304A-3C92-8533-7782A2DBCB1E}</UniqueIdentifier>
