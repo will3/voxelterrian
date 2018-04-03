@@ -113,7 +113,8 @@ int main() {
 	composer->add_pass(copyPass);
 	copyPass->renderToScreen = true;
 
-	scene->shadowMap = new ShadowMap(256, 256, 0.1, 1000);
+	ShadowMap *shadowMap = new ShadowMap(256, 256, 0.1, 1000);
+	renderer->shadowMap = shadowMap;
 
 	do {
 		glfwPollEvents();
@@ -127,8 +128,8 @@ int main() {
 		dispatcher->update();
 		runner->update();
 
-		//composer->render();
-		scene->shadowMap->renderToScreen(scene);
+		composer->render();
+		//copyPass->render(renderer, 0, shadowMap->renderTarget);
 
 		ImGui::Render();
 		ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());

@@ -35,7 +35,16 @@ public:
 	void set_texture(std::string name, GLuint texture) {
 		GLuint handle = handles[name];
 		UniformAttribute &attribute = map[name];
-		glActiveTexture(GL_TEXTURE1);
+
+		if (attribute.texture_position == 0) {
+			glActiveTexture(GL_TEXTURE0);
+		}
+		else if (attribute.texture_position == 1) {
+			glActiveTexture(GL_TEXTURE1);
+		}
+		else {
+			throw std::exception("not implemented");
+		}
 		glBindTexture(GL_TEXTURE_2D, texture);
 		glUniform1i(handle, attribute.texture_position);
 	}

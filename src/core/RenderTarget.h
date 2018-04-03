@@ -2,7 +2,9 @@
 #include "GL/glew.h"
 
 class RenderTarget {
-private:
+public:
+	RenderTarget(int width, int height) : width(width), height(height) {};
+
 	bool load() {
 		// The framebuffer, which regroups 0, 1, or more textures, and 0 or 1 depth buffer.
 		glGenFramebuffers(1, &FramebufferName);
@@ -50,25 +52,17 @@ private:
 
 		return true;
 	}
+
 	void unload() {
 		glDeleteTextures(1, &renderedTexture);
 		glDeleteTextures(1, &depthTexture);
 		glDeleteFramebuffers(1, &FramebufferName);
 	};
-	bool loaded = false;
 
-public:
-	RenderTarget(int width, int height) : width(width), height(height) {};
+	bool loaded = false;
 
 	void bind() {
 		glBindFramebuffer(GL_FRAMEBUFFER, FramebufferName);
-	}
-
-	void loadIfNeeded() {
-		if (!loaded) {
-			load();
-			loaded = true;
-		}
 	}
 
 	int width;

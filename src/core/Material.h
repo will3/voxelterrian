@@ -12,6 +12,7 @@ public:
 
 	UniformAttributes uniforms;
 	Scene *scene;
+	Renderer *currentRenderer;
 
 	virtual void load() {};
 

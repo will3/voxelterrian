@@ -375,10 +375,12 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\Worker.h" />
     <ClInclude Include="C:\kestrel\src\linalg.h" />
     <ClInclude Include="C:\kestrel\src\types.h" />
+    <ClInclude Include="FrameBuffer.h" />
     <ClInclude Include="src\core\DepthShader.h" />
     <ClInclude Include="src\core\Shader.h" />
     <ClInclude Include="src\core\ShaderMaterial.h" />
     <ClInclude Include="src\core\ShadowMap.h" />
+    <ClInclude Include="src\core\Texture.h" />
     <None Include="C:\kestrel\shaders\copy.fragmentshader" />
     <None Include="C:\kestrel\shaders\copy.vertexshader" />
     <None Include="C:\kestrel\shaders\depth.fragmentshader" />

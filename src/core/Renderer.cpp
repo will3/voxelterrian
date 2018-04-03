@@ -5,6 +5,38 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include "ShadowMap.h"
+
+void Renderer::render(Scene * scene, Camera * camera, RenderTarget * renderTarget) {
+	if (shadowMap != 0) {
+		shadowMap->render(scene);
+	}
+
+	if (renderTarget == 0) {
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		glViewport(0, 0, window_width, window_height);
+	}
+	else {
+		if (!renderTarget->loaded) {
+			renderTarget->load();
+			renderTarget->loaded = true;
+		}
+		renderTarget->bind();
+		glViewport(0, 0, renderTarget->width, renderTarget->height);
+	}
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	if (camera != 0) {
+		camera->update_view_matrix();
+	}
+
+	for (Node *node : scene->nodes) {
+		node->currentRenderer = this;
+		node->update_matrix();
+		node->render(camera);
+	}
+}
 
 void Renderer::start_window(int width, int height) {
 	// Initialise GLFW

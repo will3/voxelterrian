@@ -5,6 +5,7 @@
 #include <unordered_set>
 #include <glm/gtc/quaternion.hpp>
 
+class Renderer;
 class Scene;
 
 class Node {
@@ -16,6 +17,8 @@ public:
 	Scene *scene = 0;
 	Node *parent = 0;
 	std::unordered_set<Node *> nodes;
+
+	Renderer *currentRenderer;
 
 	virtual void render(Camera *camera) {}
 

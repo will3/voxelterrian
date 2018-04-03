@@ -38,9 +38,9 @@ public:
 			break;
 		}
 
-		if (scene->shadowMap != 0) {
-			uniforms.set_texture("shadowMap", scene->shadowMap->renderTarget->depthTexture);
-			Camera *camera = scene->shadowMap->camera;
+		if (currentRenderer->shadowMap != 0) {
+			uniforms.set_texture("shadowMap", currentRenderer->shadowMap->renderTarget->depthTexture);
+			Camera *camera = currentRenderer->shadowMap->camera;
 			glm::mat4 MVP = camera->Projection * camera->View;
 			uniforms.set("shadowMVP", MVP);
 		}

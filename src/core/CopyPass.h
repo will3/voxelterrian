@@ -2,7 +2,6 @@
 
 #include "Pass.h"
 #include "common\shader.hpp"
-#include "Scene.h"
 #include "ShaderLoader.h"
 
 class CopyPass : public Pass {
@@ -36,15 +35,12 @@ private:
 
 public:
 
-	Scene *scene = new Scene();
 	Camera *camera = new OrthographicCamera(-1, 1, -1, 1, 0, 1);
 
 	CopyPass() {
 		load();
 	}
-	~CopyPass() {
-		delete scene;
-	}
+	~CopyPass() { }
 
 	void render(Renderer *renderer, RenderTarget *writeBuffer, RenderTarget *readBuffer) override {
 		if (renderToScreen) {
@@ -63,10 +59,8 @@ public:
 
 		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 
-		// Bind our texture in Texture Unit 0
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, readBuffer->renderedTexture);
-		// Set our "renderedTexture" sampler to use Texture Unit 0
 		glUniform1i(texID, 0);
 
 		// 1rst attribute buffer : vertices
