@@ -24,11 +24,6 @@ void main()
 	float visibility = 1.0;
 	if (hasShadowMap) {
 		visibility = texture( shadowMap, vec3(shadowCoord.xy, (shadowCoord.z)/shadowCoord.w) );
-
-		if (visibility != 1.0) {
-			color = vec3(1.0, 0.0, 0.0);
-			// return;
-		}
 	}
 
 	color = ambient +

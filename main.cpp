@@ -72,20 +72,21 @@ int main() {
 	Camera *camera = new PerspectiveCamera(60, ratio, 0.1f, 1000.0f);
 	Scene *scene = new Scene();
 	DirectionalLight *light = new DirectionalLight();
-	light->setPosition(glm::vec3(0, 500, 0));
+	light->setPosition(glm::vec3(200, 0, 0));
 
 	scene->add(light);
-	AmbientLight *ambientLight = new AmbientLight({ 0.5, 0.5, 0.5 });
+	AmbientLight *ambientLight = new AmbientLight({ 0.0, 0.0, 0.0 });
 	scene->add(ambientLight);
 
-	camera->position = glm::vec3(0, 20, 20);
+	camera->position = glm::vec3(100, 100, 100);
 	camera->target = glm::vec3(0, 0, 0);
 
 	Material *material = new StandardMaterial();
 
-	SphereGeometry *geometry = new SphereGeometry(10.0, 16, 12);
+	SphereGeometry *geometry = new SphereGeometry(100.0, 16, 12);
 	Mesh *sphere = new Mesh(geometry, material);
 	scene->add(sphere);
+	sphere->position.x = -100.0;
 
 	BoxGeometry *boxGeometry = new BoxGeometry(10.0);
 	Mesh *box = new Mesh(boxGeometry, material);
@@ -101,7 +102,7 @@ int main() {
 	ShadowMap *shadowMap = new ShadowMap(256, 256, 0.1, 1000, 1024, 1024);
 	shadowMap->camera->position = light->position;
 	shadowMap->camera->target = glm::vec3(0, 0, 0);
-	//scene->shadowMap = shadowMap;
+	scene->shadowMap = shadowMap;
 
 	RenderPass *renderPass = new RenderPass(scene, camera);
 	composer->add_pass(renderPass);
@@ -114,11 +115,13 @@ int main() {
 		glfwPollEvents();
 
 		ImGui_ImplGlfwGL3_NewFrame();
-
+		
 		runner->update();
 
 		scene->override_material = shadowMap->depthMaterial;
+
 		renderer->render(scene, shadowMap->camera, shadowMap->renderTarget);
+
 		scene->override_material = 0;
 
 		composer->render();
