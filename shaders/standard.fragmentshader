@@ -20,5 +20,5 @@ void main()
 	float visibility = texture( shadowMap, vec3(shadowCoord.xy, (shadowCoord.z)/shadowCoord.w) );
 
 	color = ambient +
-		fragmentColor * normalFactor * visibility;
+		fragmentColor * normalFactor;
 }

@@ -5,7 +5,6 @@
 #include "DirectionalLight.h"
 #include <map>
 #include "Shader.h"
-#include "ShadowMap.h"
 
 class StandardMaterial : public Material {
 public:
@@ -38,11 +37,9 @@ public:
 			break;
 		}
 
-		if (currentRenderer->shadowMap != 0) {
-			uniforms.set_texture("shadowMap", currentRenderer->shadowMap->renderTarget->depthTexture);
+			/*uniforms.set_texture("shadowMap", currentRenderer->shadowMap->renderTarget->depthTexture);
 			Camera *camera = currentRenderer->shadowMap->camera;
 			glm::mat4 MVP = camera->Projection * camera->View;
-			uniforms.set("shadowMVP", MVP);
-		}
+			uniforms.set("shadowMVP", MVP);*/
 	}
 };

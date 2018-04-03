@@ -5,13 +5,8 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include "ShadowMap.h"
 
 void Renderer::render(Scene * scene, Camera * camera, RenderTarget * renderTarget) {
-	if (shadowMap != 0) {
-		shadowMap->render(scene);
-	}
-
 	if (renderTarget == 0) {
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		glViewport(0, 0, window_width, window_height);

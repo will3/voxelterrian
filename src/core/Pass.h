@@ -6,5 +6,7 @@
 class Pass {
 public:
 	bool renderToScreen = false;
-	virtual void render(Renderer *renderer, RenderTarget *writeBuffer, RenderTarget *readBuffer) {}
+	virtual void render(Renderer *renderer, RenderTarget *writeBuffer, RenderTarget *readBuffer) {
+		throw std::exception("must override");
+	}
 };

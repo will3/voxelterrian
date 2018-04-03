@@ -379,7 +379,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="src\core\DepthShader.h" />
     <ClInclude Include="src\core\Shader.h" />
     <ClInclude Include="src\core\ShaderMaterial.h" />
-    <ClInclude Include="src\core\ShadowMap.h" />
+    <ClInclude Include="src\core\ShadowPass.h" />
     <ClInclude Include="src\core\Texture.h" />
     <None Include="C:\kestrel\shaders\copy.fragmentshader" />
     <None Include="C:\kestrel\shaders\copy.vertexshader" />

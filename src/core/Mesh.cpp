@@ -24,7 +24,9 @@ void Mesh::render(Camera * camera) {
 		geometry->loaded = true;
 	}
 
-	Material *material_to_use = scene->override_material == 0 ? material : scene->override_material;
+	Material *material_to_use = scene->override_material == 0 ? 
+		material : 
+		scene->override_material;
 
 	material_to_use->scene = scene;
 	material_to_use->currentRenderer = currentRenderer;

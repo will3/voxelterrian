@@ -246,13 +246,13 @@
     <ClInclude Include="src\core\DepthShader.h">
       <Filter>src\core</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\ShadowMap.h">
-      <Filter>src\core</Filter>
-    </ClInclude>
     <ClInclude Include="FrameBuffer.h">
       <Filter>src\core</Filter>
     </ClInclude>
     <ClInclude Include="src\core\Texture.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\ShadowPass.h">
       <Filter>src\core</Filter>
     </ClInclude>
   </ItemGroup>

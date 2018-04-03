@@ -27,7 +27,7 @@
 #include "EffectComposer.h"
 #include "CopyPass.h"
 #include "RenderPass.h"
-#include "ShadowMap.h"
+#include "ShadowPass.h"
 
 using namespace glm;
 using namespace std::chrono;
@@ -50,7 +50,7 @@ int main() {
 	GLFWwindow *window = renderer->window;
 
 	glfwMakeContextCurrent(window);
-	glfwSwapInterval(1); // Enable vsync
+	glfwSwapInterval(1); 
 
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
@@ -64,7 +64,6 @@ int main() {
 	// Ensure we can capture the escape key being pressed below
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
-	Dispatcher *dispatcher = new Dispatcher();
 	Runner *runner = new Runner();
 	float ratio = width / (float)height;
 	Camera *camera = new PerspectiveCamera(60, ratio, 0.1f, 1000.0f);
@@ -74,38 +73,24 @@ int main() {
 	AmbientLight *ambientLight = new AmbientLight({ 0.5, 0.5, 0.5 });
 	scene->add(ambientLight);
 
-	VoxelMaterial *material = new VoxelMaterial();
-	EditorCameraControl *camera_control;
-
-	Terrian *terrian;
-	int scenario = 1;
-	if (scenario == 0) {
-		camera_control = new EditorCameraControl();
-		camera_control->camera = camera;
-		runner->add(camera_control);
-
-		terrian = new Terrian();
-		terrian->light = light;
-		terrian->scene = scene;
-		terrian->material = material;
-		terrian->dispatcher = dispatcher;
-		terrian->camera_control = camera_control;
-		terrian->set_draw_dis(3);
-		runner->add(terrian);
-	}
-	else {
-		Terrian2 *terrian2 = new Terrian2();
-		runner->add(terrian2);
-		terrian2->scene = scene;
-		camera->position = glm::vec3(0, 200, -200);
-		camera->target = glm::vec3(0, 0, 0);
-	}
+	Terrian2 *terrian2 = new Terrian2();
+	runner->add(terrian2);
+	terrian2->scene = scene;
+	camera->position = glm::vec3(0, 200, -200);
+	camera->target = glm::vec3(0, 0, 0);
 	
 	__int64 last_tick = 0;
 
 	Editor *editor = new Editor();
 
 	EffectComposer *composer = new EffectComposer(renderer);
+
+	//ShadowPass *shadowPass = new ShadowPass(scene, 256, 0.1, 1000);
+	//shadowPass->camera->position = vec3(0, 500, 500);
+	//shadowPass->camera->target = vec3(0, 0, 0);
+
+	//composer->add_pass(shadowPass);
+
 	RenderPass *renderPass = new RenderPass(scene, camera);
 	composer->add_pass(renderPass);
 
@@ -113,23 +98,14 @@ int main() {
 	composer->add_pass(copyPass);
 	copyPass->renderToScreen = true;
 
-	ShadowMap *shadowMap = new ShadowMap(256, 256, 0.1, 1000);
-	renderer->shadowMap = shadowMap;
-
 	do {
 		glfwPollEvents();
 
 		ImGui_ImplGlfwGL3_NewFrame();
 
-		if (scenario == 0) {
-			editor->show(terrian, camera_control);
-		}
-
-		dispatcher->update();
 		runner->update();
 
 		composer->render();
-		//copyPass->render(renderer, 0, shadowMap->renderTarget);
 
 		ImGui::Render();
 		ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());

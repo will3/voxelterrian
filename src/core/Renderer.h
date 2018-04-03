@@ -13,7 +13,6 @@ public:
 	GLFWwindow * window;
 	int window_width;
 	int window_height;
-	ShadowMap *shadowMap = 0;
 
 	Renderer()
 	{
