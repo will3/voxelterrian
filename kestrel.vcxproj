@@ -83,7 +83,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.\src\geometries;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -101,10 +101,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;TW_STATIC;TW_NO_LIB_PRAGMA;TW_NO_DIRECT3D;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.\src\geometries;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.\src\geometries;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -127,7 +127,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.\src\geometries;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Release/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -145,10 +145,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;TW_STATIC;TW_NO_LIB_PRAGMA;TW_NO_DIRECT3D;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.\src\geometries;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.\src\geometries;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -171,7 +171,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.\src\geometries;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -189,10 +189,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;TW_STATIC;TW_NO_LIB_PRAGMA;TW_NO_DIRECT3D;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.\src\geometries;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.\src\geometries;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -215,7 +215,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.\src\geometries;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -232,10 +232,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;TW_STATIC;TW_NO_LIB_PRAGMA;TW_NO_DIRECT3D;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.\src\geometries;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\kestrel\external\AntTweakBar-1.16\include;C:\kestrel\external\glfw-3.1.2\include;C:\kestrel\external\glm-0.9.7.1;C:\kestrel\external\glew-1.13.0\include;C:\kestrel\external\assimp-3.0.1270\include;C:\kestrel\external\bullet-2.81-rev2613\src;C:\kestrel\external\imgui;C:\kestrel\.\src;C:\kestrel\.\src\core;C:\kestrel\.\src\postprocessing;C:\kestrel\.\src\geometries;C:\kestrel\.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -381,6 +381,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\Worker.h" />
     <ClInclude Include="C:\kestrel\src\linalg.h" />
     <ClInclude Include="C:\kestrel\src\types.h" />
+    <ClInclude Include="src\geometries\SphereGeometry.h" />
     <None Include="C:\kestrel\shaders\copy.fragmentshader" />
     <None Include="C:\kestrel\shaders\copy.vertexshader" />
     <None Include="C:\kestrel\shaders\depth.fragmentshader" />

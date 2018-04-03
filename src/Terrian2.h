@@ -96,7 +96,7 @@ public:
 		std::vector<int> indicesOut;
 		generate_geometry(chunk, vertices, indicesOut);
 
-		auto& indices = geometry->get_indices().get_data();
+		auto& indices = geometry->get_indices();
 
 		for (auto vertex : vertices) {
 			glm::vec3 position = { vertex.position[0], vertex.position[1], vertex.position[2] };

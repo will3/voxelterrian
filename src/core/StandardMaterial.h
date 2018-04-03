@@ -15,6 +15,7 @@ public:
 	StandardMaterial() {
 		uniforms.add(UniformAttribute("light_dir"));
 		uniforms.add(UniformAttribute("ambient_light"));
+		uniforms.add(UniformAttribute("hasShadowMap"));
 		uniforms.add(UniformAttribute("shadowMap"));
 		uniforms.add(UniformAttribute("shadowMVP"));
 	}
@@ -48,6 +49,7 @@ public:
 			0.5, 0.5, 0.5, 1.0
 		);
 
+		uniforms.set("hasShadowMap", scene->shadowMap != 0);
 
 		if (scene->shadowMap != 0) {
 			Camera *shadowMapCamera = scene->shadowMap->camera;

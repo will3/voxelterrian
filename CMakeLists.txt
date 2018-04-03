@@ -28,6 +28,7 @@ include_directories(
 	./src
 	./src/core
 	./src/postprocessing
+	./src/geometries
 	.
 )
 

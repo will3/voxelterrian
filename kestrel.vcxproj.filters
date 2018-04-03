@@ -255,6 +255,9 @@
     <ClInclude Include="C:\kestrel\external\imgui\stb_truetype.h">
       <Filter>external\imgui</Filter>
     </ClInclude>
+    <ClInclude Include="src\geometries\SphereGeometry.h">
+      <Filter>src\geometries</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\kestrel\CMakeLists.txt" />

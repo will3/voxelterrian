@@ -12,6 +12,7 @@ class Node {
 public:
 	glm::vec3 position;
 	glm::quat rotation;
+	glm::vec3 scale = glm::vec3(1.0, 1.0, 1.0);
 	glm::mat4 matrix;
 
 	Scene *scene = 0;

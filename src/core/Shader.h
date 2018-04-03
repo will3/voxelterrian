@@ -32,6 +32,11 @@ public:
 		glUniform3f(handle, x, y, z);
 	}
 	
+	void set(string name, bool v) {
+		GLuint handle = handles[name];
+		glUniform1i(handle, v);
+	}
+
 	void set_texture(std::string name, GLuint texture) {
 		GLuint handle = handles[name];
 		UniformAttribute &attribute = map[name];

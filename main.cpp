@@ -28,6 +28,10 @@
 #include "CopyPass.h"
 #include "RenderPass.h"
 #include "ShadowMap.h"
+#include "BoxGeometry.h"
+#include "StandardMaterial.h"
+#include <glm/gtx/quaternion.hpp>
+#include "SphereGeometry.h"
 
 using namespace glm;
 using namespace std::chrono;
@@ -64,7 +68,6 @@ int main() {
 	// Ensure we can capture the escape key being pressed below
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
-	Runner *runner = new Runner();
 	float ratio = width / (float)height;
 	Camera *camera = new PerspectiveCamera(60, ratio, 0.1f, 1000.0f);
 	Scene *scene = new Scene();
@@ -75,22 +78,30 @@ int main() {
 	AmbientLight *ambientLight = new AmbientLight({ 0.5, 0.5, 0.5 });
 	scene->add(ambientLight);
 
-	Terrian2 *terrian2 = new Terrian2();
-	runner->add(terrian2);
-	terrian2->scene = scene;
-	camera->position = glm::vec3(0, 200, -200);
+	camera->position = glm::vec3(0, 20, 20);
 	camera->target = glm::vec3(0, 0, 0);
-	
+
+	Material *material = new StandardMaterial();
+
+	SphereGeometry *geometry = new SphereGeometry(10.0, 16, 12);
+	Mesh *sphere = new Mesh(geometry, material);
+	scene->add(sphere);
+
+	BoxGeometry *boxGeometry = new BoxGeometry(10.0);
+	Mesh *box = new Mesh(boxGeometry, material);
+	scene->add(box);
+	box->position.x = 20.0;
+
 	__int64 last_tick = 0;
 
-	Editor *editor = new Editor();
+	Runner *runner = new Runner();
 
 	EffectComposer *composer = new EffectComposer(renderer);
 	
 	ShadowMap *shadowMap = new ShadowMap(256, 256, 0.1, 1000, 1024, 1024);
 	shadowMap->camera->position = light->position;
 	shadowMap->camera->target = glm::vec3(0, 0, 0);
-	scene->shadowMap = shadowMap;
+	//scene->shadowMap = shadowMap;
 
 	RenderPass *renderPass = new RenderPass(scene, camera);
 	composer->add_pass(renderPass);

@@ -23,25 +23,30 @@ public:
 		colors.get_data().push_back(color[2]);
 	}
 
-	ArrayBuffer<GLfloat, GL_FLOAT>& get_positions() {
-		return positions;
+	unsigned int getIndex() {
+		return positions.get_data().size() / 3;
 	}
 
-	ArrayBuffer<GLfloat, GL_FLOAT>& get_normals() {
-		return normals;
+	std::vector<GLfloat>& get_positions() {
+		return positions.get_data();
 	}
 
-	ArrayBuffer<GLint, GL_INT>& get_colors() {
-		return colors;
+	std::vector<GLfloat>& get_normals() {
+		return normals.get_data();
 	}
 
-	ElementBuffer& get_indices() {
-		return indices;
+	std::vector<GLint>& get_colors() {
+		return colors.get_data();
+	}
+
+	std::vector<unsigned int>& get_indices() {
+		return indices.get_data();
 	}
 
 	virtual int get_indices_count() { 
 		return indices.get_data().size();
 	};
+
 	virtual void load() {
 		positions.load();
 		normals.load();
