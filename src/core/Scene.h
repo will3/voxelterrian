@@ -8,14 +8,14 @@
 #include <set>
 #include "Material.h"
 
-class ShadowPass;
+class ShadowMap;
 
 class Scene : public Node {
 public:
 	std::set<DirectionalLight *> directional_lights;
 	std::set<AmbientLight *> ambient_lights;
 	Material *override_material = 0;
-	ShadowPass *currentShadowPass = 0;
+	ShadowMap *shadowMap = 0;
 
 	void add(Node *node) override {
 		Node::add(node);

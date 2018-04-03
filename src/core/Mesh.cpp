@@ -30,6 +30,8 @@ void Mesh::render(Camera * camera) {
 
 	material_to_use->scene = scene;
 	material_to_use->currentRenderer = currentRenderer;
+	material_to_use->currentNode = this;
+	material_to_use->currentCamera = camera;
 
 	if (!material_to_use->loaded) {
 		material_to_use->load();
@@ -37,9 +39,6 @@ void Mesh::render(Camera * camera) {
 	}
 
 	material_to_use->bind();
-
-	glm::mat4 MVP = camera->Projection * camera->View * matrix;
-	material_to_use->uniforms.set("MVP", MVP);
 
 	geometry->bind();
 

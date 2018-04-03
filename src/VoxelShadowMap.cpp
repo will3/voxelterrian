@@ -3,7 +3,7 @@
 
 bool calc_light(DirectionalLight *light, Chunks *chunks, Coord3 coord) {
 	float3 position = float3(coord.i + 0.5f, coord.j + 0.5f, coord.k + 0.5f);
-	float3 direction = float3(light->direction[0], light->direction[1], light->direction[2]);
+	float3 direction = float3(light->inverse_direction[0], light->inverse_direction[1], light->inverse_direction[2]);
 	bool hit = Raycast::raycast(chunks, position, direction, 100, true).v > 0;
 
 	if (hit) {
@@ -15,7 +15,7 @@ bool calc_light(DirectionalLight *light, Chunks *chunks, Coord3 coord) {
 
 int calc_light(DirectionalLight *light, Chunk *chunk, Chunks *chunks, int d, int i, int j, int k, bool front) {
 	// facing light
-	bool no_light = light->direction[d] == 0 || (light->direction[d] > 0 != front);
+	bool no_light = light->inverse_direction[d] == 0 || (light->inverse_direction[d] > 0 != front);
 	if (no_light) {
 		return 0;
 	}
@@ -28,7 +28,7 @@ int calc_light(DirectionalLight *light, Chunk *chunk, Chunks *chunks, int d, int
 	position[u] += 0.5f;
 	position[v] += 0.5f;
 
-	float3 direction = float3(light->direction[0], light->direction[1], light->direction[2]);
+	float3 direction = float3(light->inverse_direction[0], light->inverse_direction[1], light->inverse_direction[2]);
 	bool hit = Raycast::raycast(chunks, position, direction, 100, true, 128).v > 0;
 
 	if (hit) {

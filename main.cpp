@@ -27,7 +27,7 @@
 #include "EffectComposer.h"
 #include "CopyPass.h"
 #include "RenderPass.h"
-#include "ShadowPass.h"
+#include "ShadowMap.h"
 
 using namespace glm;
 using namespace std::chrono;
@@ -69,6 +69,8 @@ int main() {
 	Camera *camera = new PerspectiveCamera(60, ratio, 0.1f, 1000.0f);
 	Scene *scene = new Scene();
 	DirectionalLight *light = new DirectionalLight();
+	light->setPosition(glm::vec3(0, 500, 0));
+
 	scene->add(light);
 	AmbientLight *ambientLight = new AmbientLight({ 0.5, 0.5, 0.5 });
 	scene->add(ambientLight);
@@ -84,12 +86,11 @@ int main() {
 	Editor *editor = new Editor();
 
 	EffectComposer *composer = new EffectComposer(renderer);
-
-	//ShadowPass *shadowPass = new ShadowPass(scene, 256, 0.1, 1000);
-	//shadowPass->camera->position = vec3(0, 500, 500);
-	//shadowPass->camera->target = vec3(0, 0, 0);
-
-	//composer->add_pass(shadowPass);
+	
+	ShadowMap *shadowMap = new ShadowMap(256, 256, 0.1, 1000, 1024, 1024);
+	shadowMap->camera->position = light->position;
+	shadowMap->camera->target = glm::vec3(0, 0, 0);
+	scene->shadowMap = shadowMap;
 
 	RenderPass *renderPass = new RenderPass(scene, camera);
 	composer->add_pass(renderPass);
@@ -104,6 +105,10 @@ int main() {
 		ImGui_ImplGlfwGL3_NewFrame();
 
 		runner->update();
+
+		scene->override_material = shadowMap->depthMaterial;
+		renderer->render(scene, shadowMap->camera, shadowMap->renderTarget);
+		scene->override_material = 0;
 
 		composer->render();
 

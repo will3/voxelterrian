@@ -11,7 +11,7 @@ out vec3 fragmentColor;
 out vec3 fragmentNormal;
 out vec4 shadowCoord;
 
-void main(){
+void main() {
 	gl_Position =  MVP * vec4(position, 1);
 	fragmentNormal = normal;
 	fragmentColor = color / 255.0;

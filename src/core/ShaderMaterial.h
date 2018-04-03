@@ -11,11 +11,14 @@ public:
 	void load() override {
 		programID = ShaderLoader::LoadProgram(shader->programName);
 		uniforms = shader->uniforms;
+		uniforms.get_handles(programID);
 	};
 
 	void bind() override {
 		glUseProgram(programID);
-		uniforms.get_handles(programID);
+
+		glm::mat4 MVP = currentCamera->Projection * currentCamera->View * currentNode->matrix;
+		uniforms.set("MVP", MVP);
 	};
 
 public:

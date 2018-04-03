@@ -5,6 +5,8 @@
 #include "Shader.h"
 
 class Scene;
+class Node;
+class Camera;
 
 class Material {
 public:
@@ -13,6 +15,8 @@ public:
 	UniformAttributes uniforms;
 	Scene *scene;
 	Renderer *currentRenderer;
+	Node *currentNode;
+	Camera *currentCamera;
 
 	virtual void load() {};
 

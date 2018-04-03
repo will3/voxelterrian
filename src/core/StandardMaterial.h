@@ -5,6 +5,7 @@
 #include "DirectionalLight.h"
 #include <map>
 #include "Shader.h"
+#include "ShadowMap.h"
 
 class StandardMaterial : public Material {
 public:
@@ -27,7 +28,7 @@ public:
 		glUseProgram(programID);
 
 		for (auto light : scene->directional_lights) {
-			uniforms.set("light_dir", light->inverse_direction[0], light->inverse_direction[1], light->inverse_direction[2]);
+			uniforms.set("light_dir", light->direction[0], light->direction[1], light->direction[2]);
 			// only support one directional light
 			break;
 		}
@@ -37,9 +38,24 @@ public:
 			break;
 		}
 
-			/*uniforms.set_texture("shadowMap", currentRenderer->shadowMap->renderTarget->depthTexture);
-			Camera *camera = currentRenderer->shadowMap->camera;
-			glm::mat4 MVP = camera->Projection * camera->View;
-			uniforms.set("shadowMVP", MVP);*/
+		glm::mat4 MVP = currentCamera->Projection * currentCamera->View * currentNode->matrix;
+		uniforms.set("MVP", MVP);
+
+		glm::mat4 biasMatrix(
+			0.5, 0.0, 0.0, 0.0,
+			0.0, 0.5, 0.0, 0.0,
+			0.0, 0.0, 0.5, 0.0,
+			0.5, 0.5, 0.5, 1.0
+		);
+
+
+		if (scene->shadowMap != 0) {
+			Camera *shadowMapCamera = scene->shadowMap->camera;
+			uniforms.set_texture("shadowMap", scene->shadowMap->getShadowMap());
+			glm::mat4 shadowMVP = shadowMapCamera->Projection * shadowMapCamera->View * currentNode->matrix;
+			glm::mat4 shadowBiasMVP = biasMatrix * shadowMVP;
+
+			uniforms.set("shadowMVP", shadowBiasMVP);
+		}
 	}
 };
