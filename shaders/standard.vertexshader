@@ -21,7 +21,5 @@ void main() {
 
 	fragmentColor = color / 255.0;
 
-
-
 	shadowCoord = shadowMVP * vec4(position, 1);
 }

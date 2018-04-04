@@ -75,23 +75,23 @@ int main() {
 	light->setPosition(glm::vec3(200, 0, 0));
 
 	scene->add(light);
-	AmbientLight *ambientLight = new AmbientLight({ 0.0, 0.0, 0.0 });
+	AmbientLight *ambientLight = new AmbientLight({ 0.2, 0.2, 0.2 });
 	scene->add(ambientLight);
 
-	camera->position = glm::vec3(100, 100, 100);
+	camera->position = glm::vec3(0, 200, -200);
 	camera->target = glm::vec3(0, 0, 0);
 
-	Material *material = new StandardMaterial();
+	//Material *material = new StandardMaterial();
 
-	SphereGeometry *geometry = new SphereGeometry(100.0, 16, 12);
-	Mesh *sphere = new Mesh(geometry, material);
-	scene->add(sphere);
-	sphere->position.x = -100.0;
+	//SphereGeometry *geometry = new SphereGeometry(100.0, 16, 12);
+	//Mesh *sphere = new Mesh(geometry, material);
+	//scene->add(sphere);
+	//sphere->position.x = -100.0;
 
-	BoxGeometry *boxGeometry = new BoxGeometry(10.0);
-	Mesh *box = new Mesh(boxGeometry, material);
-	scene->add(box);
-	box->position.x = 20.0;
+	//BoxGeometry *boxGeometry = new BoxGeometry(10.0);
+	//Mesh *box = new Mesh(boxGeometry, material);
+	//scene->add(box);
+	//box->position.x = 20.0;
 
 	__int64 last_tick = 0;
 
@@ -111,6 +111,10 @@ int main() {
 	composer->add_pass(copyPass);
 	copyPass->renderToScreen = true;
 
+	Terrian2 *terrian = new Terrian2();
+	terrian->scene = scene;
+	runner->add(terrian);
+
 	do {
 		glfwPollEvents();
 
@@ -118,12 +122,7 @@ int main() {
 		
 		runner->update();
 
-		scene->override_material = shadowMap->depthMaterial;
-
-		renderer->render(scene, shadowMap->camera, shadowMap->renderTarget);
-
-		scene->override_material = 0;
-
+		shadowMap->render(renderer, scene);
 		composer->render();
 
 		ImGui::Render();

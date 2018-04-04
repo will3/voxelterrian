@@ -24,4 +24,12 @@ public:
 		delete renderTarget;
 		delete depthMaterial;
 	}
+
+	void render(Renderer *renderer, Scene *scene) {
+		glCullFace(GL_FRONT);
+		scene->override_material = depthMaterial;
+		renderer->render(scene, camera, renderTarget);
+		scene->override_material = 0;
+		glCullFace(GL_BACK);
+	}
 };

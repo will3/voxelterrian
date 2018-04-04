@@ -14,18 +14,16 @@
 #include <glm/gtc/quaternion.hpp>
 
 class Terrian2 : public Entity {
-public:
-	FastNoise *height_noise = new FastNoise();
-	//FastNoise *canyon_noise = new FastNoise();
-	StandardMaterial *material = new StandardMaterial();
-	Chunks *chunks = new Chunks();
-
-	Scene *scene;
+private:
 	float draw_distance = 64.0;
 	float draw_height = 128.0;
 	float height_noise_y_scale = 0.4;
 	float height_noise_amplitude = 128.0;
-	Mesh *mesh;
+	FastNoise *height_noise = new FastNoise();
+	StandardMaterial *material = new StandardMaterial();
+	Chunks *chunks = new Chunks();
+public:
+	Scene *scene;
 
 	Terrian2() {
 		height_noise->SetFractalOctaves(5);

@@ -20,7 +20,8 @@ void main()
 	}
 
 	vec3 ambient = ambient_light;
-	
+
+	float bias = 0.005;
 	float visibility = 1.0;
 	if (hasShadowMap) {
 		visibility = texture( shadowMap, vec3(shadowCoord.xy, (shadowCoord.z)/shadowCoord.w) );
