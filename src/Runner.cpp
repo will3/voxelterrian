@@ -1,5 +1,7 @@
 #include "Runner.h"
 #include <vector>
+#include "GLFW\glfw3.h"
+#include <math.h>
 
 static int next_id = 0;
 int get_next_id() { return ++next_id; }
@@ -29,6 +31,12 @@ void Runner::remove(int id) {
 }
 
 void Runner::update() {
+	static double lastTime = glfwGetTime();
+
+	double currentTime = glfwGetTime();
+
+	delta = fmin(1 / 60.0f, float(currentTime - lastTime));
+
 	for (auto kv : map) {
 		Entity *entity = kv.second;
 		if (entity->started) {
@@ -53,6 +61,8 @@ void Runner::update() {
 		map[key]->remove();
 		map.erase(key);
 	}
+
+	lastTime = glfwGetTime();
 }
 
 bool Runner::has(int id) {

@@ -14,19 +14,28 @@ out vec3 color;
 
 void main()
 {
-	float normalFactor = dot(fragmentNormal, light_dir);
-	if (normalFactor < 0) {
-		normalFactor = 0;
+	float cosTheta = clamp( dot(fragmentNormal, light_dir), 0, 1 );
+
+	vec3 ambient = ambient_light * 1.0;
+
+	float bias = 0.005 * tan( acos(cosTheta) );
+	bias = clamp(bias, 0, 0.01);
+
+	bool test_shadow = false;
+
+	float visibility = 1.0;
+
+	if (hasShadowMap) {
+		visibility = texture( shadowMap, vec3(shadowCoord.xy, (shadowCoord.z - bias) /shadowCoord.w) );
 	}
 
-	vec3 ambient = ambient_light;
-
-	float bias = 0.005;
-	float visibility = 1.0;
-	if (hasShadowMap) {
-		visibility = texture( shadowMap, vec3(shadowCoord.xy, (shadowCoord.z)/shadowCoord.w) );
+	if (test_shadow) {
+		if (visibility != 1.0) {
+			color = vec3(1.0, 0.0, 0.0);
+			return;
+		}
 	}
 
 	color = ambient +
-		fragmentColor * normalFactor * visibility;
+		fragmentColor * cosTheta * visibility;
 }

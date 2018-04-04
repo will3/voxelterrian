@@ -12,9 +12,10 @@ private:
 
 public:
 	Renderer *renderer;
+
 	EffectComposer(Renderer *renderer) : renderer(renderer) {
-		writeBuffer = new RenderTarget(renderer->window_width, renderer->window_height);
-		readBuffer = new RenderTarget(renderer->window_width, renderer->window_height);
+		writeBuffer = new RenderTarget(renderer->window->width, renderer->window->height);
+		readBuffer = new RenderTarget(renderer->window->width, renderer->window->height);
 	}
 
 	void add_pass(Pass *pass) {

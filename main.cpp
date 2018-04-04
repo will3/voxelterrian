@@ -32,6 +32,7 @@
 #include "StandardMaterial.h"
 #include <glm/gtx/quaternion.hpp>
 #include "SphereGeometry.h"
+#include "CameraControl.h"
 
 using namespace glm;
 using namespace std::chrono;
@@ -47,18 +48,15 @@ __int64 get_time_stamp() {
 }
 
 int main() {
+	Window *window = new Window();
+	window->show(1280, 720);
 	Renderer *renderer = new Renderer();
-	int width = 1280;
-	int height = 720;
-	renderer->start_window(width, height);
-	GLFWwindow *window = renderer->window;
-
-	glfwMakeContextCurrent(window);
-	glfwSwapInterval(1); 
+	renderer->window = window;
+	renderer->load();
 
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	ImGui_ImplGlfwGL3_Init(window, true);
+	ImGui_ImplGlfwGL3_Init(window->window, true);
 	ImGui::StyleColorsDark();
 
 	bool show_demo_window = true;
@@ -66,9 +64,9 @@ int main() {
 	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
 	// Ensure we can capture the escape key being pressed below
-	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
+	glfwSetInputMode(window->window, GLFW_STICKY_KEYS, GL_TRUE);
 
-	float ratio = width / (float)height;
+	float ratio = window->width / (float)window->height;
 	Camera *camera = new PerspectiveCamera(60, ratio, 0.1f, 1000.0f);
 	Scene *scene = new Scene();
 	DirectionalLight *light = new DirectionalLight();
@@ -81,28 +79,7 @@ int main() {
 	camera->position = glm::vec3(0, 200, -200);
 	camera->target = glm::vec3(0, 0, 0);
 
-	//Material *material = new StandardMaterial();
-
-	//SphereGeometry *geometry = new SphereGeometry(100.0, 16, 12);
-	//Mesh *sphere = new Mesh(geometry, material);
-	//scene->add(sphere);
-	//sphere->position.x = -100.0;
-
-	//BoxGeometry *boxGeometry = new BoxGeometry(10.0);
-	//Mesh *box = new Mesh(boxGeometry, material);
-	//scene->add(box);
-	//box->position.x = 20.0;
-
-	__int64 last_tick = 0;
-
-	Runner *runner = new Runner();
-
 	EffectComposer *composer = new EffectComposer(renderer);
-	
-	ShadowMap *shadowMap = new ShadowMap(256, 256, 0.1, 1000, 1024, 1024);
-	shadowMap->camera->position = light->position;
-	shadowMap->camera->target = glm::vec3(0, 0, 0);
-	scene->shadowMap = shadowMap;
 
 	RenderPass *renderPass = new RenderPass(scene, camera);
 	composer->add_pass(renderPass);
@@ -110,6 +87,30 @@ int main() {
 	CopyPass *copyPass = new CopyPass();
 	composer->add_pass(copyPass);
 	copyPass->renderToScreen = true;
+
+	Material *material = new StandardMaterial();
+
+	SphereGeometry *geometry = new SphereGeometry(100.0, 16, 12);
+	Mesh *sphere = new Mesh(geometry, material);
+	scene->add(sphere);
+	sphere->position.x = -100.0;
+
+	BoxGeometry *boxGeometry = new BoxGeometry(10.0);
+	Mesh *box = new Mesh(boxGeometry, material);
+	scene->add(box);
+	box->position.x = 20.0;
+
+	Runner *runner = new Runner();
+
+	CameraControl *cameraControl = new CameraControl();
+	runner->add(cameraControl);
+	cameraControl->window = window;
+	cameraControl->camera = camera;
+	
+	ShadowMap *shadowMap = new ShadowMap(256, 256, 0.1, 1000, 1024, 1024);
+	shadowMap->camera->position = light->position;
+	shadowMap->camera->target = glm::vec3(0, 0, 0);
+	scene->shadowMap = shadowMap;
 
 	Terrian2 *terrian = new Terrian2();
 	terrian->scene = scene;
@@ -123,26 +124,22 @@ int main() {
 		runner->update();
 
 		shadowMap->render(renderer, scene);
+
 		composer->render();
 
 		ImGui::Render();
 		ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
 
-		glfwSwapBuffers(window);
+		glfwSwapBuffers(window->window);
 
-		if (last_tick != 0) {
-			runner->time_step = (get_time_stamp() - last_tick) / 1000.0f;
-		}
-
-		last_tick = get_time_stamp();
 	} // Check if the ESC key was pressed or the window was closed
-	while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
-		glfwWindowShouldClose(window) == 0);
+	while (glfwGetKey(window->window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
+		glfwWindowShouldClose(window->window) == 0);
 
 	// Cleanup
 	ImGui_ImplGlfwGL3_Shutdown();
 	ImGui::DestroyContext();
-	glfwTerminate();
+	window->hide();
 
 	return 0;
 }

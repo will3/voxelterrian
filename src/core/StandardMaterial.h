@@ -18,6 +18,8 @@ public:
 		uniforms.add(UniformAttribute("hasShadowMap"));
 		uniforms.add(UniformAttribute("shadowMap"));
 		uniforms.add(UniformAttribute("shadowMVP"));
+		uniforms.add(UniformAttribute("modelMatrix"));
+		uniforms.add(UniformAttribute("viewMatrix"));
 	}
 
 	void load() {
@@ -59,5 +61,8 @@ public:
 
 			uniforms.set("shadowMVP", shadowBiasMVP);
 		}
+
+		uniforms.set("modelMatrix", currentNode->matrix);
+		uniforms.set("viewMatrix", currentCamera->View);
 	}
 };

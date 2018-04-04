@@ -15,6 +15,6 @@ public:
 	bool has(int id);
 	bool get(int id);
 	void update();
-	float time_step = 1 / 60.0f;
+	float delta = 0.0f;
 };
 

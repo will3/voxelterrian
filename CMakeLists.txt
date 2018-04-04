@@ -29,6 +29,7 @@ include_directories(
 	./src/core
 	./src/postprocessing
 	./src/geometries
+	.
 )
 
 set(ALL_LIBS

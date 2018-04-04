@@ -40,6 +40,7 @@ public:
 	CopyPass() {
 		load();
 	}
+
 	~CopyPass() { }
 
 	void render(Renderer *renderer, RenderTarget *writeBuffer, RenderTarget *readBuffer) override {
