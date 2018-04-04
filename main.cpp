@@ -88,17 +88,17 @@ int main() {
 	composer->add_pass(copyPass);
 	copyPass->renderToScreen = true;
 
-	Material *material = new StandardMaterial();
+	//Material *material = new StandardMaterial();
 
-	SphereGeometry *geometry = new SphereGeometry(100.0, 16, 12);
-	Mesh *sphere = new Mesh(geometry, material);
-	scene->add(sphere);
-	sphere->position.x = -100.0;
+	//SphereGeometry *geometry = new SphereGeometry(100.0, 16, 12);
+	//Mesh *sphere = new Mesh(geometry, material);
+	//scene->add(sphere);
+	//sphere->position.x = -100.0;
 
-	BoxGeometry *boxGeometry = new BoxGeometry(10.0);
-	Mesh *box = new Mesh(boxGeometry, material);
-	scene->add(box);
-	box->position.x = 20.0;
+	//BoxGeometry *boxGeometry = new BoxGeometry(10.0);
+	//Mesh *box = new Mesh(boxGeometry, material);
+	//scene->add(box);
+	//box->position.x = 20.0;
 
 	Runner *runner = new Runner();
 
@@ -106,11 +106,13 @@ int main() {
 	runner->add(cameraControl);
 	cameraControl->window = window;
 	cameraControl->camera = camera;
-	
+	cameraControl->position = glm::vec3(0, 128, 0);
+	cameraControl->pitch = - glm::pi<float>() / 4;
+
 	ShadowMap *shadowMap = new ShadowMap(256, 256, 0.1, 1000, 1024, 1024);
 	shadowMap->camera->position = light->position;
 	shadowMap->camera->target = glm::vec3(0, 0, 0);
-	scene->shadowMap = shadowMap;
+	//scene->shadowMap = shadowMap;
 
 	Terrian2 *terrian = new Terrian2();
 	terrian->scene = scene;
