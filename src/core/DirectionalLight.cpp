@@ -1,5 +1,4 @@
 #include "DirectionalLight.h"
-#include "Raycast.h"
 #include "Mask.h"
 
 glm::vec3 unit_vector(glm::vec3 vector) {
@@ -20,7 +19,3 @@ void DirectionalLight::setPosition(glm::vec3 position) {
 	updateDirection();
 }
 
-void DirectionalLight::updateDirection() {
-	inverse_direction = unit_vector(position);
-	direction = inverse_direction * -1.0f;
-}

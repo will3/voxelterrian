@@ -16,9 +16,6 @@
     <ClCompile Include="C:\kestrel\src\core\Renderer.cpp">
       <Filter>src\core</Filter>
     </ClCompile>
-    <ClCompile Include="C:\kestrel\src\core\Scene.cpp">
-      <Filter>src\core</Filter>
-    </ClCompile>
     <ClCompile Include="C:\kestrel\src\Brush.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -64,7 +61,28 @@
     <ClCompile Include="C:\kestrel\src\VoxelShadowMap.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="C:\kestrel\common\controls.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\kestrel\common\objloader.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\kestrel\common\quaternion_utils.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
     <ClCompile Include="C:\kestrel\common\shader.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\kestrel\common\tangentspace.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\kestrel\common\text2D.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\kestrel\common\texture.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\kestrel\common\vboindexer.cpp">
       <Filter>common</Filter>
     </ClCompile>
     <ClCompile Include="C:\kestrel\external\imgui\imgui.cpp">
@@ -120,9 +138,6 @@
     <ClInclude Include="C:\kestrel\src\core\DirectionalLight.h">
       <Filter>src\core</Filter>
     </ClInclude>
-    <ClInclude Include="C:\kestrel\src\core\FrameBuffer.h">
-      <Filter>src\core</Filter>
-    </ClInclude>
     <ClInclude Include="C:\kestrel\src\core\Geometry.h">
       <Filter>src\core</Filter>
     </ClInclude>
@@ -166,6 +181,9 @@
       <Filter>src\core</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\geometries\BoxGeometry.h">
+      <Filter>src\geometries</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\geometries\SphereGeometry.h">
       <Filter>src\geometries</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\postprocessing\CopyPass.h">
@@ -252,7 +270,28 @@
     <ClInclude Include="C:\kestrel\src\types.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="C:\kestrel\common\controls.hpp">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\common\objloader.hpp">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\common\quaternion_utils.hpp">
+      <Filter>common</Filter>
+    </ClInclude>
     <ClInclude Include="C:\kestrel\common\shader.hpp">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\common\tangentspace.hpp">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\common\text2D.hpp">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\common\texture.hpp">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\common\vboindexer.hpp">
       <Filter>common</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\external\imgui\imconfig.h">

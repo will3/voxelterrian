@@ -338,3 +338,6 @@ ASALocalRun/
 external
 
 RelWithDebInfo
+googletest-src
+googletest-download
+googletest-build

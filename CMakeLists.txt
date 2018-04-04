@@ -29,7 +29,6 @@ include_directories(
 	./src/core
 	./src/postprocessing
 	./src/geometries
-	.
 )
 
 set(ALL_LIBS
@@ -49,12 +48,12 @@ add_definitions(
 file(GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/src/**/*.* ${PROJECT_SOURCE_DIR}/src/*.*)
 file(GLOB SHADER_FILES ${PROJECT_SOURCE_DIR}/shaders/*.*)
 file(GLOB EXTERNAL_FILES ${PROJECT_SOURCE_DIR}/external/imgui/*.*)
+file(GLOB COMMON_FILES ${PROJECT_SOURCE_DIR}/common/*.*)
 
 add_executable(kestrel 
 	${SRC_FILES}
 	${SHADER_FILES}
-	common/shader.cpp
-	common/shader.hpp
+	${COMMON_FILES}
 	${EXTERNAL_FILES}
 	main.cpp
 	)
@@ -117,8 +116,7 @@ file(GLOB TEST_FILES ${PROJECT_SOURCE_DIR}/tests/*.*)
 add_executable(kestrel-tests 	
 	${SRC_FILES}
 	${SHADER_FILES}
-	common/shader.cpp
-	common/shader.hpp
+	${COMMON_FILES}
 	${EXTERNAL_FILES} 
 	${TEST_FILES})
 

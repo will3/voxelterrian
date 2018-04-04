@@ -7,8 +7,8 @@ in vec4 shadowCoord;
 uniform vec3 light_dir;
 uniform vec3 ambient_light;
 uniform sampler2D tex;
-uniform sampler2DShadow shadowMap;
 uniform bool hasShadowMap;
+uniform sampler2DShadow shadowMap;
 
 out vec3 color;
 

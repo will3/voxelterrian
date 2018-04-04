@@ -17,6 +17,7 @@ public:
 	}
 
 	ArrayBuffer(int location, int elements_per_vertex) : location(location), elements_per_vertex(elements_per_vertex) {
+		// Not complete
 		is_int = type_enum == GL_INT;
 	}
 
@@ -86,6 +87,9 @@ public:
 	virtual void bind() {};
 	void unbind() {};
 
-	Geometry();
-	~Geometry();
+	Geometry() {};
+	~Geometry()
+	{
+		unload();
+	}
 };
