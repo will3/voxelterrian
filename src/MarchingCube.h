@@ -3,6 +3,7 @@
 #include <array>
 #include "linalg.h"
 #include "Chunk.h"
+#include <functional>
 
 typedef linalg::vec<float, 3> Vec3f;
 typedef linalg::vec<int, 3> Vec3i;
@@ -102,21 +103,32 @@ static void do_edge(int n_edge, float va, float vb, int axis, const Vec3f &base,
 	vertices.push_back(vertex);
 };
 
-static void generate_geometry(Chunk *chunk, std::vector<Vertex> &vertices, std::vector<int> &indices)
-{
-	int size = CHUNK_SIZE;
+typedef std::function<float(float x, float y, float z)> densityFunc;
+
+static void generate_geometry(
+	densityFunc getDensity, 
+	glm::vec3 start,
+	float size,
+	std::vector<Vertex> &vertices, 
+	std::vector<int> &indices) {
+
 	for (int z = -1; z < size; z++) {
 		for (int y = -1; y < size; y++) {
 			for (int x = -1; x < size; x++) {
+				float coordX = x + start.x;
+				float coordY = y + start.y;
+				float coordZ = z + start.z;
+				getDensity(x + start.x, y + start.y, z + start.z);
+
 				const int vs[8] = {
-					chunk->get_global({ x,   y,   z }),
-					chunk->get_global({ x + 1, y,   z }),
-					chunk->get_global({ x,   y + 1, z }),
-					chunk->get_global({ x + 1, y + 1, z }),
-					chunk->get_global({ x,   y,   z + 1 }),
-					chunk->get_global({ x + 1, y,   z + 1 }),
-					chunk->get_global({ x,   y + 1, z + 1 }),
-					chunk->get_global({ x + 1, y + 1, z + 1 })
+					getDensity(coordX,   	coordY,   	coordZ),
+					getDensity(coordX + 1, 	coordY,   	coordZ),
+					getDensity(coordX,   	coordY + 1, coordZ),
+					getDensity(coordX + 1, 	coordY + 1, coordZ),
+					getDensity(coordX,   	coordY,   	coordZ + 1),
+					getDensity(coordX + 1, 	coordY,   	coordZ + 1),
+					getDensity(coordX,   	coordY + 1, coordZ + 1),
+					getDensity(coordX + 1, 	coordY + 1, coordZ + 1)
 				};
 
 				const int config_n =

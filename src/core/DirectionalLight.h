@@ -10,8 +10,10 @@ public:
 	glm::vec3 direction;
 	glm::vec3 inverse_direction;
 	glm::vec3 position;
+	float intensity = 1.0;
 
-	DirectionalLight() {};
+	DirectionalLight(float intensity) : intensity(intensity) { };
+
 	~DirectionalLight() {};
 
 	void setPosition(glm::vec3 position) {

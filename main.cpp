@@ -69,11 +69,11 @@ int main() {
 	float ratio = window->width / (float)window->height;
 	Camera *camera = new PerspectiveCamera(60, ratio, 0.1f, 1000.0f);
 	Scene *scene = new Scene();
-	DirectionalLight *light = new DirectionalLight();
+	DirectionalLight *light = new DirectionalLight(0.5);
 	light->setPosition(glm::vec3(200, 0, 0));
 
 	scene->add(light);
-	AmbientLight *ambientLight = new AmbientLight({ 0.2, 0.2, 0.2 });
+	AmbientLight *ambientLight = new AmbientLight({ 0.5, 0.5, 0.5 });
 	scene->add(ambientLight);
 
 	camera->position = glm::vec3(0, 200, -200);

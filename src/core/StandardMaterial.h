@@ -14,6 +14,7 @@ public:
 
 	StandardMaterial() {
 		uniforms.add(UniformAttribute("light_dir"));
+		uniforms.add(UniformAttribute("light_intensity"));
 		uniforms.add(UniformAttribute("ambient_light"));
 		uniforms.add(UniformAttribute("hasShadowMap"));
 		uniforms.add(UniformAttribute("shadowMap"));
@@ -32,6 +33,7 @@ public:
 
 		for (auto light : scene->directional_lights) {
 			uniforms.set("light_dir", light->direction[0], light->direction[1], light->direction[2]);
+			uniforms.set("light_intensity", light->intensity);
 			// only support one directional light
 			break;
 		}

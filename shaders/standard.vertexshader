@@ -12,11 +12,14 @@ uniform mat4 viewMatrix;
 out vec3 fragmentColor;
 out vec3 fragmentNormal;
 out vec4 shadowCoord;
+out vec3 position_worldspace;
 
 void main() {
 	gl_Position = MVP * vec4(position, 1);
 
 	mat3 normalMatrix = mat3(MVP);
+
+	position_worldspace = (modelMatrix * vec4(position, 1)).xyz;
 
 	fragmentNormal = (modelMatrix * vec4(normal, 0)).xyz;
 

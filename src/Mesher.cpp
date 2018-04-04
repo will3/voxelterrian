@@ -157,8 +157,6 @@ void Mesher::copy_quads(Mask& mask, VoxelGeometry *geometry) {
 	}
 }
 
-DirectionalLight *light = new DirectionalLight();
-
 Geometry* Mesher::mesh(Chunk* chunk, Chunks* chunks) {
 	VoxelGeometry *geometry = new VoxelGeometry();
 

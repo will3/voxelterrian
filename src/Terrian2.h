@@ -53,7 +53,7 @@ public:
 
 	float get_density(float x, float y, float z) {
 		float fractal = height_noise->GetSimplexFractal(x, y * height_noise_y_scale, z);
-		float density = fractal * height_noise_amplitude;
+		float density = fractal * height_noise_amplitude - y;
 		return density;
 	}
 
@@ -92,7 +92,14 @@ public:
 
 		std::vector<Vertex> vertices;
 		std::vector<int> indicesOut;
-		generate_geometry(chunk, vertices, indicesOut);
+
+		auto getDensity = [=](float x, float y, float z) {
+			return get_density(x, y, z);
+		};
+
+		//auto getDensity = std::bind(&Terrian2::get_density, this, _1, _2, _3);
+		glm::vec3 offsetVec = glm::vec3(offset.i, offset.j, offset.k);
+		generate_geometry(getDensity, offsetVec, CHUNK_SIZE, vertices, indicesOut);
 
 		auto& indices = geometry->get_indices();
 
