@@ -6,6 +6,8 @@
 #include "Entity.h"
 #include "Window.h"
 
+using namespace glm;
+
 class CameraControl : public Entity {
 public:
 	Window *window = 0;
@@ -16,6 +18,8 @@ public:
 	float mouseSpeed = 0.001f;
 	glm::vec3 position = glm::vec3(0, 0, 0);
 	float speed = 100;
+	bool mouseDown = false;
+	float lastMouseX, lastMouseY;
 
 	void start() override {
 		if (window == 0) throw std::exception("window cannot be empty");
@@ -36,17 +40,19 @@ public:
 		float width = window->width;
 		float height = window->height;
 
-		// Get mouse position
-		double xpos, ypos;
-		glfwGetCursorPos(window->window, &xpos, &ypos);
-		glfwSetCursorPos(window->window, width / 2, height / 2);
+		double mouseX, mouseY;
+		glfwGetCursorPos(window->window, &mouseX, &mouseY);
 
-		float diffX = width / 2 - xpos;
-		float diffY = height / 2 - ypos;
+		float diffX = mouseX - lastMouseX;
+		float diffY = mouseY - lastMouseY;
 
-		// Compute new orientation
-		yaw -= mouseSpeed * diffX;
-		pitch += mouseSpeed * diffY;
+		lastMouseX = mouseX;
+		lastMouseY = mouseY;
+
+		if (mouseDown) {
+			yaw += mouseSpeed * diffX;
+			pitch -= mouseSpeed * diffY;
+		}
 
 		pitch = fmin(pi / 2, fmax(-pi / 2, pitch));
 
@@ -60,6 +66,13 @@ public:
 		glm::vec3 up = glm::vec3(0, 1, 0);
 		glm::vec3 right = glm::cross(direction, up);
 		glm::vec3 forward = glm::cross(up, right);
+
+		if (glfwGetMouseButton(window->window, GLFW_MOUSE_BUTTON_1) == GLFW_PRESS) {
+			mouseDown = true;
+		}
+		else {
+			mouseDown = false;
+		}
 
 		if (glfwGetKey(window->window, GLFW_KEY_W) == GLFW_PRESS) {
 			position += forward * delta * speed;

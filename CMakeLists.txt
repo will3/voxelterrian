@@ -25,6 +25,7 @@ include_directories(
 	external/assimp-3.0.1270/include/
 	external/bullet-2.81-rev2613/src/
 	external/imgui
+	external
 	./src
 	./src/core
 	./src/postprocessing
@@ -48,7 +49,7 @@ add_definitions(
 
 file(GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/src/**/*.* ${PROJECT_SOURCE_DIR}/src/*.*)
 file(GLOB SHADER_FILES ${PROJECT_SOURCE_DIR}/shaders/*.*)
-file(GLOB EXTERNAL_FILES ${PROJECT_SOURCE_DIR}/external/imgui/*.*)
+file(GLOB EXTERNAL_FILES ${PROJECT_SOURCE_DIR}/external/imgui/*.* ${PROJECT_SOURCE_DIR}/external/json.hpp)
 file(GLOB COMMON_FILES ${PROJECT_SOURCE_DIR}/common/*.*)
 
 add_executable(kestrel 

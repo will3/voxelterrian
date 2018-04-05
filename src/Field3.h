@@ -6,12 +6,18 @@ class Field3 {
 private:
 	std::vector<T> data;
 public:
-	int size = 32;
+	int size;
+
 	Field3(int size) {
 		this->size = size;
 		data.resize(size * size * size);
 	}
 	T get(int i, int j, int k) {
+		if (i < 0 || i >= size ||
+			j < 0 || j >= size ||
+			k < 0 || k >= size) {
+			throw std::exception("out of bounds");
+		}
 		int index = i * size * size + j * size + k;
 		return data[index];
 	}

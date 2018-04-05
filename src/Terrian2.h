@@ -13,6 +13,8 @@
 #include "Field3.h"
 #include <glm/gtc/quaternion.hpp>
 
+using namespace glm;
+
 class Terrian2 : public Entity {
 private:
 	float draw_distance = 64.0;
@@ -22,8 +24,10 @@ private:
 	FastNoise *height_noise = new FastNoise();
 	StandardMaterial *material = new StandardMaterial();
 	Chunks *chunks = new Chunks();
+
 public:
 	Scene *scene;
+	ImGradient *rock_color_gradient = new ImGradient();
 
 	Terrian2() {
 		height_noise->SetFractalOctaves(5);
@@ -32,6 +36,7 @@ public:
 	}
 
 	void start() {
+
 		int num_chunks = ceil(draw_distance / (float)CHUNK_SIZE);
 		int num_chunks_y = ceil(draw_height / (float)CHUNK_SIZE);
 		Coord3 view_origin = { 0, 0, 0 };
@@ -45,7 +50,6 @@ public:
 			}
 		}
 
-
 	}
 
 	void update() {
@@ -57,14 +61,26 @@ public:
 		return density;
 	}
 
+	ivec3 get_color(glm::vec3 coord) {
+		return get_color(coord.x, coord.y, coord.z);
+	}
+
+	ivec3 get_color(float x, float y, float z) {
+		float position = y / height_noise_amplitude;
+		std::array<float, 3> color;
+		rock_color_gradient->getColorAt(position, color.data());
+		ivec3 c = { color[0] * 255, color[1] * 255, color[2] * 255 };
+		return c;
+	}
+
 	void draw(Coord3 origin) {
 		StandardGeometry *geometry = new StandardGeometry();
-		Chunk *chunk = chunks->get_or_create_chunk(origin);
-		Coord3 offset = chunk->get_offset();
+		float chunk_size = 32;
+		Coord3 offset = origin * chunk_size;
+		vec3 offsetV = { offset.i, offset.j, offset.k };
 
-		int noise_size = 17;
+		float noise_size = chunk_size / 2 + 10;
 		Field3<float> field = Field3<float>(noise_size);
-
 		for (int i = 0; i < noise_size; i++) {
 			for (int j = 0; j < noise_size; j++) {
 				for (int k = 0; k < noise_size; k++) {
@@ -77,36 +93,20 @@ public:
 			}
 		}
 
-		for (int i = 0; i < CHUNK_SIZE; i++) {
-			for (int j = 0; j < CHUNK_SIZE; j++) {
-				for (int k = 0; k < CHUNK_SIZE; k++) {
-					Coord3 chunk_coord = Coord3(i, j, k) + offset;
-					float density = field.sample(i * 0.5, j * 0.5, k * 0.5);
-
-					if (density > 0.5) {
-						chunk->set({ i, j, k }, density > 0.5 ? 1 : 0);
-					}
-				}
-			}
-		}
-
 		std::vector<Vertex> vertices;
 		std::vector<int> indicesOut;
 
-		auto getDensity = [=](float x, float y, float z) {
-			return get_density(x, y, z);
-		};
-
 		//auto getDensity = std::bind(&Terrian2::get_density, this, _1, _2, _3);
 		glm::vec3 offsetVec = glm::vec3(offset.i, offset.j, offset.k);
-		generate_geometry(getDensity, offsetVec, CHUNK_SIZE, vertices, indicesOut);
+		generate_geometry(offsetVec, CHUNK_SIZE, vertices, indicesOut, field, 2);
 
 		auto& indices = geometry->get_indices();
 
 		for (auto vertex : vertices) {
 			glm::vec3 position = { vertex.position[0], vertex.position[1], vertex.position[2] };
 			glm::vec3 normal = { vertex.normal[0], vertex.normal[1], vertex.normal[2] };
-			geometry->push_vertice(position, normal, { 255,255,255 });
+			ivec3 color = get_color(position + offsetV);
+			geometry->push_vertice(position, normal, { color.x, color.y, color.z });
 		}
 
 		for (auto indice : indicesOut) {

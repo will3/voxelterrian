@@ -69,7 +69,7 @@ int main() {
 	float ratio = window->width / (float)window->height;
 	Camera *camera = new PerspectiveCamera(60, ratio, 0.1f, 1000.0f);
 	Scene *scene = new Scene();
-	DirectionalLight *light = new DirectionalLight(0.5);
+	DirectionalLight *light = new DirectionalLight(0.7);
 	light->setPosition(glm::vec3(200, 0, 0));
 
 	scene->add(light);
@@ -112,16 +112,19 @@ int main() {
 	ShadowMap *shadowMap = new ShadowMap(256, 256, 0.1, 1000, 1024, 1024);
 	shadowMap->camera->position = light->position;
 	shadowMap->camera->target = glm::vec3(0, 0, 0);
-	//scene->shadowMap = shadowMap;
+	scene->shadowMap = shadowMap;
 
 	Terrian2 *terrian = new Terrian2();
 	terrian->scene = scene;
 	runner->add(terrian);
 
+	Editor *editor = new Editor();
+	editor->rock_color_gradient = terrian->rock_color_gradient;
+	editor->load();
+
 	do {
 		glfwPollEvents();
 
-		ImGui_ImplGlfwGL3_NewFrame();
 		
 		runner->update();
 
@@ -129,6 +132,8 @@ int main() {
 
 		composer->render();
 
+		ImGui_ImplGlfwGL3_NewFrame();
+		editor->draw();
 		ImGui::Render();
 		ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
 

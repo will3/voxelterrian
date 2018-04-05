@@ -4,6 +4,7 @@
 #include "linalg.h"
 #include "Chunk.h"
 #include <functional>
+#include "Field3.h"
 
 typedef linalg::vec<float, 3> Vec3f;
 typedef linalg::vec<int, 3> Vec3i;
@@ -93,7 +94,7 @@ static void triangle(int a, int b, int c, std::vector<Vertex> &vertices) {
 }
 
 static void do_edge(int n_edge, float va, float vb, int axis, const Vec3f &base, std::array<int, 12> &edge_indices, std::vector<Vertex> &vertices) {
-	if ((va > 0.5) == (vb > 0.5))
+	if ((va > 0) == (vb > 0))
 		return;
 
 	Vec3f v = base;
@@ -106,40 +107,37 @@ static void do_edge(int n_edge, float va, float vb, int axis, const Vec3f &base,
 typedef std::function<float(float x, float y, float z)> densityFunc;
 
 static void generate_geometry(
-	densityFunc getDensity, 
 	glm::vec3 start,
 	float size,
 	std::vector<Vertex> &vertices, 
-	std::vector<int> &indices) {
+	std::vector<int> &indices,
+	Field3<float> &densityMap,
+	float densityMapScale) {
 
-	for (int z = -1; z < size; z++) {
-		for (int y = -1; y < size; y++) {
-			for (int x = -1; x < size; x++) {
-				float coordX = x + start.x;
-				float coordY = y + start.y;
-				float coordZ = z + start.z;
-				getDensity(x + start.x, y + start.y, z + start.z);
+	for (int z = 0; z < size; z++) {
+		for (int y = 0; y < size; y++) {
+			for (int x = 0; x < size; x++) {
 
 				const int vs[8] = {
-					getDensity(coordX,   	coordY,   	coordZ),
-					getDensity(coordX + 1, 	coordY,   	coordZ),
-					getDensity(coordX,   	coordY + 1, coordZ),
-					getDensity(coordX + 1, 	coordY + 1, coordZ),
-					getDensity(coordX,   	coordY,   	coordZ + 1),
-					getDensity(coordX + 1, 	coordY,   	coordZ + 1),
-					getDensity(coordX,   	coordY + 1, coordZ + 1),
-					getDensity(coordX + 1, 	coordY + 1, coordZ + 1)
+					densityMap.sample(x,   	y,   	z, densityMapScale),
+					densityMap.sample(x + 1, 	y,   	z, densityMapScale),
+					densityMap.sample(x,   	y + 1, z, densityMapScale),
+					densityMap.sample(x + 1, 	y + 1, z, densityMapScale),
+					densityMap.sample(x,   	y,   	z + 1, densityMapScale),
+					densityMap.sample(x + 1, 	y,   	z + 1, densityMapScale),
+					densityMap.sample(x,   	y + 1, z + 1, densityMapScale),
+					densityMap.sample(x + 1, 	y + 1, z + 1, densityMapScale)
 				};
 
 				const int config_n =
-					((vs[0] > 0.5) << 0) |
-					((vs[1] > 0.5) << 1) |
-					((vs[2] > 0.5) << 2) |
-					((vs[3] > 0.5) << 3) |
-					((vs[4] > 0.5) << 4) |
-					((vs[5] > 0.5) << 5) |
-					((vs[6] > 0.5) << 6) |
-					((vs[7] > 0.5) << 7);
+					((vs[0] > 0) << 0) |
+					((vs[1] > 0) << 1) |
+					((vs[2] > 0) << 2) |
+					((vs[3] > 0) << 3) |
+					((vs[4] > 0) << 4) |
+					((vs[5] > 0) << 5) |
+					((vs[6] > 0) << 6) |
+					((vs[7] > 0) << 7);
 
 				if (config_n == 0 || config_n == 255)
 					continue;

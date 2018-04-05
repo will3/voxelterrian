@@ -1,12 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\kestrel\src\core\DirectionalLight.cpp">
-      <Filter>src\core</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\kestrel\src\core\Geometry.cpp">
-      <Filter>src\core</Filter>
-    </ClCompile>
     <ClCompile Include="C:\kestrel\src\core\Mesh.cpp">
       <Filter>src\core</Filter>
     </ClCompile>
@@ -60,9 +54,6 @@
     </ClCompile>
     <ClCompile Include="C:\kestrel\src\VoxelShadowMap.cpp">
       <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\kestrel\common\controls.cpp">
-      <Filter>common</Filter>
     </ClCompile>
     <ClCompile Include="C:\kestrel\common\objloader.cpp">
       <Filter>common</Filter>
@@ -127,6 +118,9 @@
     <ClCompile Include="C:\kestrel\tests\TerrianTests.cpp">
       <Filter>tests</Filter>
     </ClCompile>
+    <ClCompile Include="tests\Field3Tests.cpp">
+      <Filter>tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\kestrel\src\core\AmbientLight.h">
@@ -180,6 +174,9 @@
     <ClInclude Include="C:\kestrel\src\core\Texture.h">
       <Filter>src\core</Filter>
     </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\Window.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
     <ClInclude Include="C:\kestrel\src\geometries\BoxGeometry.h">
       <Filter>src\geometries</Filter>
     </ClInclude>
@@ -202,6 +199,9 @@
       <Filter>src\postprocessing</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Brush.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\CameraControl.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Chunk.h">
@@ -270,9 +270,6 @@
     <ClInclude Include="C:\kestrel\src\types.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="C:\kestrel\common\controls.hpp">
-      <Filter>common</Filter>
-    </ClInclude>
     <ClInclude Include="C:\kestrel\common\objloader.hpp">
       <Filter>common</Filter>
     </ClInclude>
@@ -318,6 +315,9 @@
     <ClInclude Include="C:\kestrel\external\imgui\stb_truetype.h">
       <Filter>external\imgui</Filter>
     </ClInclude>
+    <ClInclude Include="C:\kestrel\external\json.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\kestrel\CMakeLists.txt" />
@@ -349,6 +349,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{F3D98128-1D40-39A1-93B4-198AB5FA9425}</UniqueIdentifier>
+    </Filter>
     <Filter Include="common">
       <UniqueIdentifier>{2E02E82D-D10D-3383-9541-31A22A6EFEAA}</UniqueIdentifier>
     </Filter>

@@ -31,9 +31,6 @@
     <ClCompile Include="C:\kestrel\src\FastNoise.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="C:\kestrel\src\Field3.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="C:\kestrel\src\Mask.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -147,6 +144,9 @@
     <ClInclude Include="C:\kestrel\src\core\Texture.h">
       <Filter>src\core</Filter>
     </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\Window.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
     <ClInclude Include="C:\kestrel\src\geometries\BoxGeometry.h">
       <Filter>src\geometries</Filter>
     </ClInclude>
@@ -169,6 +169,9 @@
       <Filter>src\postprocessing</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Brush.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\CameraControl.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\Chunk.h">
@@ -282,11 +285,8 @@
     <ClInclude Include="C:\kestrel\external\imgui\stb_truetype.h">
       <Filter>external\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="src\CameraControl.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\core\Window.h">
-      <Filter>src\core</Filter>
+    <ClInclude Include="C:\kestrel\external\json.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -319,6 +319,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{F3D98128-1D40-39A1-93B4-198AB5FA9425}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{D08100CD-907D-396B-B4E0-DC68131A90FF}</UniqueIdentifier>
     </Filter>

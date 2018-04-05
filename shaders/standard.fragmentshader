@@ -36,7 +36,7 @@ vec2 poissonDisk[16] = vec2[](
 float random(in vec3 seed, in float freq)
 {
    // project seed on random constant vector
-   float dt = dot(floor(seed * freq), vec3(53.1215, 21.1352, 9.1322));
+   float dt = dot(seed * freq, vec3(53.1215, 21.1352, 9.1322));
    // return only fractional part
    return fract(sin(dt) * 2105.2354);
 }
@@ -52,11 +52,11 @@ void main()
 
 	float ambient_strength = 1.0;
 	float shadowMapWidth = 700;
-	float shadowStrength = 0.8;
-	float numSamples = 4;
-	float shadowRadius = 5;
+    float shadowStrength = 0.5;
+    float numSamples = 16;
+    float shadowRadius = 4;
 
-	vec3 ambient = ambient_light * ambient_strength;
+	vec3 ambient = ambient_light * ambient_strength * fragmentColor;
 
 	float bias = 0.005 * tan( acos(cosTheta) );
 	bias = clamp(bias, 0, 0.01);
