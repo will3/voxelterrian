@@ -85,11 +85,8 @@ public:
 	virtual void load() {};
 	virtual void unload() {};
 	virtual void bind() {};
-	void unbind() {};
+	virtual void unbind() {};
 
 	Geometry() {};
-	~Geometry()
-	{
-		unload();
-	}
+	~Geometry() {};
 };

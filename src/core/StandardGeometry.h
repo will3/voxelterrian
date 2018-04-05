@@ -43,32 +43,32 @@ public:
 		return indices.get_data();
 	}
 
-	virtual int get_indices_count() { 
+	int get_indices_count() override { 
 		return indices.get_data().size();
 	};
 
-	virtual void load() {
+	void load() override {
 		positions.load();
 		normals.load();
 		colors.load();
 		indices.load();
 	};
 
-	virtual void unload() {
+	void unload() override {
 		positions.unload();
 		normals.unload();
 		colors.unload();
 		indices.unload();
 	};
 
-	virtual void bind() {
+	void bind() override {
 		positions.bind();
 		normals.bind();
 		colors.bind();
 		indices.bind();
 	};
 
-	void unbind() {
+	void unbind() override {
 		positions.unbind();
 		normals.unbind();
 		colors.unbind();

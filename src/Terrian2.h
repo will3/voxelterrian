@@ -15,6 +15,12 @@
 
 using namespace glm;
 
+class TerrianChunk {
+public:
+	Mesh *mesh = 0;
+	bool dirty = true;
+};
+
 class Terrian2 : public Entity {
 private:
 	float draw_distance = 64.0;
@@ -23,7 +29,7 @@ private:
 	float height_noise_amplitude = 128.0;
 	FastNoise *height_noise = new FastNoise();
 	StandardMaterial *material = new StandardMaterial();
-	Chunks *chunks = new Chunks();
+	std::map<Coord3, std::shared_ptr<TerrianChunk>> chunks;
 
 public:
 	Scene *scene;
@@ -31,12 +37,13 @@ public:
 
 	Terrian2() {
 		height_noise->SetFractalOctaves(5);
-		//canyon_noise->get_noise()->SetFractalType(FastNoise::RigidMulti);
-		//canyon_noise->get_noise()->SetFractalOctaves(1);
 	}
 
 	void start() {
 
+	}
+
+	void update() {
 		int num_chunks = ceil(draw_distance / (float)CHUNK_SIZE);
 		int num_chunks_y = ceil(draw_height / (float)CHUNK_SIZE);
 		Coord3 view_origin = { 0, 0, 0 };
@@ -45,19 +52,30 @@ public:
 			for (int k = -num_chunks; k <= num_chunks; k++) {
 				for (int j = 0; j < num_chunks_y; j++) {
 					Coord3 origin = view_origin + Coord3(i, j, k);
-					draw(origin);
+
+					if (chunks.find(origin) == chunks.end()) {
+						chunks[origin] = std::make_shared<TerrianChunk>();
+					}
+
+					if (chunks[origin]->dirty) {
+						draw(origin, *chunks[origin]);
+						chunks[origin]->dirty = false;
+					}
 				}
 			}
 		}
-
 	}
 
-	void update() {
+	void setAllDirty() {
+		for (auto kv : chunks) {
+			kv.second->dirty = true;
+		}
 	}
 
 	float get_density(float x, float y, float z) {
+		float gradient = 1 - (y / height_noise_amplitude);
 		float fractal = height_noise->GetSimplexFractal(x, y * height_noise_y_scale, z);
-		float density = fractal * height_noise_amplitude - y;
+		float density = fractal + gradient;
 		return density;
 	}
 
@@ -73,7 +91,14 @@ public:
 		return c;
 	}
 
-	void draw(Coord3 origin) {
+	void draw(Coord3 origin, TerrianChunk& chunk) {
+		if (chunk.mesh != 0) {
+			chunk.mesh->remove_self();
+			chunk.mesh->get_geometry()->unload();
+			delete chunk.mesh->get_geometry();
+			delete chunk.mesh;
+		}
+
 		StandardGeometry *geometry = new StandardGeometry();
 		float chunk_size = 32;
 		Coord3 offset = origin * chunk_size;
@@ -86,8 +111,7 @@ public:
 				for (int k = 0; k < noise_size; k++) {
 					Coord3 coord = Coord3(i, j, k) * 2 + offset;
 
-					float fractal = height_noise->GetSimplexFractal(coord.i, coord.j * height_noise_y_scale, coord.k);
-					float density = fractal * height_noise_amplitude - coord.j;
+					float density = get_density(coord.i, coord.j, coord.k);
 					field.set(i, j, k, density);
 				}
 			}
@@ -96,7 +120,6 @@ public:
 		std::vector<Vertex> vertices;
 		std::vector<int> indicesOut;
 
-		//auto getDensity = std::bind(&Terrian2::get_density, this, _1, _2, _3);
 		glm::vec3 offsetVec = glm::vec3(offset.i, offset.j, offset.k);
 		generate_geometry(offsetVec, CHUNK_SIZE, vertices, indicesOut, field, 2);
 
@@ -106,7 +129,7 @@ public:
 			glm::vec3 position = { vertex.position[0], vertex.position[1], vertex.position[2] };
 			glm::vec3 normal = { vertex.normal[0], vertex.normal[1], vertex.normal[2] };
 			ivec3 color = get_color(position + offsetV);
-			geometry->push_vertice(position, normal, { color.x, color.y, color.z });
+			geometry->push_vertice(position, normal, color);
 		}
 
 		for (auto indice : indicesOut) {
@@ -117,10 +140,11 @@ public:
 		mesh->position = { offset.i, offset.j, offset.k };
 
 		scene->add(mesh);
+
+		chunk.mesh = mesh;
 	}
 
 	~Terrian2() {
 		delete height_noise;
-		//delete canyon_noise;
 	}
 };

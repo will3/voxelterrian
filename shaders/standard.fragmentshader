@@ -52,7 +52,7 @@ void main()
 
 	float ambient_strength = 1.0;
 	float shadowMapWidth = 700;
-    float shadowStrength = 0.5;
+    float shadowStrength = 0.9;
     float numSamples = 16;
     float shadowRadius = 4;
 

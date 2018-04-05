@@ -18,13 +18,14 @@ public:
 	ImGradient *rock_color_gradient;
 	std::string fileName = "editor";
 
-	void draw() {
+	bool draw() {
 		bool changed = false;
 		ImGui::Text("rock color");
 		changed |= ImGui::GradientEditor(rock_color_gradient, draggingMark, selectedMark);
 		if (changed) {
 			save();
 		}
+		return changed;
 	}
 
 	void save() {

@@ -69,8 +69,8 @@ int main() {
 	float ratio = window->width / (float)window->height;
 	Camera *camera = new PerspectiveCamera(60, ratio, 0.1f, 1000.0f);
 	Scene *scene = new Scene();
-	DirectionalLight *light = new DirectionalLight(0.7);
-	light->setPosition(glm::vec3(200, 0, 0));
+	DirectionalLight *light = new DirectionalLight(0.9);
+	light->setPosition(glm::vec3(100, 200, 50));
 
 	scene->add(light);
 	AmbientLight *ambientLight = new AmbientLight({ 0.5, 0.5, 0.5 });
@@ -125,7 +125,6 @@ int main() {
 	do {
 		glfwPollEvents();
 
-		
 		runner->update();
 
 		shadowMap->render(renderer, scene);
@@ -134,6 +133,7 @@ int main() {
 
 		ImGui_ImplGlfwGL3_NewFrame();
 		editor->draw();
+
 		ImGui::Render();
 		ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
 
