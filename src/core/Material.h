@@ -20,6 +20,8 @@ public:
 
 	virtual void load() {};
 
+	virtual void unload() {};
+
 	virtual void bind() {};
 
 	Material() {};

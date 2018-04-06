@@ -314,8 +314,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\kestrel\src\core\AmbientLight.h" />
+    <ClInclude Include="C:\kestrel\src\core\ArrayBuffer.h" />
     <ClInclude Include="C:\kestrel\src\core\Camera.h" />
     <ClInclude Include="C:\kestrel\src\core\DirectionalLight.h" />
+    <ClInclude Include="C:\kestrel\src\core\ElementBuffer.h" />
     <ClInclude Include="C:\kestrel\src\core\Geometry.h" />
     <ClInclude Include="C:\kestrel\src\core\Material.h" />
     <ClCompile Include="C:\kestrel\src\core\Mesh.cpp" />

@@ -1,6 +1,8 @@
 #pragma once;
 #include "Geometry.h"
 #include <array>
+#include "ArrayBuffer.h"
+#include "ElementBuffer.h"
 
 struct VoxelVertice {
 	std::array<GLint, 3> position;

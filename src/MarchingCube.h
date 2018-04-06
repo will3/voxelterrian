@@ -114,19 +114,23 @@ static void generate_geometry(
 	Field3<float> &densityMap,
 	float densityMapScale) {
 
-	for (int z = 0; z < size; z++) {
-		for (int y = 0; y < size; y++) {
-			for (int x = 0; x < size; x++) {
+	float subdivision = 0.5f;
+	float range = size;// *subdivision;
+	float sampleScale = densityMapScale;
+
+	for (int z = 0; z < range; z++) {
+		for (int y = 0; y < range; y++) {
+			for (int x = 0; x < range; x++) {
 
 				const int vs[8] = {
-					densityMap.sample(x,   	y,   	z, densityMapScale),
-					densityMap.sample(x + 1, 	y,   	z, densityMapScale),
-					densityMap.sample(x,   	y + 1, z, densityMapScale),
-					densityMap.sample(x + 1, 	y + 1, z, densityMapScale),
-					densityMap.sample(x,   	y,   	z + 1, densityMapScale),
-					densityMap.sample(x + 1, 	y,   	z + 1, densityMapScale),
-					densityMap.sample(x,   	y + 1, z + 1, densityMapScale),
-					densityMap.sample(x + 1, 	y + 1, z + 1, densityMapScale)
+					densityMap.sample(x,   	y,   	z, sampleScale),
+					densityMap.sample(x + 1, 	y,   	z, sampleScale),
+					densityMap.sample(x,   	y + 1, z, sampleScale),
+					densityMap.sample(x + 1, 	y + 1, z, sampleScale),
+					densityMap.sample(x,   	y,   	z + 1, sampleScale),
+					densityMap.sample(x + 1, 	y,   	z + 1, sampleScale),
+					densityMap.sample(x,   	y + 1, z + 1, sampleScale),
+					densityMap.sample(x + 1, 	y + 1, z + 1, sampleScale)
 				};
 
 				const int config_n =

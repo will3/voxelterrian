@@ -21,10 +21,13 @@ public:
 		uniforms.set("MVP", MVP);
 	};
 
+	void unload() override {
+		glDeleteProgram(programID);
+	}
+
 public:
 	ShaderMaterial(Shader *shader) : shader(shader) {}
 	~ShaderMaterial() {
 		delete shader;
-		glDeleteProgram(programID);
 	}
 };

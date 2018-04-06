@@ -7,6 +7,7 @@
 #include <json.hpp>
 #include <iostream>
 #include <fstream>  
+#include "Terrian2.h"
 
 ImGradientMark *draggingMark;
 ImGradientMark *selectedMark;
@@ -16,22 +17,34 @@ using json = nlohmann::json;
 class Editor {
 public:
 	ImGradient *rock_color_gradient;
+	DirectionalLight *directionalLight;
 	std::string fileName = "editor";
+	Terrian2 *terrian;
 
-	bool draw() {
+	void draw() {
+		bool terrianChanged = false;
 		bool changed = false;
-		ImGui::Text("rock color");
-		changed |= ImGui::GradientEditor(rock_color_gradient, draggingMark, selectedMark);
-		if (changed) {
+		if (ImGui::TreeNode("lighting")) {
+			changed |= ImGui::SliderFloat("light strength", &directionalLight->intensity, 0.0, 1.0);
+		}
+
+		if (ImGui::TreeNode("rock color")) {
+			terrianChanged |= ImGui::GradientEditor(rock_color_gradient, draggingMark, selectedMark);
+		}
+
+		if (ImGui::Button("regen")) {
+			terrian->setAllDirty();
+		}
+
+		if (terrianChanged || changed) {
 			save();
 		}
-		return changed;
 	}
 
 	void save() {
 		json data;
 		data["rock_colors"] = saveGradient(rock_color_gradient);
-
+		data["directional_light"] = saveLight(directionalLight);
 		std::ofstream outfile(fileName);
 		outfile << data.dump(2) << std::endl;
 		outfile.close();
@@ -48,6 +61,13 @@ public:
 		f >> data;
 
 		loadGradient(data["rock_colors"], rock_color_gradient);
+		loadLight(data["directional_light"], directionalLight);
+	}
+
+	json saveLight(DirectionalLight *light) {
+		json data;
+		data["intensity"] = light->intensity;
+		return data;
 	}
 
 	json saveGradient(ImGradient *gradient) {
@@ -67,6 +87,10 @@ public:
 	}
 
 	void loadGradient(json data, ImGradient *gradient) {
+		if (data.empty()) {
+			return;
+		}
+
 		gradient->removeAllMarks();
 
 		for (auto markData : data) {
@@ -74,5 +98,11 @@ public:
 			ImColor color = ImColor(markData["r"], markData["g"], markData["b"], (float)markData["a"]);
 			gradient->addMark(markData["position"], color);
 		}
+	}
+	void loadLight(json data, DirectionalLight *directionalLight) {
+		if (data.empty()) {
+			return;
+		}
+		directionalLight->intensity = data["intensity"];
 	}
 };

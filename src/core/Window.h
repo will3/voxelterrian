@@ -19,6 +19,7 @@ namespace WindowManager {
 	}
 }
 
+// only supports one window
 class Window {
 public:
 	int width = 0;

@@ -54,7 +54,7 @@ void main()
 	float shadowMapWidth = 700;
     float shadowStrength = 0.9;
     float numSamples = 16;
-    float shadowRadius = 4;
+    float shadowRadius = 2;
 
 	vec3 ambient = ambient_light * ambient_strength * fragmentColor;
 

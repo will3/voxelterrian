@@ -313,10 +313,11 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="tests\Field3Tests.cpp" />
     <ClInclude Include="C:\kestrel\src\core\AmbientLight.h" />
+    <ClInclude Include="C:\kestrel\src\core\ArrayBuffer.h" />
     <ClInclude Include="C:\kestrel\src\core\Camera.h" />
     <ClInclude Include="C:\kestrel\src\core\DirectionalLight.h" />
+    <ClInclude Include="C:\kestrel\src\core\ElementBuffer.h" />
     <ClInclude Include="C:\kestrel\src\core\Geometry.h" />
     <ClInclude Include="C:\kestrel\src\core\Material.h" />
     <ClCompile Include="C:\kestrel\src\core\Mesh.cpp" />
@@ -358,7 +359,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\kestrel\src\Entity.h" />
     <ClCompile Include="C:\kestrel\src\FastNoise.cpp" />
     <ClInclude Include="C:\kestrel\src\FastNoise.h" />
-    <ClCompile Include="C:\kestrel\src\Field3.cpp" />
     <ClInclude Include="C:\kestrel\src\Field3.h" />
     <ClInclude Include="C:\kestrel\src\MarchingCube.h" />
     <ClCompile Include="C:\kestrel\src\Mask.cpp" />
@@ -420,6 +420,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\kestrel\tests\ChunkTests.cpp" />
     <ClCompile Include="C:\kestrel\tests\ChunksTests.cpp" />
     <ClCompile Include="C:\kestrel\tests\Coord3Tests.cpp" />
+    <ClCompile Include="C:\kestrel\tests\Field3Tests.cpp" />
     <ClCompile Include="C:\kestrel\tests\MarchingCubeTests.cpp" />
     <ClCompile Include="C:\kestrel\tests\MesherTests.cpp" />
     <ClCompile Include="C:\kestrel\tests\OrthographicCameraTests.cpp" />

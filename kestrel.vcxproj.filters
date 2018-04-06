@@ -96,10 +96,16 @@
     <ClInclude Include="C:\kestrel\src\core\AmbientLight.h">
       <Filter>src\core</Filter>
     </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\ArrayBuffer.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
     <ClInclude Include="C:\kestrel\src\core\Camera.h">
       <Filter>src\core</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\core\DirectionalLight.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\ElementBuffer.h">
       <Filter>src\core</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\core\Geometry.h">

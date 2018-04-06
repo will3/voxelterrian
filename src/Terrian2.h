@@ -75,8 +75,7 @@ public:
 	float get_density(float x, float y, float z) {
 		float gradient = 1 - (y / height_noise_amplitude);
 		float fractal = height_noise->GetSimplexFractal(x, y * height_noise_y_scale, z);
-		float density = fractal + gradient;
-		return density;
+		return  * height_noise_amplitude - y;
 	}
 
 	ivec3 get_color(glm::vec3 coord) {

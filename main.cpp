@@ -109,7 +109,7 @@ int main() {
 	cameraControl->position = glm::vec3(0, 128, 0);
 	cameraControl->pitch = - glm::pi<float>() / 4;
 
-	ShadowMap *shadowMap = new ShadowMap(256, 256, 0.1, 1000, 1024, 1024);
+	ShadowMap *shadowMap = new ShadowMap(256, 256, 0.1, 1000, 512, 512);
 	shadowMap->camera->position = light->position;
 	shadowMap->camera->target = glm::vec3(0, 0, 0);
 	scene->shadowMap = shadowMap;
@@ -120,7 +120,9 @@ int main() {
 
 	Editor *editor = new Editor();
 	editor->rock_color_gradient = terrian->rock_color_gradient;
+	editor->directionalLight = light;
 	editor->load();
+	editor->terrian = terrian;
 
 	do {
 		glfwPollEvents();

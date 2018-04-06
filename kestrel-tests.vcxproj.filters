@@ -31,9 +31,6 @@
     <ClCompile Include="C:\kestrel\src\FastNoise.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="C:\kestrel\src\Field3.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="C:\kestrel\src\Mask.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -100,6 +97,9 @@
     <ClCompile Include="C:\kestrel\tests\Coord3Tests.cpp">
       <Filter>tests</Filter>
     </ClCompile>
+    <ClCompile Include="C:\kestrel\tests\Field3Tests.cpp">
+      <Filter>tests</Filter>
+    </ClCompile>
     <ClCompile Include="C:\kestrel\tests\MarchingCubeTests.cpp">
       <Filter>tests</Filter>
     </ClCompile>
@@ -118,18 +118,21 @@
     <ClCompile Include="C:\kestrel\tests\TerrianTests.cpp">
       <Filter>tests</Filter>
     </ClCompile>
-    <ClCompile Include="tests\Field3Tests.cpp">
-      <Filter>tests</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\kestrel\src\core\AmbientLight.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\ArrayBuffer.h">
       <Filter>src\core</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\core\Camera.h">
       <Filter>src\core</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\core\DirectionalLight.h">
+      <Filter>src\core</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\kestrel\src\core\ElementBuffer.h">
       <Filter>src\core</Filter>
     </ClInclude>
     <ClInclude Include="C:\kestrel\src\core\Geometry.h">

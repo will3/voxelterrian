@@ -38,7 +38,25 @@ void Renderer::render(Scene * scene, Camera * camera, RenderTarget * renderTarge
 	}
 }
 
-Renderer::~Renderer()
-{
-	glDeleteVertexArrays(1, &VertexArrayID);
+void Renderer::load() {
+	// Initialize GLEW
+	if (glewInit() != GLEW_OK) {
+		fprintf(stderr, "Failed to initialize GLEW\n");
+		getchar();
+		glfwTerminate();
+		throw std::exception("Failed to initialize GLEW\n");
+	}
+
+	// Dark blue background
+	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+
+	glGenVertexArrays(1, &VertexArrayID);
+	glBindVertexArray(VertexArrayID);
+
+	// Enable depth test
+	glEnable(GL_DEPTH_TEST);
+	// Accept fragment if it closer to the camera than the former one
+	glDepthFunc(GL_LESS);
+	// Cull triangles which normal is not towards the camera
+	glEnable(GL_CULL_FACE);
 }
