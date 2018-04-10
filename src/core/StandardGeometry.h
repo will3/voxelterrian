@@ -5,48 +5,55 @@
 
 class StandardGeometry : public Geometry {
 private:
-	ArrayBuffer<GLfloat, GL_FLOAT> *positions;
-	ArrayBuffer<GLfloat, GL_FLOAT> *normals;
-	ArrayBuffer<GLint, GL_INT> *colors;
-	ElementBuffer *indices;
+	ArrayBuffer<GLfloat, GL_FLOAT> *positions = new ArrayBuffer<GLfloat, GL_FLOAT>(0, 3);
+	ArrayBuffer<GLfloat, GL_FLOAT> *normals = new ArrayBuffer<GLfloat, GL_FLOAT>(1, 3);
+	ArrayBuffer<GLint, GL_INT> *colors = new ArrayBuffer<GLint, GL_INT>(2, 3);
+	ElementBuffer *indices = new ElementBuffer();
 
 public:
-	void push_vertice(glm::vec3 position, glm::vec3 normal, glm::ivec3 color) {
-		positions->get_data().push_back(position[0]);
-		positions->get_data().push_back(position[1]);
-		positions->get_data().push_back(position[2]);
+	~StandardGeometry() override {
+		delete positions;
+		delete normals;
+		delete colors;
+		delete indices;
+	}
 
-		normals->get_data().push_back(normal[0]);
-		normals->get_data().push_back(normal[1]);
-		normals->get_data().push_back(normal[2]);
+	void push_vertice(glm::vec3 &position, glm::vec3 &normal, glm::ivec3 &color) {
+		positions->push_back(position[0]);
+		positions->push_back(position[1]);
+		positions->push_back(position[2]);
 
-		colors->get_data().push_back(color[0]);
-		colors->get_data().push_back(color[1]);
-		colors->get_data().push_back(color[2]);
+		normals->push_back(normal[0]);
+		normals->push_back(normal[1]);
+		normals->push_back(normal[2]);
+
+		colors->push_back(color[0]);
+		colors->push_back(color[1]);
+		colors->push_back(color[2]);
 	}
 
 	unsigned int getIndex() {
-		return positions->get_data().size() / 3;
+		return positions->size() / 3;
 	}
 
-	std::vector<GLfloat>& get_positions() {
-		return positions->get_data();
+	ArrayBuffer<GLfloat, GL_FLOAT>* get_positions() {
+		return positions;
 	}
 
-	std::vector<GLfloat>& get_normals() {
-		return normals->get_data();
+	ArrayBuffer<GLfloat, GL_FLOAT>* get_normals() {
+		return normals;
 	}
 
-	std::vector<GLint>& get_colors() {
-		return colors->get_data();
+	ArrayBuffer<GLint, GL_INT>* get_colors() {
+		return colors;
 	}
 
-	std::vector<unsigned int>& get_indices() {
-		return indices->get_data();
+	ElementBuffer* get_indices() {
+		return indices;
 	}
 
 	int get_indices_count() override { 
-		return indices->get_data().size();
+		return indices->size();
 	};
 
 	void load() override {
@@ -76,18 +83,4 @@ public:
 		colors->unbind();
 		indices->unbind();
 	};
-
-	StandardGeometry() {
-		positions = new ArrayBuffer<GLfloat, GL_FLOAT>(0, 3);
-		normals = new ArrayBuffer<GLfloat, GL_FLOAT>(1, 3);
-		colors = new ArrayBuffer<GLint, GL_INT>(2, 3);
-		indices = new ElementBuffer();
-	}
-
-	~StandardGeometry() {
-		delete positions;
-		delete normals;
-		delete colors;
-		delete indices;
-	}
 };

@@ -46,50 +46,49 @@ void Mesher::copy_quads(Mask& mask, VoxelGeometry *geometry, int x, int y, int w
 	bool front = mask.front;
 	float ao_strength = 0.1f;
 	float light_strength = 0.6f;
-	auto &vertices = geometry->get_positions().get_data();
-	auto &colors = geometry->get_colors().get_data();
-	auto &lighting = geometry->get_lighting().get_data();
-	auto &indices = geometry->get_indices().get_data();
+	auto vertices = geometry->get_positions();
+	auto colors = geometry->get_colors();
+	auto lighting = geometry->get_lighting();
+	auto indices = geometry->get_indices();
 	int i = mask.i;
 	int d = mask.d;
-	int index = geometry->get_positions().get_data().size() / 3;
+	int index = geometry->get_positions()->size() / 3;
 
 	Coord3 v0 = Coord3(i, x, y).rotate(d);
 	Coord3 v1 = Coord3(i, x + w, y).rotate(d);
 	Coord3 v2 = Coord3(i, x + w, y + h).rotate(d);
 	Coord3 v3 = Coord3(i, x, y + h).rotate(d);
 
-	vertices.insert(vertices.end(), { v0.i, v0.j, v0.k });
-	vertices.insert(vertices.end(), { v1.i, v1.j, v1.k });
-	vertices.insert(vertices.end(), { v2.i, v2.j, v2.k });
-	vertices.insert(vertices.end(), { v3.i, v3.j, v3.k });
+	vertices->push_back(v0.i, v0.j, v0.k);
+	vertices->push_back(v1.i, v1.j, v1.k);
+	vertices->push_back(v2.i, v2.j, v2.k);
+	vertices->push_back(v3.i, v3.j, v3.k);
 
-	auto color = { (int)r,(int)g,(int)b };
-	colors.insert(colors.end(), color);
-	colors.insert(colors.end(), color);
-	colors.insert(colors.end(), color);
-	colors.insert(colors.end(), color);
+	colors->push_back((int)r, (int)g, (int)b);
+	colors->push_back((int)r, (int)g, (int)b);
+	colors->push_back((int)r, (int)g, (int)b);
+	colors->push_back((int)r, (int)g, (int)b);
 
 	float light_f = (1.0f - (ao0 / 3.0f * ao_strength)) * (1 - ((1 - l / 15.0f) * light_strength));
 	int light = floor(light_f * 16);
 
-	lighting.insert(lighting.end(), { light, light, light, light });
+	lighting->push_back(light, light, light, light);
 
 	if (front) {
-		indices.push_back(index);
-		indices.push_back(index + 1);
-		indices.push_back(index + 2);
-		indices.push_back(index + 2);
-		indices.push_back(index + 3);
-		indices.push_back(index);
+		indices->push_back(index);
+		indices->push_back(index + 1);
+		indices->push_back(index + 2);
+		indices->push_back(index + 2);
+		indices->push_back(index + 3);
+		indices->push_back(index);
 	}
 	else {
-		indices.push_back(index + 2);
-		indices.push_back(index + 1);
-		indices.push_back(index);
-		indices.push_back(index);
-		indices.push_back(index + 3);
-		indices.push_back(index + 2);
+		indices->push_back(index + 2);
+		indices->push_back(index + 1);
+		indices->push_back(index);
+		indices->push_back(index);
+		indices->push_back(index + 3);
+		indices->push_back(index + 2);
 	}
 }
 

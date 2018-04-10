@@ -12,6 +12,8 @@
 #include "VoxelMaterial.h"
 #include "Field3.h"
 #include <glm/gtc/quaternion.hpp>
+#include "RemoveMeshWorker.h"
+#include <thread>
 
 using namespace glm;
 
@@ -29,10 +31,11 @@ private:
 	float height_noise_amplitude = 128.0;
 	FastNoise *height_noise = new FastNoise();
 	StandardMaterial *material = new StandardMaterial();
-	std::map<Coord3, std::shared_ptr<TerrianChunk>> chunks;
+	std::map<Coord3, TerrianChunk *> chunks;
 
 public:
 	Scene *scene;
+	Dispatcher *dispatcher;
 	ImGradient *rock_color_gradient = new ImGradient();
 
 	Terrian2() {
@@ -54,12 +57,14 @@ public:
 					Coord3 origin = view_origin + Coord3(i, j, k);
 
 					if (chunks.find(origin) == chunks.end()) {
-						chunks[origin] = std::make_shared<TerrianChunk>();
+						chunks[origin] = new TerrianChunk();
 					}
 
-					if (chunks[origin]->dirty) {
-						draw(origin, *chunks[origin]);
-						chunks[origin]->dirty = false;
+					TerrianChunk *chunk = chunks[origin];
+
+					if (chunk->dirty) {
+						drawAsync(origin, chunk);
+						chunk->dirty = false;
 					}
 				}
 			}
@@ -73,9 +78,7 @@ public:
 	}
 
 	float get_density(float x, float y, float z) {
-		float gradient = 1 - (y / height_noise_amplitude);
-		float fractal = height_noise->GetSimplexFractal(x, y * height_noise_y_scale, z);
-		return  * height_noise_amplitude - y;
+		return height_noise->GetSimplexFractal(x, y * height_noise_y_scale, z) * height_noise_amplitude - y;
 	}
 
 	ivec3 get_color(glm::vec3 coord) {
@@ -90,12 +93,16 @@ public:
 		return c;
 	}
 
-	void draw(Coord3 origin, TerrianChunk& chunk) {
-		if (chunk.mesh != 0) {
-			chunk.mesh->remove_self();
-			chunk.mesh->get_geometry()->unload();
-			delete chunk.mesh->get_geometry();
-			delete chunk.mesh;
+	void drawAsync(Coord3 origin, TerrianChunk *chunk) {
+		std::thread t(&Terrian2::draw, this, origin, chunk);
+		t.detach();
+	}
+
+	void draw(Coord3 origin, TerrianChunk *chunk) {
+		if (chunk->mesh != 0) {
+			RemoveMeshWorker *removeMeshWorker = new RemoveMeshWorker(chunk->mesh);
+			dispatcher->add(removeMeshWorker);
+			chunk->mesh = 0;
 		}
 
 		StandardGeometry *geometry = new StandardGeometry();
@@ -122,7 +129,7 @@ public:
 		glm::vec3 offsetVec = glm::vec3(offset.i, offset.j, offset.k);
 		generate_geometry(offsetVec, CHUNK_SIZE, vertices, indicesOut, field, 2);
 
-		auto& indices = geometry->get_indices();
+		auto indices = geometry->get_indices();
 
 		for (auto vertex : vertices) {
 			glm::vec3 position = { vertex.position[0], vertex.position[1], vertex.position[2] };
@@ -132,7 +139,7 @@ public:
 		}
 
 		for (auto indice : indicesOut) {
-			indices.push_back(indice);
+			indices->push_back(indice);
 		}
 
 		Mesh *mesh = new Mesh(geometry, material);
@@ -140,10 +147,13 @@ public:
 
 		scene->add(mesh);
 
-		chunk.mesh = mesh;
+		chunk->mesh = mesh;
 	}
 
 	~Terrian2() {
+		for (auto kv : chunks) {
+			delete kv.second;
+		}
 		delete height_noise;
 	}
 };

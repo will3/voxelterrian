@@ -12,4 +12,6 @@ public:
 	virtual void unload() {};
 	virtual void bind() {};
 	virtual void unbind() {};
+
+	virtual ~Geometry() {};
 };

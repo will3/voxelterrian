@@ -8,16 +8,6 @@ Mesh::Mesh(Geometry * geometry, Material * material) : geometry(geometry), mater
 {
 }
 
-Geometry * Mesh::get_geometry()
-{
-	return geometry;
-}
-
-Material * Mesh::get_material()
-{
-	return material;
-}
-
 void Mesh::render(Camera * camera) {
 	if (!geometry->loaded) {
 		geometry->load();

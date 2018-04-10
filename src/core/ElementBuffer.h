@@ -8,8 +8,8 @@ private:
 public:
 	GLuint handle = 0;
 
-	std::vector<unsigned int>& get_data() {
-		return data;
+	int size() {
+		return data.size();
 	}
 
 	void load() {
@@ -27,5 +27,15 @@ public:
 	}
 
 	void unbind() {
+	}
+
+	void push_back(unsigned int value) {
+		data.push_back(value);
+	}
+
+	void push_back(unsigned int v0, unsigned int v1, unsigned int v2) {
+		data.push_back(v0);
+		data.push_back(v1);
+		data.push_back(v2);
 	}
 };

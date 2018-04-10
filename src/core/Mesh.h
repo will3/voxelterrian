@@ -6,14 +6,11 @@
 #include "Material.h"
 
 class Mesh : public Node {
-private:
+public:
 	Geometry * geometry;
 	Material * material;
-public:
-	Mesh(Geometry *geometry, Material *material);
 
-	Geometry *get_geometry();
-	Material *get_material();
+	Mesh(Geometry *geometry, Material *material);
 
 	void render(Camera *camera);
 

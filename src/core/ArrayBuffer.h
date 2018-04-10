@@ -12,8 +12,30 @@ public:
 	int location = 0;
 	int elements_per_vertex = 3;
 
-	std::vector<T>& get_data() {
-		return data;
+	void push_back(T value) {
+		data.push_back(value);
+	}
+
+	void push_back(T v0, T v1) {
+		data.push_back(v0);
+		data.push_back(v1);
+	}
+
+	void push_back(T v0, T v1, T v2) {
+		data.push_back(v0);
+		data.push_back(v1);
+		data.push_back(v2);
+	}
+
+	void push_back(T v0, T v1, T v2, T v3) {
+		data.push_back(v0);
+		data.push_back(v1);
+		data.push_back(v2);
+		data.push_back(v3);
+	}
+
+	int size() {
+		return data.size();
 	}
 
 	ArrayBuffer(int location, int elements_per_vertex) : location(location), elements_per_vertex(elements_per_vertex) {

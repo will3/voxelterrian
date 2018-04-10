@@ -47,7 +47,7 @@ public:
 		glm::vec3 b = v2 - v0;
 		glm::vec3 normal = front ? glm::cross(b, a) : glm::cross(a, b);
 		
-		glm::vec3 color = { 255,255,255 };
+		glm::ivec3 color = { 255,255,255 };
 
 		unsigned int index = getIndex();
 
@@ -62,10 +62,12 @@ public:
 		push_vertice(v3, normal, color);
 
 		if (front) {
-			get_indices().insert(get_indices().end(), { index, index + 1, index + 2, index + 2, index + 3, index });
+			get_indices()->push_back(index, index + 1, index + 2);
+			get_indices()->push_back(index + 2, index + 3, index);
 		}
 		else {
-			get_indices().insert(get_indices().end(), { index, index + 3, index + 2, index + 2, index + 1, index });
+			get_indices()->push_back(index, index + 3, index + 2);
+			get_indices()->push_back(index + 2, index + 1, index);
 		}
 	}
 };

@@ -53,19 +53,19 @@ public:
 				vertex.y = radius * cos(thetaStart + v * thetaLength);
 				vertex.z = radius * sin(phiStart + u * phiLength) * sin(thetaStart + v * thetaLength);
 
-				get_positions().push_back(vertex.x);
-				get_positions().push_back(vertex.y);
-				get_positions().push_back(vertex.z);
+				get_positions()->push_back(vertex.x);
+				get_positions()->push_back(vertex.y);
+				get_positions()->push_back(vertex.z);
 
 				// normal
 
 				glm::vec3 normal = glm::vec3(vertex.x, vertex.y, vertex.z);
 				normal = glm::normalize(normal);
-				get_normals().push_back(-normal.x);
-				get_normals().push_back(-normal.y);
-				get_normals().push_back(-normal.z);
+				get_normals()->push_back(-normal.x);
+				get_normals()->push_back(-normal.y);
+				get_normals()->push_back(-normal.z);
 
-				get_colors().insert(get_colors().end(), { 255,255,255 });
+				get_colors()->push_back(255,255,255);
 
 				// uv
 
@@ -91,14 +91,14 @@ public:
 				float d = grid[iy + 1][ix + 1];
 
 				if (iy != 0 || thetaStart > 0) {
-					get_indices().push_back(a);
-					get_indices().push_back(b);
-					get_indices().push_back(d);
+					get_indices()->push_back(a);
+					get_indices()->push_back(b);
+					get_indices()->push_back(d);
 				}
 				if (iy != heightSegments - 1 || thetaEnd < M_PI) {
-					get_indices().push_back(b);
-					get_indices().push_back(c);
-					get_indices().push_back(d);
+					get_indices()->push_back(b);
+					get_indices()->push_back(c);
+					get_indices()->push_back(d);
 				}
 
 			}

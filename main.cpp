@@ -101,6 +101,7 @@ int main() {
 	//box->position.x = 20.0;
 
 	Runner *runner = new Runner();
+	Dispatcher *dispatcher = new Dispatcher();
 
 	CameraControl *cameraControl = new CameraControl();
 	runner->add(cameraControl);
@@ -116,6 +117,7 @@ int main() {
 
 	Terrian2 *terrian = new Terrian2();
 	terrian->scene = scene;
+	terrian->dispatcher = dispatcher;
 	runner->add(terrian);
 
 	Editor *editor = new Editor();
@@ -127,6 +129,7 @@ int main() {
 	do {
 		glfwPollEvents();
 
+		dispatcher->update();
 		runner->update();
 
 		shadowMap->render(renderer, scene);

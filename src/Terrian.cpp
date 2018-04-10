@@ -7,18 +7,7 @@
 #include "Mesh.h"
 #include "Brush.h"
 #include "Field3.h"
-
-// It's not safe to delete gl resources in other threads
-class RemoveMeshWorker : public Worker {
-public:
-	Mesh *mesh;
-	RemoveMeshWorker(Mesh *mesh) :mesh(mesh) {}
-	void run() {
-		delete mesh->get_geometry();
-		mesh->remove_self();
-		delete mesh;
-	}
-};
+#include "RemoveMeshWorker.h"
 
 inline int fast_floor(int x, int y) {
 	return x / y - (x % y < 0);
