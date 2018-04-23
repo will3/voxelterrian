@@ -5,7 +5,7 @@ project (kestrel)
 find_package(OpenGL REQUIRED)
 
 # Compile external dependencies 
-add_subdirectory (external)
+add_subdirectory(external)
 
 # On Visual 2005 and above, this module can set the debug working directory
 cmake_policy(SET CMP0026 OLD)
@@ -33,10 +33,15 @@ include_directories(
 	.
 )
 
+find_package(SDL2 REQUIRED)
+
+include_directories(${SDL2_INCLUDE_DIRS})
+
 set(ALL_LIBS
 	${OPENGL_LIBRARY}
 	glfw
 	GLEW_1130
+	${SDL2_LIBRARIES}
 )
 
 add_definitions(

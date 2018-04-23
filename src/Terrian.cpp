@@ -145,11 +145,11 @@ Terrian::Terrian()
 	this->chunks = new Chunks();
 
 	height_noise->amplitude = 128.0;
-	height_noise->get_noise()->SetFractalOctaves(5);
-	height_noise->y_scale = 0.4;
+	height_noise->noise->SetFractalOctaves(5);
+	height_noise->yScale = 0.4;
 
-	canyon_noise->get_noise()->SetFractalType(FastNoise::RigidMulti);
-	canyon_noise->get_noise()->SetFractalOctaves(1);
+	canyon_noise->noise->SetFractalType(FastNoise::RigidMulti);
+	canyon_noise->noise->SetFractalOctaves(1);
 }
 
 Terrian::~Terrian()
@@ -168,8 +168,8 @@ void Terrian::rasterize_height(Chunk * chunk) {
 			for (int k = 0; k < noise_size; k++) {
 				Coord3 coord = Coord3(i, j, k) * 2 + offset;
 
-				float j_offset = overhang_noise->get_noise()->GetSimplexFractal(coord.i, coord.j, coord.k);
-				float fractal = height_noise->get_noise()->GetSimplexFractal(coord.i + j_offset, coord.j * height_noise->y_scale, coord.k + j_offset);
+				float j_offset = overhang_noise->noise->GetSimplexFractal(coord.i, coord.j, coord.k);
+				float fractal = height_noise->noise->GetSimplexFractal(coord.i + j_offset, coord.j * height_noise->yScale, coord.k + j_offset);
 				float density = fractal * height_noise->amplitude - coord.j;
 				field.set(i, j, k, density);
 			}

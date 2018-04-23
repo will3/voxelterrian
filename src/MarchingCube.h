@@ -114,15 +114,15 @@ static void generate_geometry(
 	Field3<float> &densityMap,
 	float densityMapScale) {
 
-	float subdivision = 0.5f;
-	float range = size;// *subdivision;
-	float sampleScale = densityMapScale;
+	float subdivision = 1.0f;
+	float range = size * subdivision;
+	float sampleScale = densityMapScale * subdivision;
 
 	for (int z = 0; z < range; z++) {
 		for (int y = 0; y < range; y++) {
 			for (int x = 0; x < range; x++) {
 
-				const int vs[8] = {
+				const float vs[8] = {
 					densityMap.sample(x,   	y,   	z, sampleScale),
 					densityMap.sample(x + 1, 	y,   	z, sampleScale),
 					densityMap.sample(x,   	y + 1, z, sampleScale),
@@ -184,6 +184,7 @@ static void generate_geometry(
 		}
 	}
 	for (Vertex &v : vertices) {
+		v.position /= subdivision;
 		v.normal = normalize(v.normal);
 		v.normal = v.normal * -1.0f;
 	}

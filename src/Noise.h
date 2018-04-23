@@ -3,12 +3,12 @@
 
 class Noise {
 private:
-	FastNoise * noise = new FastNoise();
 
 public:
+	FastNoise * noise = new FastNoise();
 	float amplitude = 1.0;
-	float y_scale = 1.0;
-	FastNoise *get_noise() { return noise; }
+	float yScale = 1.0;
+	float maxAmplitude = 1.0;
 
 	~Noise() {
 		delete noise;

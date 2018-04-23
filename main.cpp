@@ -123,8 +123,8 @@ int main() {
 	Editor *editor = new Editor();
 	editor->rock_color_gradient = terrian->rock_color_gradient;
 	editor->directionalLight = light;
-	editor->load();
 	editor->terrian = terrian;
+	editor->load();
 
 	do {
 		glfwPollEvents();
@@ -137,7 +137,10 @@ int main() {
 		composer->render();
 
 		ImGui_ImplGlfwGL3_NewFrame();
+
 		editor->draw();
+
+		ImGui::ShowDemoWindow(&show_demo_window);
 
 		ImGui::Render();
 		ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());

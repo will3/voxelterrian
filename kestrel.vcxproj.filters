@@ -219,6 +219,9 @@
     <ClInclude Include="C:\kestrel\src\Raycast.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="C:\kestrel\src\RemoveMeshWorker.h">
+      <Filter>src</Filter>
+    </ClInclude>
     <ClInclude Include="C:\kestrel\src\Runner.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -293,9 +296,6 @@
     </ClInclude>
     <ClInclude Include="C:\kestrel\external\json.hpp">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RemoveMeshWorker.h">
-      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

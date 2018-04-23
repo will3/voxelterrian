@@ -14,22 +14,43 @@
 #include <glm/gtc/quaternion.hpp>
 #include "RemoveMeshWorker.h"
 #include <thread>
+#include "Noise.h"
 
 using namespace glm;
 
 class TerrianChunk {
 public:
-	Mesh *mesh = 0;
+	Mesh * mesh = 0;
 	bool dirty = true;
+};
+
+class ReplaceMeshWorker : public Worker {
+public:
+	TerrianChunk * chunk;
+	Mesh *mesh;
+	Scene *scene;
+
+	ReplaceMeshWorker(TerrianChunk *chunk, Mesh *mesh, Scene *scene) : chunk(chunk), mesh(mesh), scene(scene) {};
+
+	void run() override {
+		if (chunk->mesh != 0) {
+			chunk->mesh->geometry->unload();
+			delete chunk->mesh->geometry;
+
+			chunk->mesh->remove_self();
+			delete chunk->mesh;
+		}
+
+		scene->add(mesh);
+		chunk->mesh = mesh;
+	}
 };
 
 class Terrian2 : public Entity {
 private:
-	float draw_distance = 64.0;
-	float draw_height = 128.0;
-	float height_noise_y_scale = 0.4;
-	float height_noise_amplitude = 128.0;
-	FastNoise *height_noise = new FastNoise();
+	float draw_distance = 128.0;
+	float draw_height = 256.0;
+
 	StandardMaterial *material = new StandardMaterial();
 	std::map<Coord3, TerrianChunk *> chunks;
 
@@ -38,15 +59,55 @@ public:
 	Dispatcher *dispatcher;
 	ImGradient *rock_color_gradient = new ImGradient();
 
+	Noise *heightNoise = new Noise();
+	Noise *canyonNoise = new Noise();
+
 	Terrian2() {
-		height_noise->SetFractalOctaves(5);
+		heightNoise->noise->SetFractalOctaves(5);
+		heightNoise->yScale = 0.4;
+		heightNoise->amplitude = 256.0;
+		heightNoise->maxAmplitude = 256.0;
 	}
 
 	void start() {
-
+		std::thread t(&Terrian2::drawAllLoop, this);
+		t.detach();
 	}
 
 	void update() {
+	}
+
+	void setAllDirty() {
+		for (auto kv : chunks) {
+			kv.second->dirty = true;
+		}
+	}
+
+	float get_density(float x, float y, float z) {
+		float gradient = 1 - y / heightNoise->amplitude - 0.5;
+		float fractal = heightNoise->noise->GetSimplexFractal(x, y * heightNoise->yScale, z);
+		return gradient + fractal;
+	}
+
+	ivec3 get_color(glm::vec3 coord) {
+		return get_color(coord.x, coord.y, coord.z);
+	}
+
+	ivec3 get_color(float x, float y, float z) {
+		float position = y / heightNoise->amplitude;
+		std::array<float, 3> color;
+		rock_color_gradient->getColorAt(position, color.data());
+		ivec3 c = { color[0] * 255, color[1] * 255, color[2] * 255 };
+		return c;
+	}
+
+	void drawAllLoop() {
+		while (!removed) {
+			drawAll();
+		}
+	}
+
+	void drawAll() {
 		int num_chunks = ceil(draw_distance / (float)CHUNK_SIZE);
 		int num_chunks_y = ceil(draw_height / (float)CHUNK_SIZE);
 		Coord3 view_origin = { 0, 0, 0 };
@@ -63,7 +124,7 @@ public:
 					TerrianChunk *chunk = chunks[origin];
 
 					if (chunk->dirty) {
-						drawAsync(origin, chunk);
+						draw(origin, chunk);
 						chunk->dirty = false;
 					}
 				}
@@ -71,46 +132,13 @@ public:
 		}
 	}
 
-	void setAllDirty() {
-		for (auto kv : chunks) {
-			kv.second->dirty = true;
-		}
-	}
-
-	float get_density(float x, float y, float z) {
-		return height_noise->GetSimplexFractal(x, y * height_noise_y_scale, z) * height_noise_amplitude - y;
-	}
-
-	ivec3 get_color(glm::vec3 coord) {
-		return get_color(coord.x, coord.y, coord.z);
-	}
-
-	ivec3 get_color(float x, float y, float z) {
-		float position = y / height_noise_amplitude;
-		std::array<float, 3> color;
-		rock_color_gradient->getColorAt(position, color.data());
-		ivec3 c = { color[0] * 255, color[1] * 255, color[2] * 255 };
-		return c;
-	}
-
-	void drawAsync(Coord3 origin, TerrianChunk *chunk) {
-		std::thread t(&Terrian2::draw, this, origin, chunk);
-		t.detach();
-	}
-
 	void draw(Coord3 origin, TerrianChunk *chunk) {
-		if (chunk->mesh != 0) {
-			RemoveMeshWorker *removeMeshWorker = new RemoveMeshWorker(chunk->mesh);
-			dispatcher->add(removeMeshWorker);
-			chunk->mesh = 0;
-		}
-
 		StandardGeometry *geometry = new StandardGeometry();
 		float chunk_size = 32;
 		Coord3 offset = origin * chunk_size;
 		vec3 offsetV = { offset.i, offset.j, offset.k };
 
-		float noise_size = chunk_size / 2 + 10;
+		float noise_size = chunk_size / 2 + 2;
 		Field3<float> field = Field3<float>(noise_size);
 		for (int i = 0; i < noise_size; i++) {
 			for (int j = 0; j < noise_size; j++) {
@@ -145,15 +173,14 @@ public:
 		Mesh *mesh = new Mesh(geometry, material);
 		mesh->position = { offset.i, offset.j, offset.k };
 
-		scene->add(mesh);
-
-		chunk->mesh = mesh;
+		ReplaceMeshWorker *worker = new ReplaceMeshWorker(chunk, mesh, scene);
+		dispatcher->add(worker);
 	}
 
 	~Terrian2() {
 		for (auto kv : chunks) {
 			delete kv.second;
 		}
-		delete height_noise;
+		delete heightNoise;
 	}
 };
